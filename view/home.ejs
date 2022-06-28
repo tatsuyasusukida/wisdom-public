@@ -1,0 +1,102 @@
+<%- include('partial/header') %>
+
+<div class="jumbotron is-home">
+  <img src="<%- env.STATIC_URL + '/img/main.png' %>" alt="">
+
+  <strong>
+    <span class="is-main">Re-START !</span>
+    <span class="is-sub">〜夢の実現に向けて〜</span>
+  </strong>
+
+  <a href="#">
+    <span class="is-sub">オープンスクール</span>
+    <span class="is-main">申し込み受付中</span>
+  </a>    
+</div>
+
+<main>
+  <h1 class="visually-hidden">長岡英智高等学校</h1>
+
+  <section class="course container">
+    <h2 class="heading">
+      コース紹介 <small>COURSE</small>
+    </h2>
+
+    <section class="course-item is-first">
+      <div class="course-item-col">
+        <img src="<%- env.STATIC_URL + '/img/course-commute.png' %>" alt="">
+      </div>
+      <div class="course-item-col is-right">
+        <h3>通学コース</h3>
+        <p>
+          週4日登校。<br>
+          生活リズムを整えながら、ゆとりのあるスクールライフ
+        </p>
+        <div class="is-link">
+          <a href="/courses/commute">
+            詳しく見る
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="course-item">
+      <div class="course-item-col">
+        <img src="<%- env.STATIC_URL + '/img/course-correspondence.png' %>" alt="">
+      </div>
+      <div class="course-item-col is-right">
+        <h3>通信教育コース</h3>
+        <p>
+          学ぶ場所も学ぶ時間も自分で選ぶ。<br>
+          自由な時間の使い方で高校卒業を目指す。
+        </p>
+        <div class="is-link">
+          <a href="/courses/correspondence">
+            詳しく見る
+          </a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="container news">
+    <h2 class="heading">
+      新着情報 <small>NEWS</small>
+    </h2>
+    <ul>
+      <% for (const news of newses) { %>
+        <li>
+          <span class="is-date">2022.07.01</span>
+          <a href="/news/1/">
+            新着情報のタイトルが入ります
+          </a>
+        </li>
+      <% } %>
+    </ul>
+  </section>
+
+  <section class="gallery">
+    <div class="container">
+      <h2 class="heading is-gallery">
+        ギャラリー <small>GALLERY</small>
+      </h2>
+      <ul>
+        <li>
+          <a href="#" class="is-active">通学コース</a>
+        </li><li class="inline-block">
+          <a href="#">通信教育コース</a>
+        </li>
+      </ul>
+      <div class="gallery-figure">
+        <% for (let i = 1; i <= 9; i += 1) { %>
+          <figure>
+            <img src="<%- env.STATIC_URL + '/img/gallery.png' %>" alt="">
+            <figcaption>外観</figcaption>
+          </figure>
+        <% } %>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partial/footer') %>

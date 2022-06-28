@@ -1,0 +1,39 @@
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-flex">
+          <div class="footer-logo">
+            <span class="is-sub">学校法人 英智学院</span>
+            <span class="is-main">長岡英智高等学校</span>
+          </div>
+          <nav aria-label="フッター">
+            <ul>
+              <li>
+                <a href="/recruit/" class="mr-4">採用情報</a>
+              </li>
+              <li>
+                <a href="/privacy/" class="ml-4">プライバシーポリシー</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        
+        <div class="footer-address">
+          <% for (let i = 1; i <= 4; i += 1) { %>
+            <address>
+              <span class="is-name">宮内本校</span>
+              <span class="is-zip">〒940-1154</span>
+              <span class="is-address">新潟県長岡市宮栄3-16-14</span>
+              <span class="is-tel">TEL: 0258-31-6771</span>
+              <span class="is-fax">FAX: 0258-31-6772</span>
+            </address>
+          <% } %>
+        </div>
+
+        <small>
+          &copy; Nagaoka Eichi High School
+        </small>
+      </div>
+    </footer>
+  </body>
+</html>

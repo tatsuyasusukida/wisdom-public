@@ -1,0 +1,5 @@
+/log/
+/node_modules/
+/static/
+/.env
+/cors.json

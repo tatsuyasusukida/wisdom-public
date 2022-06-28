@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>長岡英智高等学校｜通学できる通信制高校</title>
+    <meta name="description" content="長岡英智高等学校は、それぞれの個性に寄り添い、時代のニーズに応える単位性通信性の高等学校として、生徒一人ひとりに寄り添う教育を実践します。">
+    <meta property="og:title" content="長岡英智高等学校｜通学できる通信制高校">
+    <meta property="og:image" content="<%- env.STATIC_URL + '/img/main.jpg' %>">
+    <meta property="og:url" content="<%- url.toString() %>">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="長岡英智高等学校｜通学できる通信制高校">
+    <meta property="twitter:image" content="<%- env.STATIC_URL + '/img/main.jpg' %>">
+    <link rel="stylesheet" href="<%- env.STATIC_URL + '/css/bootstrap-reboot.min.css' %>">
+    <link rel="stylesheet" href="<%- env.STATIC_URL + '/css/screen.css' %>">
+  </head>
+  <body>
+    <header class="header">
+      <nav aria-label="ヘッダー">
+        <div class="header-logo">
+          <a href="/">
+            <span class="is-sub">学校法人 英智学院</span>
+            <span class="is-main">長岡英智高等学校</span>
+          </a>
+        </div>
+
+        <ul>
+          <% headerLinks.forEach(({href, text}, i) => { %>
+            <li>
+              <a href="#"><%= text %></a>
+            </li>
+          <% }) %>
+        </ul>
+
+        <div class="header-site">
+          <a href="/student/">
+            在校生・卒業生の方へ
+          </a>
+        </div>
+      </nav>
+    </header>
