@@ -32,6 +32,7 @@ async function main () {
           "font-src": ["'self'", "https:", "data:"],
           "form-action": ["'self'"],
           "frame-ancestors": ["'self'"],
+          "frame-src": ["'self'", "https://www.google.com"],
           "img-src": ["'self'", "data:", "https://storage.googleapis.com"],
           "object-src": ["'none'"],
           "script-src": ["'self'", process.env.STATIC_URL],
@@ -82,6 +83,7 @@ async function main () {
     router.get('/', wrap(home))
     router.get('/', (_, res) => res.render('home'))
     router.get('/about/', (_, res) => res.render('about'))
+    router.get('/course/commute/', (_, res) => res.render('course-commute'))
 
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())
