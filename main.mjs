@@ -36,7 +36,7 @@ async function main () {
           "object-src": ["'none'"],
           "script-src": ["'self'", process.env.STATIC_URL],
           "script-src-attr": ["'none'"],
-          "style-src": ["'self'", "'unsafe-inline'", process.env.STATIC_URL],
+          "style-src": ["'self'", "'unsafe-inline'", process.env.STATIC_URL, 'https://fonts.googleapis.com'],
           "upgrade-insecure-requests": [],
           "connect-src": ["'self'", "https://storage.googleapis.com"],
         },
@@ -63,6 +63,16 @@ async function main () {
       req.locals = {}
       res.locals.env = process.env
       res.locals.url = new URL(req.originalUrl, process.env.BASE_URL)
+
+      res.locals.headerLinks = [
+        {text: '学校紹介', href: '/about/'},
+        {text: 'コース紹介', href: '/course/'},
+        {text: '入試情報', href: '/admission/'},
+        {text: 'ダウンロード資料', href: '/document/'},
+        {text: 'よくある質問', href: '/faq/'},
+        {text: 'お問い合わせ', href: '/contact/'},
+      ]
+
       next()
     })
 
@@ -71,6 +81,7 @@ async function main () {
 
     router.get('/', wrap(home))
     router.get('/', (_, res) => res.render('home'))
+    router.get('/about/', (_, res) => res.render('about'))
 
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())
@@ -97,15 +108,6 @@ function wrap (fn) {
 }
 
 function home (req, res, next) {
-  res.locals.headerLinks = [
-    {text: '学校紹介', href: '/about'},
-    {text: 'コース紹介', href: '/course'},
-    {text: '入試情報', href: '/admission'},
-    {text: 'ダウンロード資料', href: '/document'},
-    {text: 'よくある質問', href: '/faq'},
-    {text: 'お問い合わせ', href: '/contact'},
-  ]
-
   res.locals.newses = new Array(5).fill(1).map(_ => ({
     dateText: '2022.07.01',
     title: '新着情報のタイトルが入ります',

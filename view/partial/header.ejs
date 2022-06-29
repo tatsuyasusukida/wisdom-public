@@ -14,14 +14,22 @@
     <meta property="twitter:image" content="<%- env.STATIC_URL + '/img/main.jpg' %>">
     <link rel="stylesheet" href="<%- env.STATIC_URL + '/css/bootstrap-reboot.min.css' %>">
     <link rel="stylesheet" href="<%- env.STATIC_URL + '/css/screen.css' %>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
   </head>
   <body>
     <header class="header">
       <nav aria-label="ヘッダー">
         <div class="header-logo">
           <a href="/">
-            <span class="is-sub">学校法人 英智学院</span>
-            <span class="is-main">長岡英智高等学校</span>
+            <span class="header-logo-image">
+              <img src="<%- env.STATIC_URL + '/img/layout/logo.png' %>" alt="">
+            </span>
+            <span class="header-logo-text">
+              <span class="is-sub">学校法人 英智学院</span>
+              <span class="is-main">長岡英智高等学校</span>
+            </span>
           </a>
         </div>
 
