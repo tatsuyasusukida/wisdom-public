@@ -84,6 +84,7 @@ async function main () {
     router.get('/', (_, res) => res.render('home'))
     router.get('/about/', (_, res) => res.render('about'))
     router.get('/course/commute/', (_, res) => res.render('course-commute'))
+    router.get('/admission/', (_, res) => res.render('admission'))
 
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())

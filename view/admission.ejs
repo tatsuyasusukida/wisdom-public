@@ -1,0 +1,279 @@
+<%- include('partial/header') %>
+
+<div class="jumbotron" aria-hidden="true">
+  <img src="<%- env.STATIC_URL %>/img/admission/jumbotron.png" alt="">
+  <div class="container">
+    <div class="jumbotron-title">
+      入試情報 <small>ADMISSION INFORMATION</small>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="パンくずリスト" class="breadcrumb">
+  <div class="container">
+    <ul>
+      <li>
+        <a href="../">TOP</a>
+      </li>
+      <li class="ia-active" aria-current="page">
+        入試情報
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <h1 class="visually-hidden">入試情報</h1>
+
+  <div class="container">
+    <section class="schedule is-first">
+      <h2 class="h2">入試日程</h2>
+      <dl>
+        <dt>専願入試・併願入試</dt>
+        <dd>令和 5 年 1 月 18 日 ( 水 )</dd>
+
+        <dt>一般入試</dt>
+        <dd>令和 5 年 2 月 15 日 ( 水 )</dd>
+
+        <dt>二次入試</dt>
+        <dd>令和 5 年 3 月 24 日 ( 金 )</dd>
+      </dl>
+      <p>
+        二次試験の有無についてはお問い合わせください。また詳細は募集要項をご覧ください。<br>
+        募集要項については<a href="/contact/">お問い合わせフォーム</a>よりお気軽にご請求ください。
+      </p>
+    </section>
+
+    <section class="schedule is-teacher">
+      <h2 class="h2">その他の日程</h2>
+      <dl>
+        <dt>教職員向け公開授業（宮内本校）</dt>
+        <dd>令和 4 年 7 月 14 日 ( 木 )</dd>
+
+        <dt>教職員向け学校説明会（宮内本校）</dt>
+        <dd>令和 4 年 10 月 21 日 ( 金 )</dd>
+      </dl>
+    </section>
+
+    <section class="season">
+      <h2 class="h2">受け入れについて</h2>
+      <table>
+        <thead>
+          <tr>
+            <th><span class="visually-hidden">コース</span></th>
+            <th>入学</th>
+            <th>編入学</th>
+            <th>転入学</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>通学コース</td>
+            <td>4月のみ</td>
+            <td>4月のみ</td>
+            <td>4月のみ</td>
+          </tr>
+          <tr>
+            <td>通信教育コース</td>
+            <td>4月と10月のみ</td>
+            <td>4月と10月のみ</td>
+            <td>随時受け入れ</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="openSchool">
+      <h2 class="h2">オープンスクール</h2>
+      <dl>
+        <dt>開催日</dt>
+        <dd>
+          令和 4 年 8 月 20 日 ( 土 )<br>
+          令和 4 年 10 月 29 日 ( 土 )<br>
+          令和 4 年 12 月 3 日 ( 土 )
+        </dd>
+
+        <dt>場所</dt>
+        <dd>
+          <b>【通学コース】</b><br>
+          宮内本校<br>
+          <br>
+          <b>【通信教育コース】</b><br>
+          長岡駅前校・長岡駅東校・三条校<br>
+        </dd>
+
+        <dt>時間</dt>
+        <dd>
+          10:00 〜 12:00（受付 9:30〜）
+        </dd>
+
+        <dt>内容</dt>
+        <dd>
+          <ul>
+            <li>学校紹介</li>
+            <li>入試説明</li>
+            <li>行事紹介</li>
+            <li>在校生による座談会(通学コースのみ)</li>
+          </ul>
+          ※内容は予告なしに変更される場合があります。<br>
+          <br>
+          事前申し込みが必要です。ホームページの申し込みフォームまたはお電話にてお申込みください。<br>
+          <br>
+          <a href="/contact/" class="button">申し込みフォーム</a><br>
+          <br>
+          <a href="tel:0258316771" class="button is-tel">TEL: 0258-31-6771</a><br>
+          <br>
+          オープンスクール以外でも随時、見学・相談を受け付けております。お気軽にご相談ください。
+        </dd>
+      </dl>
+    </section>
+
+    <section class="fee">
+      <div class="fee-flex">
+        <h2 class="h2">学費</h2>
+        <p>令和4年度実績。変更になる場合があります。詳細は募集要項をご覧ください。</p>
+      </div>
+      <section class="fee-item is-first">
+        <h3 class="h3">通学コース</h3>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">区分</th>
+              <th class="is-amount">金額</th>
+              <th class="is-season">納入時期</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2">授業料</td>
+              <td>1 ヶ月 27,500 円</td>
+              <td rowspan="3">4 月・7 月・10 月・1 月（3 ヶ月分まとめて納入）</td>
+            </tr>
+            <tr>
+              <td rowspan="3" class="is-align-top">諸費</td>
+              <td class="is-title">施設設備費</td>
+              <td>1 ヶ月 10,000 円</td>
+            </tr>
+            <tr>
+              <td>教育充実費</td>
+              <td>1 ヶ月 5,000 円</td>
+            </tr>
+            <tr>
+              <td class="is-align-top">ベーシックスキル代</td>
+              <td class="is-align-top">1ヶ月 3,000 円 (予定)</td>
+              <td>4 月・10 月（3 ヶ月分まとめて納入）<br>7 月・1 月（1 ヶ月分納入）</td>
+            </tr>
+            <tr>
+              <td class="is-align-top" rowspan="2">その他</td>
+              <td>PTA 会費</td>
+              <td>(半期) 1,500 円</td>
+              <td rowspan="2">4 月・10 月</td>
+            </tr>
+            <tr>
+              <td>生徒会費</td>
+              <td>(半期) 1,500 円</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="fee-item">
+        <h3 class="h3">通信教育コース</h3>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">区分</th>
+              <th class="is-amount">金額</th>
+              <th class="is-season">納入時期</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2">入学料</td>
+              <td>不要</td>
+              <td>なし</td>
+            </tr>
+            <tr>
+              <td colspan="2">授業料</td>
+              <td>1 単位 7,800 円</td>
+              <td rowspan="3">4 月・7 月・10 月・1 月 (3 ヶ月分まとめて納入 )</td>
+            </tr>
+            <tr>
+              <td rowspan="2" class="is-category is-align-top">諸費</td>
+              <td class="is-title">施設設備費</td>
+              <td>1 ヶ月 7,500 円</td>
+            </tr>
+            <tr>
+              <td>教育充実費</td>
+              <td>1 ヶ月 5,000 円</td>
+            </tr>
+            <tr>
+              <td class="is-align-top" rowspan="2">その他</td>
+              <td>PTA 会費</td>
+              <td>(半期) 1,500 円</td>
+              <td rowspan="2">4 月・10 月</td>
+            </tr>
+            <tr>
+              <td>生徒会費</td>
+              <td>(半期) 1,500 円</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
+    <section class="subsidy">
+      <h2 class="h2">学費の軽減について</h2>
+      <section class="subsidy-item is-first">
+        <h3 class="h3">就学支援金補助金</h3>
+        <p>【計算式】市町村民税の課税標準額 × 6% - 市町村民税の調整控除の額 = 算出額</p>
+        <table>
+          <thead>
+            <tr>
+              <th>算出額</th>
+              <th>支給額</th>
+              <th>世帯の年収見込み</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>154,000 円未満</td>
+              <td>年額 297,000 円（1 ヶ月あたり 24,750 円）</td>
+              <td>年収 590 万円未満</td>
+            </tr>
+            <tr>
+              <td>154,500 円以上 304,200 円未満</td>
+              <td>年額 118,800 円（1 ヶ月あたり 9,900 円）</td>
+              <td>年収 590 万円以上 910 万円未満</td>
+            </tr>
+            <tr>
+              <td>304,200 円以上</td>
+              <td>対象外</td>
+              <td>年収 910 万円以上</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="is-memo">
+          世帯の年収見込みについては両親・高校生・中学生の 4 人家族で、両親の一方が働いている場合の目安です。
+        </p>
+      </section>
+      <section class="subsidy-item">
+        <h3 class="h3">新潟県学費軽減補助</h3>
+        <p>
+          新潟県では、県内の私立高校に在籍する生徒の保護者であって、経済的理由により学費の支払いが困難な方の負担を軽くするため、一定の要件により授業料及び施設設備費などの全額又は一部を補助する学費軽減制度を実施しています。<br>
+          詳しくは新潟県の私立高校等への学費軽減制度概要のページをご覧ください。
+        </p>
+      </section>
+      <section class="subsidy-item">
+        <h3 class="h3">新潟県私立高等学校など小学のための給付金</h3>
+        <p class="visually-hidden">本文はありません。</p>
+      </section>
+      <section class="subsidy-item">
+        <h3 class="h3">市町村補助制度(居住区による)</h3>
+        <p class="visually-hidden">本文はありません。</p>
+      </section>
+    </section>    
+  </div>
+
+</main>
+
+<%- include('partial/footer') %>
