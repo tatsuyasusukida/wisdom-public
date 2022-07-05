@@ -1,0 +1,72 @@
+<%- include('partial/header') %>
+
+<div class="jumbotron" aria-hidden="true">
+  <img src="<%- env.STATIC_URL %>/img/faq/jumbotron.png" alt="">
+  <div class="container">
+    <div class="jumbotron-title">
+      よくある質問 <small>FAQ</small>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="パンくずリスト" class="breadcrumb">
+  <div class="container">
+    <ul>
+      <li>
+        <a href="../">TOP</a>
+      </li>
+      <li class="ia-active" aria-current="page">
+        よくある質問
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <h1 class="visually-hidden">よくある質問</h1>
+  <div class="container">
+    <div class="faq">
+      <% faqCategories.forEach(({title, faqs}, h) => { %>
+        <section class="faq-category<%- h === 0 ? ' is-first' : '' %>">
+          <h2 class="h2"><%= title %></h2>
+          <% faqs.forEach((faq, i) => { %>
+            <article class="faq-category-item<%- i === 0 ? ' is-first' : '' %>">
+              <h3>
+                <% faq.questionLines.forEach((line, j) => { %>
+                  <%- j >= 1 ? '<br>' : '' %>
+                  <%= line %>
+                <% }) %>
+              </h3>
+              <p>
+                <% faq.answerLines.forEach((line, j) => { %>
+                  <%- j >= 1 ? '<br>' : '' %>
+                  <%= line %>
+                <% }) %>
+              </p>
+              <% if (faq.faqLinks.length >= 1 ) { %>
+                <ul>
+                  <% faq.faqLinks.forEach(({title, href}) => { %>
+                    <li>
+                      <a href="<%- href %>"><%= title %></a>
+                    </li>
+                  <% }) %>
+                </ul>
+              <% } %>
+              <% if (faq.faqImages.length >= 1 ) { %>
+                <div class="faq-category-item-grid">
+                  <% faq.faqImages.forEach(({original, thumbnail, alt}) => { %>
+                    <a href="<%- original %>">
+                      <img src="<%- thumbnail %>" alt="<%- alt %>">
+                    </a>
+                  <% }) %>
+                </div>
+              <% } %>
+            </article>
+          <% }) %>
+        </section>
+      <% }) %>
+    </div>
+  </div>
+</main>
+
+<%- include('partial/footer') %>

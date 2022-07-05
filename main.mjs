@@ -124,6 +124,34 @@ async function main () {
 
     router.get('/document/', (_, res) => res.render('document'))
 
+    router.get('/faq/', (_, res, next) => {
+      res.locals.faqCategories = new Array(3).fill(1).map(_ => ({
+        title: 'カテゴリ',
+        faqs: new Array(3).fill(1).map(_ => ({
+          questionLines: [
+            'ここにテキストが入ります',
+          ],
+          answerLines: [
+            'ここにテキストが入ります',
+            'ここにテキストが入ります',
+            'ここにテキストが入ります',
+          ],
+          faqLinks: new Array(0).fill(1).map(_ => ({
+            title: 'リンクのタイトルが入ります',
+            href: '#',
+          })),
+          faqImages: new Array(0).fill(1).map(_ => ({
+            original: process.env.STATIC_URL + '/img/faq/image.png',
+            thumbnail: process.env.STATIC_URL + '/img/faq/image.png',
+            alt: 'ここに代替テキストが入ります',
+          })),
+        })),
+      }))
+      next()
+    })
+
+    router.get('/faq/', (_, res) => res.render('faq'))
+
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())
 
