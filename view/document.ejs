@@ -1,0 +1,60 @@
+<%- include('partial/header') %>
+
+<div class="jumbotron" aria-hidden="true">
+  <img src="<%- env.STATIC_URL %>/img/document/jumbotron.png" alt="">
+  <div class="container">
+    <div class="jumbotron-title">
+      資料ダウンロード <small>DOWNLOAD</small>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="パンくずリスト" class="breadcrumb">
+  <div class="container">
+    <ul>
+      <li>
+        <a href="../">TOP</a>
+      </li>
+      <li class="ia-active" aria-current="page">
+        資料ダウンロード
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <h1 class="visually-hidden">資料ダウンロード</h1>
+  <div class="container">
+    <div class="document">
+      <% documentCategories.forEach(({title, documents}, i) => { %>
+        <section class="document-item<%- i === 0 ? ' is-first' : ''%>">
+          <h2 class="h2"><%= title %></h2>
+          <table>
+            <thead>
+              <tr>
+                <th class="is-publish">公開日</th>
+                <th class="is-update">更新日</th>
+                <th class="is-title">資料名</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% documents.forEach((document) => { %>
+                <tr>
+                  <td class="is-publish">2022年5月17日</td>
+                  <td class="is-update">2022年5月17日</td>
+                  <td class="is-title">
+                    <a href="#" target="_blank">
+                      <%= document.title %>
+                    </a>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </section>
+      <% }) %>
+    </div>
+  </div>
+</main>
+
+<%- include('partial/footer') %>

@@ -86,6 +86,44 @@ async function main () {
     router.get('/course/commute/', (_, res) => res.render('course-commute'))
     router.get('/admission/', (_, res) => res.render('admission'))
 
+    router.get('/document/', (_, res, next) => {
+      res.locals.documentCategories = [
+        {
+          title: '入試情報',
+          documents: [
+            {title: '令和4年度 パンフレット'},
+          ],
+        },
+        {
+          title: '写真',
+          documents: [
+            {title: '制服の写真'},
+            {title: '宮内本校の写真'},
+            {title: '長岡駅前校の写真'},
+            {title: '長岡駅東校の写真'},
+            {title: '三条校の写真'},
+          ],
+        },
+        {
+          title: '高校生活',
+          documents: [
+            {title: '年間行事／部活動'},
+          ],
+        },
+        {
+          title: 'データ',
+          documents: [
+            {title: '生徒状況（在校生出身中学校）'},
+            {title: '進路状況調査結果（卒業生の進路先）'},
+          ],
+        },
+      ]
+
+      next()
+    })
+
+    router.get('/document/', (_, res) => res.render('document'))
+
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())
 
