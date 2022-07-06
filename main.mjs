@@ -82,6 +82,7 @@ async function main () {
 
     router.get('/', wrap(home))
     router.get('/', (_, res) => res.render('home'))
+    router.get('/news/:newsId([0-9]+)/', (_, res) => res.render('news'))
     router.get('/about/', (_, res) => res.render('about'))
     router.get('/course/commute/', (_, res) => res.render('course-commute'))
     router.get('/admission/', (_, res) => res.render('admission'))

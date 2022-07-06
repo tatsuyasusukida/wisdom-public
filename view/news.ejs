@@ -1,0 +1,58 @@
+<%- include('partial/header') %>
+
+<div class="jumbotron" aria-hidden="true">
+  <img src="<%- env.STATIC_URL %>/img/news/jumbotron.png" alt="">
+  <div class="container">
+    <div class="jumbotron-title">
+      新着情報 <small>NEWS</small>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="パンくずリスト" class="breadcrumb">
+  <div class="container">
+    <ul>
+      <li>
+        <a href="/">TOP</a>
+      </li>
+      <li class="ia-active" aria-current="page">
+        新着情報
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+    <div class="newsDetail">
+      <h1>新着情報のタイトル</h1>
+      <div class="newsDetail-date">2022.07.01</div>
+      <p>
+        ここに本文が入ります。<br>
+        ここに本文が入ります。<br>
+        ここに本文が入ります。
+      </p>
+      <ul>
+        <li>
+          <a href="#">リンクが入ります</a>
+        </li>
+        <li>
+          <a href="#">リンクが入ります</a>
+        </li>
+      </ul>
+      <div class="newsDetail-image">
+        <a href="#">
+          <img src="<%- env.STATIC_URL %>/img/news/image.png" alt="">
+        </a>
+        <a href="#">
+          <img src="<%- env.STATIC_URL %>/img/news/image.png" alt="">
+        </a>
+        <a href="#">
+          <img src="<%- env.STATIC_URL %>/img/news/image.png" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partial/footer') %>
