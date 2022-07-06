@@ -151,6 +151,9 @@ async function main () {
     })
 
     router.get('/faq/', (_, res) => res.render('faq'))
+    router.get('/contact/', (_, res) => res.render('contact'))
+    router.get('/contact/review/', (_, res) => res.render('contact-review'))
+    router.get('/contact/finish/', (_, res) => res.render('contact-finish'))
 
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())

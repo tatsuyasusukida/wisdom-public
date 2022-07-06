@@ -1,0 +1,63 @@
+<%- include('partial/header') %>
+
+<div class="jumbotron" aria-hidden="true">
+  <img src="<%- env.STATIC_URL %>/img/contact/jumbotron.png" alt="">
+  <div class="container">
+    <div class="jumbotron-title">
+      お問い合わせ <small>CONTACT</small>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="パンくずリスト" class="breadcrumb">
+  <div class="container">
+    <ul>
+      <li>
+        <a href="/">TOP</a>
+      </li>
+      <li>
+        <a href="/contact/">お問い合わせ</a>
+      </li>
+      <li class="ia-active" aria-current="page">
+        完了
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <h1 class="visually-hidden">お問い合わせ</h1>
+
+  <div class="container">
+    <div class="contact">
+      <ol>
+        <li>入力</li>
+        <li>確認</li>
+        <li class="is-active">完了</li>
+      </ol>
+      <p class="is-guide">
+        この度はお問い合わせをいただきまして誠にありがとうございます。<br>
+        お問い合わせの受け付けメールを送信しましたのでご確認をお願いいたします。<br>
+        <br>
+        お問い合わせ内容を確認の上、改めてご連絡いたします。<br>
+        万が一、本校からのご連絡がない場合はお手数をおかけして恐縮ですが、<br>
+        お電話またはメールにてお問い合わせください。<br>
+        その際、下記のお問い合わせ番号をお伝えください。
+      </p>
+
+      <div class="contact-form">
+        <dl class="is-finish">
+          <dt>電話番号</dt><dd>09012345678</dd>
+          <dt>メールアドレス</dt><dd>eichi@example.com</dd>
+          <dt>郵便番号</dt><dd>9401234</dd>
+        </dl>
+        <div class="contact-form-button">
+          <a class="button is-top" href="/">トップページへ戻る</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<%- include('partial/footer') %>
