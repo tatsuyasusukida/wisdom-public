@@ -155,6 +155,7 @@ async function main () {
     router.get('/contact/review/', (_, res) => res.render('contact-review'))
     router.get('/contact/finish/', (_, res) => res.render('contact-finish'))
     router.get('/recruit/', (_, res) => res.render('recruit'))
+    router.get('/privacy/', (_, res) => res.render('privacy'))
 
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())
