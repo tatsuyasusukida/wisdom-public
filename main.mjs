@@ -67,7 +67,7 @@ async function main () {
 
       res.locals.headerLinks = [
         {text: '学校紹介', href: '/about/'},
-        {text: 'コース紹介', href: '/course/'},
+        {text: 'コース紹介', href: '/courses/'},
         {text: '入試情報', href: '/admission/'},
         {text: 'ダウンロード資料', href: '/document/'},
         {text: 'よくある質問', href: '/faq/'},
@@ -84,7 +84,8 @@ async function main () {
     router.get('/', (_, res) => res.render('home'))
     router.get('/news/:newsId([0-9]+)/', (_, res) => res.render('news'))
     router.get('/about/', (_, res) => res.render('about'))
-    router.get('/course/commute/', (_, res) => res.render('course-commute'))
+    router.get('/courses/commute/', (_, res) => res.render('courses-commute'))
+    router.get('/courses/correspondence/', (_, res) => res.render('courses-correspondence'))
     router.get('/admission/', (_, res) => res.render('admission'))
 
     router.get('/document/', (_, res, next) => {
