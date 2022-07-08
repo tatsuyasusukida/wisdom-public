@@ -232,7 +232,7 @@ function home (req, res, next) {
 }
 
 function onNotFound (_, res) {
-  res.status(404).end()
+  res.status(404).render('404')
 }
 
 function onError (err, _, res, __) {

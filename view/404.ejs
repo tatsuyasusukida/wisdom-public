@@ -1,0 +1,30 @@
+<%- include('partial/header') %>
+
+<nav aria-label="パンくずリスト" class="breadcrumb">
+  <div class="container">
+    <ul>
+      <li>
+        <a href="/">TOP</a>
+      </li>
+      <li class="ia-active" aria-current="page">
+        404 Not Found
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+    <div class="notFound">
+      <h1>お探しのページは見つかりませんでした</h1>
+      <p>
+        アクセスいただいたページは移動または削除された可能性があります。<br>
+        誠に恐れ入りますがトップページからお求めのページをお探しください。
+      </p>
+      <a class="button is-top" href="/">トップページへ戻る</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partial/footer') %>

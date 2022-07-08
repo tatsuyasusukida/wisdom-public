@@ -6,28 +6,50 @@
             <span class="is-sub">学校法人 英智学院</span>
             <span class="is-main">長岡英智高等学校</span>
           </div>
-          <nav aria-label="フッター">
-            <ul>
-              <li>
-                <a href="/recruit/" class="mr-4">採用情報</a>
-              </li>
-              <li>
-                <a href="/privacy/" class="ml-4">プライバシーポリシー</a>
-              </li>
-            </ul>
-          </nav>
+
+          <% if (url.pathname.indexOf('/student/') !== 0) { %>
+            <nav aria-label="フッター">
+              <ul>
+                <li>
+                  <a href="/recruit/" class="mr-4">採用情報</a>
+                </li>
+                <li>
+                  <a href="/privacy/" class="ml-4">プライバシーポリシー</a>
+                </li>
+              </ul>
+            </nav>
+          <% } %>
         </div>
         
         <div class="footer-address">
-          <% for (let i = 1; i <= 4; i += 1) { %>
-            <address>
-              <span class="is-name">宮内本校</span>
-              <span class="is-zip">〒940-1154</span>
-              <span class="is-address">新潟県長岡市宮栄3-16-14</span>
-              <span class="is-tel">TEL: 0258-31-6771</span>
-              <span class="is-fax">FAX: 0258-31-6772</span>
-            </address>
-          <% } %>
+          <address>
+            <span class="is-name">宮内本校</span>
+            <span class="is-zip">〒940-1154</span>
+            <span class="is-address">新潟県長岡市宮栄3-16-14</span>
+            <span class="is-tel">TEL: 0258-31-6771</span>
+            <span class="is-fax">FAX: 0258-31-6772</span>
+          </address>
+          <address>
+            <span class="is-name">長岡駅前校</span>
+            <span class="is-zip">〒940-0064</span>
+            <span class="is-address">新潟県長岡市殿町1丁目5番1号</span>
+            <span class="is-tel">TEL: 0258-38-5500</span>
+            <span class="is-fax">FAX: 0258-38-5511</span>
+          </address>
+          <address>
+            <span class="is-name">長岡駅東校</span>
+            <span class="is-zip">〒940-0048</span>
+            <span class="is-address">新潟県長岡市台町2丁目1番11号</span>
+            <span class="is-tel">TEL: 0258-89-8228</span>
+            <span class="is-fax">FAX: 0258-89-8238</span>
+          </address>
+          <address>
+            <span class="is-name">三条校</span>
+            <span class="is-zip">〒955-0862</span>
+            <span class="is-address">新潟県三条市南新保15番7号</span>
+            <span class="is-tel">TEL: 0258-64-8355</span>
+            <span class="is-fax">FAX: 0258-64-8022</span>
+          </address>
         </div>
 
         <small>

@@ -30,6 +30,10 @@ ol {
   margin: 0;
 }
 
+figure {
+  margin: 0;
+}
+
 .row {
   --bs-gutter-x: 40px;
 }
@@ -485,10 +489,6 @@ ol {
   margin-top: 3rem;
 }
 
-.gallery-item .row.is-gallery-item {
-  margin-top: 2rem;
-}
-
 .gallery-item h3 {
   text-align: center;
   font-size: 1.25rem;
@@ -506,6 +506,11 @@ ol {
   margin-left: 0.75rem;
 }
 
+.gallery-item .row.is-gallery-item {
+  margin-top: -0.5rem;
+  --bs-gutter-y: 2.5rem;
+}
+
 .gallery-item figure img {
   width: 100%;
 }
@@ -519,7 +524,7 @@ ol {
   background: rgb(102,102,102);
   padding: 4rem 0 3rem;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .footer-flex {
@@ -537,7 +542,7 @@ ol {
 .footer-logo span.is-main {
   display: block;
   font-size: 1.2rem;
-  margin-top: 0.25rem;
+  margin-top: 0.125rem;
 }
 
 .footer nav {
@@ -573,35 +578,11 @@ ol {
   font-weight: 500;
 }
 
-/*
-    <footer class="bg-wisdom-gray text-white pt-16 pb-12 text-sm">
-      <div class="container mx-auto">
-        <div class="flex">
-          <div>
-            <div class="mb-1">学校法人 英智学院</div>
-            <div class="text-xl">長岡英智高等学校</div>
-          <div class="ml-auto">
-            <a href="/recruit/" class="mr-4">採用情報</a>
-            ｜
-            <a href="/privacy/" class="ml-4">プライバシーポリシー</a>
-        <div class="grid grid-cols-4 mt-8">
-          <% for (let i = 1; i <= 4; i += 1) { %>
-            <address class="not-italic border-r<%- i === 1 ? ' border-l' : '' %> border-gray-400 px-8 py-2">
-              <div class="mb-1 text-xl">宮内本校</div>
-              <div class="mb-1">〒940-1154</div>
-              <div class="mb-1">新潟県長岡市宮栄3-16-14</div>
-              <div class="mb-1">TEL: 0258-31-6771</div>
-              <div class="mb-1">FAX: 0258-31-6772</div>
-            </address>
-          <% } %>
-        <small class="block text-center text-sm mt-16">
-          &copy; Nagaoka Eichi High School
-    */
-
 .footer-address {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 2rem;
+  line-height: 1.6;
 }
 
 .footer-address address {
@@ -1397,11 +1378,11 @@ ol {
 }
 
 .openSchool {
-  margin-top: 8rem;
+  margin-top: 6rem;
 }
 
 .openSchool h2 {
-
+  padding-top: 2rem;
 }
 
 .openSchool dl {
@@ -2301,4 +2282,19 @@ a.button.is-tel:after {
   text-align: center;
   border-radius: 0.5rem;
   margin-top: 1rem;
+}
+
+.notFound {
+  margin: 6rem 0 10rem;
+}
+
+.notFound h1 {
+}
+
+.notFound p {
+  margin-top: 2rem;
+}
+
+.notFound a {
+  margin-top: 2.5rem;
 }
