@@ -6,7 +6,7 @@
   </div>
 
   <div class="hero-text">
-    <p>
+    <p class="is-admission">
       <span class="is-main">Re-START !</span>
       <span class="is-sub">〜夢の実現に向けて〜</span>
     </p>
@@ -25,66 +25,61 @@
 
   <section class="course container">
     <h2 class="heading">
-      コース紹介 <small>COURSE</small>
+      コース紹介<small>COURSE</small>
     </h2>
 
-    <div class="row is-course">
-      <div class="col-12">
-        <section class="course-item">
-          <div class="row is-course-item">
-            <div class="col-6">
-              <div class="course-item-image">
-                <img src="<%- env.STATIC_URL + '/img/home/course-commute.png' %>" alt="">
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="course-item-text">
-                <h3>通学コース</h3>
-                <p>
-                  週4日登校。<br>
-                  生活リズムを整えながら、ゆとりのあるスクールライフ
-                </p>
-                <div class="course-item-text-link">
-                  <a href="/courses/commute/">
-                    詳しく見る
-                  </a>
-                </div>
-              </div>
+    <section class="course-item is-first">
+      <div class="row is-course-item">
+        <div class="col-6">
+          <div class="course-item-image">
+            <img src="<%- env.STATIC_URL + '/img/home/course-commute.png' %>" alt="">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="course-item-text">
+            <h3>通学コース</h3>
+            <p>
+              週4日登校。<br>
+              生活リズムを整えながら、ゆとりのあるスクールライフ
+            </p>
+            <div class="course-item-text-link">
+              <a href="/courses/commute/">
+                詳しく見る
+              </a>
             </div>
           </div>
-        </section>
+        </div>
       </div>
-      <div class="col-12">
-        <section class="course-item">
-          <div class="row is-course-item">
-            <div class="col-6">
-              <div class="course-item-image">
-                <img src="<%- env.STATIC_URL + '/img/home/course-correspondence.png' %>" alt="">
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="course-item-text">
-                <h3>通信教育コース</h3>
-                <p>
-                  学ぶ場所も学ぶ時間も自分で選ぶ。<br>
-                  自由な時間の使い方で高校卒業を目指す。
-                </p>
-                <div class="course-item-text-link">
-                  <a href="/courses/correspondence/">
-                    詳しく見る
-                  </a>
-                </div>
-              </div>
+    </section>
+    <section class="course-item">
+      <div class="row is-course-item">
+        <div class="col-6">
+          <div class="course-item-image">
+            <img src="<%- env.STATIC_URL + '/img/home/course-correspondence.png' %>" alt="">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="course-item-text">
+            <h3>通信教育コース</h3>
+            <p>
+              学ぶ場所も学ぶ時間も自分で選ぶ。<br>
+              自由な時間の使い方で高校卒業を目指す。
+            </p>
+            <div class="course-item-text-link">
+              <a href="/courses/correspondence/">
+                詳しく見る
+              </a>
             </div>
           </div>
-        </section>
+        </div>
       </div>
+    </section>
     </div>
   </section>
 
   <section class="container news">
     <h2 class="heading">
-      新着情報 <small>NEWS</small>
+      新着情報<small>NEWS</small>
     </h2>
     <ul>
       <% for (const news of newses) { %>
@@ -101,7 +96,7 @@
   <section class="gallery">
     <div class="container">
       <h2 class="heading is-gallery">
-        ギャラリー <small>GALLERY</small>
+        ギャラリー<small>GALLERY</small>
       </h2>
       <ul>
         <li>

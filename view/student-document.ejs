@@ -1,0 +1,68 @@
+<%- include('partial/header') %>
+
+<div class="jumbotron" aria-hidden="true">
+  <img src="<%- env.STATIC_URL %>/img/student/faq/jumbotron.png" alt="">
+  <div class="container">
+    <div class="jumbotron-title">
+      様式ダウンロード<small>DOWNLOAD</small>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="パンくずリスト" class="breadcrumb">
+  <div class="container">
+    <ul>
+      <li>
+        <a href="/student/" class="is-student">TOP</a>
+      </li>
+      <li class="ia-active" aria-current="page">
+        様式ダウンロード
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <h1 class="visually-hidden">様式ダウンロード</h1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10">
+        <div class="format">
+          <article class="format-item is-first">
+            <h2>証明書(学校感染症)</h2>
+            <p>
+              医師から、「学校感染症の分類」PDFに記載のある感染症と診断された場合、学校までご連絡ください。学校保健安全法の規定により、学校感染症に感染している、またはその疑いがある場合、生徒は出席停止となります。医師の判断に基づき、登校許可が出るまでは学校を休んで十分に休養をしてください。出席停止期間は欠席にはなりません。なお、登校する際は「証明書」PDFをダウンロードし、医師からの記入後、速やかに担任までご提出ください。「証明書」は本校で直接配布するか郵送、またはHPからダウンロードできます。<br>
+              <br>
+              ※ 必要な書類は、下のPDF版をダウンロードしてください。<br>
+              ※ 感染が分かった時点で、速やかに学校までご連絡ください。<br>
+              ※ 詳細をお知りになりたい場合は、養護教諭までお問い合わせください。
+            </p>
+            <a href="#">証明書(学校感染症)</a>
+          </article>
+
+          <article class="format-item">
+            <h2>学校感染症と出席停止期間の基準</h2>
+            <a href="#">学校感染症と出席停止期間の基準</a>
+          </article>
+
+          <article class="format-item">
+            <h2>証明書交付願</h2>
+            <p>
+              【請求できる証明書の種類】<br>
+              卒業証明書、成績証明書、単位修得証明書、調査書<br>
+              <br>
+              【発行料金】<br>
+              1通につき 300 円(在学生は無料)<br>
+              <br>
+              【請求方法】<br>
+              「学校に来校しての手続き」と「郵送による手続き」の2通りの方法があり、利用しやすい方で請求してください。
+            </p>
+            <a href="#">証明書交付願</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partial/footer') %>

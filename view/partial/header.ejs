@@ -27,7 +27,11 @@
               <img src="<%- env.STATIC_URL + '/img/layout/logo.png' %>" alt="">
             </span>
             <span class="header-logo-text">
-              <span class="is-sub">学校法人 英智学院</span>
+              <% if (url.pathname.indexOf('/student/') === 0) { %>
+                <span class="is-sub">学校法人 英智学院<span class="is-student">在校生・卒業生向け</span></span>
+              <% } else { %>
+                <span class="is-sub">学校法人 英智学院</span>
+              <% } %>
               <span class="is-main">長岡英智高等学校</span>
             </span>
           </a>
@@ -41,10 +45,18 @@
           <% }) %>
         </ul>
 
-        <div class="header-site">
-          <a href="/student/">
-            在校生・卒業生の方へ
-          </a>
-        </div>
+        <% if (url.pathname.indexOf('/student/') === 0) { %>
+          <div class="header-site">
+            <a href="/" class="is-student">
+              入学希望者の方へ
+            </a>
+          </div>
+        <% } else { %>
+          <div class="header-site">
+            <a href="/student/">
+              在校生・卒業生の方へ
+            </a>
+          </div>
+        <% } %>
       </nav>
     </header>

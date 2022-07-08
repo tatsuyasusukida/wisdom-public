@@ -65,14 +65,22 @@ async function main () {
       res.locals.env = process.env
       res.locals.url = new URL(req.originalUrl, process.env.BASE_URL)
 
-      res.locals.headerLinks = [
-        {text: '学校紹介', href: '/about/'},
-        {text: 'コース紹介', href: '/courses/'},
-        {text: '入試情報', href: '/admission/'},
-        {text: 'ダウンロード資料', href: '/document/'},
-        {text: 'よくある質問', href: '/faq/'},
-        {text: 'お問い合わせ', href: '/contact/'},
-      ]
+      if (res.locals.url.pathname.indexOf('/student/') === 0) {
+        res.locals.headerLinks = [
+          {text: '様式ダウンロード', href: '/student/document/'},
+          {text: 'よくある質問', href: '/student/faq/'},
+          {text: 'お問い合わせ', href: '/contact/'},
+        ]
+      } else {
+        res.locals.headerLinks = [
+          {text: '学校紹介', href: '/about/'},
+          {text: 'コース紹介', href: '/courses/'},
+          {text: '入試情報', href: '/admission/'},
+          {text: 'ダウンロード資料', href: '/document/'},
+          {text: 'よくある質問', href: '/faq/'},
+          {text: 'お問い合わせ', href: '/contact/'},
+        ]
+      }
 
       next()
     })
@@ -159,6 +167,33 @@ async function main () {
     router.get('/recruit/', (_, res) => res.render('recruit'))
     router.get('/privacy/', (_, res) => res.render('privacy'))
     router.get('/student/', (_, res) => res.render('student'))
+
+    router.get('/student/faq/', (_, res, next) => {
+      res.locals.faqCategories = new Array(3).fill(1).map(_ => ({
+        title: 'カテゴリ',
+        faqs: new Array(3).fill(1).map(_ => ({
+          questionLines: [
+            'ここにテキストが入ります',
+          ],
+          answerLines: [
+            'ここにテキストが入ります',
+            'ここにテキストが入ります',
+            'ここにテキストが入ります',
+          ],
+          faqLinks: new Array(0).fill(1).map(_ => ({
+            title: 'リンクのタイトルが入ります',
+            href: '#',
+          })),
+          faqImages: new Array(0).fill(1).map(_ => ({
+            original: process.env.STATIC_URL + '/img/faq/image.png',
+            thumbnail: process.env.STATIC_URL + '/img/faq/image.png',
+            alt: 'ここに代替テキストが入ります',
+          })),
+        })),
+      }))
+      next()
+    })
+
     router.get('/student/faq/', (_, res) => res.render('student-faq'))
     router.get('/student/document/', (_, res) => res.render('student-document'))
 

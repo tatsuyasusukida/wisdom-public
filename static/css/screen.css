@@ -10,6 +10,10 @@ a {
   color: rgb(56,123,69);
 }
 
+a.is-student {
+  color: rgb(65,125,206);
+}
+
 img {
   max-width: 100%;
 }
@@ -64,6 +68,17 @@ ol {
 .header-logo-text span.is-sub {
   padding-left: 0.25rem;
   padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.header-logo-text span.is-sub span.is-student {
+  font-size: 0.75rem;
+  background: rgb(65,125,206);
+  padding: 0.25rem;
+  color: #fff;
+  margin-left: 0.5rem;
+  font-weight: 600;
 }
 
 .header-logo-text span.is-main {
@@ -104,8 +119,14 @@ ol {
   background: rgb(65,125,206);
   color: #fff;
   text-decoration: none;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 0 0.75rem;
   font-size: 0.8rem;
+  min-width: 12rem;
+  text-align: center;
+}
+
+.header-site a.is-student {
+  background: rgb(56,123,69);
 }
 
 .hero {
@@ -132,13 +153,24 @@ ol {
   bottom: 0;
   margin-top: auto;
   margin-bottom: auto;
-  height: 10rem;
   left: 2.5rem;
-  line-height: 1;
   font-weight: 600;
   display: flex;
   flex-direction: column;
+}
+
+.hero-text p.is-admission {
+  height: 10rem;
+  line-height: 1;
   justify-content: start;
+}
+
+.hero-text p.is-student {
+  height: 10rem;
+  font-size: 4rem;
+  color: rgb(65,125,206);
+  line-height: 1.75;
+  justify-content: center;
 }
 
 .hero-text p span.is-main {
@@ -238,12 +270,25 @@ ol {
   font-weight: 600;
 }
 
+.heading.is-gallery {
+  text-align: center;
+}
+
 .heading small {
   font-size: 0.8rem;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
   color: rgb(56,123,69);
   font-weight: 600;
   letter-spacing: 0;
+}
+
+.heading.is-gallery small {
+  display: block;
+  margin-top: 0.8rem;
+}
+
+.heading.is-student small {
+  color: rgb(65,125,206);
 }
 
 .course {
@@ -253,14 +298,14 @@ ol {
 .course h2 {
 }
 
-.course .row.is-course {
-  --bs-gutter-y: 2rem;
-  margin-top: 1rem;
-}
-
 .course-item {
   background: rgb(251,248,245);
   border-radius: 1rem;
+  margin-top: 2rem;
+}
+
+.course-item.is-first {
+  margin-top: 3rem;
 }
 
 .course-item .row.is-course-item {
@@ -300,6 +345,66 @@ ol {
   font-weight: 500;
   color: rgb(56,123,69);
   padding: 0.8rem 4rem;
+  border-radius: 2rem;
+  text-decoration: none;
+}
+
+.admission {
+  margin-top: 8rem;
+  margin-bottom: 10rem;
+}
+
+.admission h2 {
+}
+
+.admission-item {
+  background: rgb(251,248,245);
+  border-radius: 1rem;
+  margin-top: 2rem;
+}
+
+.admission-item.is-first {
+  margin-top: 3rem;
+}
+
+.admission-item .row.is-admission-item {
+  --bs-gutter-x: 0;
+}
+
+.admission-item-image img {
+  width: 100%;
+}
+
+.admission-item-text {
+  padding: 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.admission-item-text h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgb(65,125,206);
+}
+
+.admission-item-text p {
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
+
+.admission-item-text-link {
+  margin-top: auto;
+  text-align: right;
+}
+
+.admission-item-text-link a {
+  display: inline-block;
+  border: 1px solid rgb(65,125,206);
+  font-weight: 500;
+  color: rgb(65,125,206);
+  padding: 0.5rem 4rem;
+  font-weight: 600;
   border-radius: 2rem;
   text-decoration: none;
 }
@@ -408,15 +513,6 @@ ol {
 .gallery-item figure figcaption {
   margin-top: 1.2rem;
   text-align: center;
-}
-
-.heading.is-gallery {
-  text-align: center;
-}
-
-.heading.is-gallery small {
-  display: block;
-  margin-top: 0.8rem;
 }
 
 .footer {
@@ -561,7 +657,7 @@ ol {
   height: 4rem;
   top: 0;
   bottom: 0;
-  margin: auto;
+  margin: auto 0 auto;
   display: flex;
   align-items: center;
 }
@@ -571,6 +667,7 @@ ol {
   font-size: 0.8rem;
   color: rgb(56,123,69);
   margin-left: 1rem;
+  font-weight: 600;
 }
 
 .jumbotron-subtitle {
@@ -620,6 +717,10 @@ ol {
 .breadcrumb ul li a {
   color: rgb(56,123,69);
   text-decoration: none;
+}
+
+.breadcrumb ul li a.is-student {
+  color: rgb(65,125,206);
 }
 
 .vision {
@@ -1592,6 +1693,10 @@ a.button.is-tel:after {
 
 }
 
+.faq-category h2.is-student {
+  color: rgb(65,125,206);
+}
+
 .faq-category-item {
   margin-top: 3rem;
 }
@@ -1608,6 +1713,11 @@ a.button.is-tel:after {
   padding-left: 3.5rem;
   position: relative;
   line-height: 1.75;
+}
+
+.faq-category-item h3.is-student {
+  color: rgb(65,125,206);
+  background: rgb(236,242,250);
 }
 
 .faq-category-item h3:before {
@@ -1634,7 +1744,10 @@ a.button.is-tel:after {
   font-size: 1.5rem;
   font-weight: 600;
   color: rgb(56,123,69);
+}
 
+.faq-category-item p.is-student:before {
+  color: rgb(65,125,206);
 }
 
 .faq-category-item ul {
@@ -2154,4 +2267,38 @@ a.button.is-tel:after {
 
 .activity p.is-image {
   margin: 0.75rem 0 0;
+}
+
+.format {
+  margin: 8rem 0 10rem;
+}
+
+.format-item {
+  margin-top: 5rem;
+}
+
+.format-item.is-first {
+  margin-top: 0rem;
+}
+
+.format-item h2 {
+  color: rgb(65,125,206);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.format-item p {
+  margin: 2rem 0 1.5rem;
+}
+
+.format-item a {
+  background: rgb(65,125,206);
+  min-width: 15rem;
+  padding: 0.75rem 2rem 1rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
 }
