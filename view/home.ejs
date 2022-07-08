@@ -1,17 +1,23 @@
 <%- include('partial/header') %>
 
-<div class="jumbotron is-home">
-  <img src="<%- env.STATIC_URL + '/img/home/main.png' %>" alt="">
+<div class="hero">
+  <div class="hero-image">
+    <img src="<%- env.STATIC_URL + '/img/home/main.png' %>" alt="">
+  </div>
 
-  <strong>
-    <span class="is-main">Re-START !</span>
-    <span class="is-sub">〜夢の実現に向けて〜</span>
-  </strong>
+  <div class="hero-text">
+    <p>
+      <span class="is-main">Re-START !</span>
+      <span class="is-sub">〜夢の実現に向けて〜</span>
+    </p>
+  </div>
 
-  <a href="#">
-    <span class="is-sub">オープンスクール</span>
-    <span class="is-main">申し込み受付中</span>
-  </a>    
+  <div class="hero-link">
+    <a href="/admission/#open-school">
+      <span class="is-sub">オープンスクール</span>
+      <span class="is-main">申し込み受付中</span>
+    </a>
+  </div>
 </div>
 
 <main>
@@ -22,41 +28,58 @@
       コース紹介 <small>COURSE</small>
     </h2>
 
-    <section class="course-item is-first">
-      <div class="course-item-col">
-        <img src="<%- env.STATIC_URL + '/img/home/course-commute.png' %>" alt="">
+    <div class="row is-course">
+      <div class="col-12">
+        <section class="course-item">
+          <div class="row is-course-item">
+            <div class="col-6">
+              <div class="course-item-image">
+                <img src="<%- env.STATIC_URL + '/img/home/course-commute.png' %>" alt="">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="course-item-text">
+                <h3>通学コース</h3>
+                <p>
+                  週4日登校。<br>
+                  生活リズムを整えながら、ゆとりのあるスクールライフ
+                </p>
+                <div class="course-item-text-link">
+                  <a href="/courses/commute/">
+                    詳しく見る
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-      <div class="course-item-col is-right">
-        <h3>通学コース</h3>
-        <p>
-          週4日登校。<br>
-          生活リズムを整えながら、ゆとりのあるスクールライフ
-        </p>
-        <div class="is-link">
-          <a href="/courses/commute/">
-            詳しく見る
-          </a>
-        </div>
+      <div class="col-12">
+        <section class="course-item">
+          <div class="row is-course-item">
+            <div class="col-6">
+              <div class="course-item-image">
+                <img src="<%- env.STATIC_URL + '/img/home/course-correspondence.png' %>" alt="">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="course-item-text">
+                <h3>通信教育コース</h3>
+                <p>
+                  学ぶ場所も学ぶ時間も自分で選ぶ。<br>
+                  自由な時間の使い方で高校卒業を目指す。
+                </p>
+                <div class="course-item-text-link">
+                  <a href="/courses/correspondence/">
+                    詳しく見る
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
-
-    <section class="course-item">
-      <div class="course-item-col">
-        <img src="<%- env.STATIC_URL + '/img/home/course-correspondence.png' %>" alt="">
-      </div>
-      <div class="course-item-col is-right">
-        <h3>通信教育コース</h3>
-        <p>
-          学ぶ場所も学ぶ時間も自分で選ぶ。<br>
-          自由な時間の使い方で高校卒業を目指す。
-        </p>
-        <div class="is-link">
-          <a href="/courses/correspondence/">
-            詳しく見る
-          </a>
-        </div>
-      </div>
-    </section>
+    </div>
   </section>
 
   <section class="container news">
@@ -87,14 +110,19 @@
           <a href="#">通信教育コース</a>
         </li>
       </ul>
-      <div class="gallery-figure">
-        <% for (let i = 1; i <= 9; i += 1) { %>
-          <figure>
-            <img src="<%- env.STATIC_URL + '/img/home/gallery.png' %>" alt="">
-            <figcaption>外観</figcaption>
-          </figure>
-        <% } %>
-      </div>
+      <section class="gallery-item is-first">
+        <h3>宮内本校</h3>
+        <div class="row is-gallery-item">
+          <% for (let i = 1; i <= 9; i += 1) { %>
+            <div class="col-4">
+              <figure>
+                <img src="<%- env.STATIC_URL + '/img/home/gallery.png' %>" alt="">
+                <figcaption>外観</figcaption>
+              </figure>
+            </div>
+          <% } %>
+        </div>
+      </section>
     </div>
   </section>
 </main>

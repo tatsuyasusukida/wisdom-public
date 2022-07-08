@@ -1,0 +1,80 @@
+<%- include('partial/header') %>
+
+<div class="hero">
+  <img src="<%- env.STATIC_URL + '/img/home/main.png' %>" alt="">
+
+  <p>
+    立ち止まる<br>
+    考える<br>
+    行動する
+  </p>
+</div>
+
+<main>
+  <h1 class="visually-hidden">長岡英智高等学校 在校生向けページ</h1>
+
+  <div class="container">
+    <section class="admission">
+      <h2 class="heading is-student">入学希望者の方へ<small>for ADMISSION</small></h2>
+      <div class="row">
+        <div class="col-6">
+          <img src="<%- env.STATIC_URL + '/img/student/index/admission.png' %>" alt="">
+        </div>
+        <div class="col-6">
+          <section>
+            <h3>入学希望者向けページ</h3>
+            <p>
+              このページは長岡英智高等学校の在校生・卒業生向けのページです。<br>
+              入学希望者の方は <a href="/">入学希望者向けページ</a> をご覧ください。
+            </p>
+            <a href="/">詳しく見る</a>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="course container">
+    <h2 class="heading">
+      コース紹介 <small>COURSE</small>
+    </h2>
+
+    <section class="course-item is-first">
+      <div class="course-item-col">
+        <img src="<%- env.STATIC_URL + '/img/home/course-commute.png' %>" alt="">
+      </div>
+      <div class="course-item-col is-right">
+        <h3>通学コース</h3>
+        <p>
+          週4日登校。<br>
+          生活リズムを整えながら、ゆとりのあるスクールライフ
+        </p>
+        <div class="is-link">
+          <a href="/courses/commute/">
+            詳しく見る
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="course-item">
+      <div class="course-item-col">
+        <img src="<%- env.STATIC_URL + '/img/home/course-correspondence.png' %>" alt="">
+      </div>
+      <div class="course-item-col is-right">
+        <h3>通信教育コース</h3>
+        <p>
+          学ぶ場所も学ぶ時間も自分で選ぶ。<br>
+          自由な時間の使い方で高校卒業を目指す。
+        </p>
+        <div class="is-link">
+          <a href="/courses/correspondence/">
+            詳しく見る
+          </a>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+
+<%- include('partial/footer') %>

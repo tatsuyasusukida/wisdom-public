@@ -34,37 +34,43 @@
   <div class="container">
     <section class="feature">
       <h2 class="heading">特色 <small>FEATURE</small></h2>
-      <div class="feature-grid">
-        <section class="feature-grid-item">
-          <img src="<%- env.STATIC_URL %>/img/courses/commute/feature-01.png" alt="">
-          <h3>
-            <b>週4日</b>登校で<br>
-            <b>1日4時間</b>授業
-          </h3>
-          <p>
-            自分のペースで、無理なく通うことができます。通信制に必要なレポート作成を授業の中で一緒に取り組んでいきます。
-          </p>
-        </section>
-        <section class="feature-grid-item">
-          <img src="<%- env.STATIC_URL %>/img/courses/commute/feature-02.png" alt="校時表。SHR、9時30分開始、9時40分終了。1限、9時40分開始、10時25分終了。2限、10時35分開始、11時20分終了。3限、11時30分開始、12時15分終了。昼休み、12時15分開始、13時05分終了。清掃、13時5分開始、13時20分終了。4限、13時25分開始、14時10分終了。">
-          <h3>
-            <b>基礎</b>からの<b>学び直し</b>で<br>
-            <b>力</b>がつく
-          </h3>
-          <p>
-            本校では、小・中学校の「学び直し」を推進しています。一人ひとりの学習の理解度に合わせたスモールステップ学習で、基礎学力の向上を目指します。
-          </p>
-        </section>
-        <section class="feature-grid-item">
-          <img src="<%- env.STATIC_URL %>/img/courses/commute/feature-03.png" alt="">
-          <h3>
-            <b>多彩な</b>学校行事で、<br>
-            学校生活を<b>豊かに</b>
-          </h3>
-          <p>
-            クラスや学年の垣根を超えて多くの時間を共にします。行事を通して、充実した学校生活を送ることができます。
-          </p>
-        </section>
+      <div class="row">
+        <div class="col-4">
+          <section class="feature-item">
+            <img src="<%- env.STATIC_URL %>/img/courses/commute/feature-01.png" alt="">
+            <h3>
+              <b>週4日</b>登校で<br>
+              <b>1日4時間</b>授業
+            </h3>
+            <p>
+              自分のペースで、無理なく通うことができます。通信制に必要なレポート作成を授業の中で一緒に取り組んでいきます。
+            </p>
+          </section>
+        </div>
+        <div class="col-4">
+          <section class="feature-item">
+            <img src="<%- env.STATIC_URL %>/img/courses/commute/feature-02.png" alt="校時表。SHR、9時30分開始、9時40分終了。1限、9時40分開始、10時25分終了。2限、10時35分開始、11時20分終了。3限、11時30分開始、12時15分終了。昼休み、12時15分開始、13時05分終了。清掃、13時5分開始、13時20分終了。4限、13時25分開始、14時10分終了。">
+            <h3>
+              <b>基礎</b>からの<b>学び直し</b>で<br>
+              <b>力</b>がつく
+            </h3>
+            <p>
+              本校では、小・中学校の「学び直し」を推進しています。一人ひとりの学習の理解度に合わせたスモールステップ学習で、基礎学力の向上を目指します。
+            </p>
+          </section>
+        </div>
+        <div class="col-4">
+          <section class="feature-item">
+            <img src="<%- env.STATIC_URL %>/img/courses/commute/feature-03.png" alt="">
+            <h3>
+              <b>多彩な</b>学校行事で、<br>
+              学校生活を<b>豊かに</b>
+            </h3>
+            <p>
+              クラスや学年の垣根を超えて多くの時間を共にします。行事を通して、充実した学校生活を送ることができます。
+            </p>
+          </section>
+        </div>
       </div>
     </section>
   </div>
@@ -72,55 +78,73 @@
   <section class="basic">
     <div class="container">
       <h2>学校設定科目【ベーシックスキル】5つの取り組み</h2>
-      <div class="basic-flex">
-        <div class="basic-flex-text">
-          <ol class="ol">
-            <li>学び直しと学力向上 〜弱点補強も先取り学習も〜</li>
-            <li>やる気&自信の醸成</li>
-            <li>学習態度&学習習慣&集中力の養成</li>
-            <li>進学&就職実績の向上</li>
-            <li>生徒と教員のコミュニケーションの充実</li>
-          </ol>
-          <p>
-            日替わりで学習を行います。自分のレベルに合った教材で、自分のペースで学習できるので、わからないところは何度でもやり直せます。
-          </p>
+      <div class="row">
+        <div class="col-7">
+          <div class="basic-text">
+            <ol class="ol">
+              <li>学び直しと学力向上 〜弱点補強も先取り学習も〜</li>
+              <li>やる気&自信の醸成</li>
+              <li>学習態度&学習習慣&集中力の養成</li>
+              <li>進学&就職実績の向上</li>
+              <li>生徒と教員のコミュニケーションの充実</li>
+            </ol>
+            <p>
+              日替わりで学習を行います。自分のレベルに合った教材で、自分のペースで学習できるので、わからないところは何度でもやり直せます。
+            </p>
+          </div>
         </div>
-        <div class="basic-flex-image">
-          <img src="<%- env.STATIC_URL %>/img/courses/commute/basic-skill.png" alt="">
+        <div class="col-5">
+          <div class="basic-image">
+            <img src="<%- env.STATIC_URL %>/img/courses/commute/basic-skill.png" alt="">
+          </div>
         </div>
       </div>
-      <div class="basic-grid">
-        <section class="basic-grid-item">
-          <h3>計算(公文式)</h3>
-          <p>スタート地点は「スラスラ解け る」問題から。スピードと正確さ を意識した学習方法で、計算力 の向上を目指します。</p>
-        </section>
-        <section class="basic-grid-item">
-          <h3>漢字・日本語</h3>
-          <p>中学国語の復習や日本語漢字能力検定のテキストを使用して、基礎的な国語力の向上を図ります。また日本語が母語でない生徒を対象に、漢字の授業時に 日本語の授業を実施しています。</p>
-        </section>
-        <section class="basic-grid-item">
-          <h3>英単語</h3>
-          <p>大学受験等に対応したテキストで、基礎的な英単語の修得を行います。基礎からじっくりと学習していきます。</p>
-        </section>
-        <section class="basic-grid-item">
-          <h3>一般常識</h3>
-          <p>時事に関する事柄や社会科系の内容を中心に独自プリントを用いて学習を行います。</p>
-        </section>
+      <div class="row is-item">
+        <div class="col-3">
+          <section class="basic-item">
+            <h3>計算(公文式)</h3>
+            <p>スタート地点は「スラスラ解ける」問題から。スピードと正確さ を意識した学習方法で、計算力 の向上を目指します。</p>
+          </section>
+        </div>
+        <div class="col-3">
+          <section class="basic-item">
+            <h3>漢字・日本語</h3>
+            <p>中学国語の復習や日本語漢字能力検定のテキストを使用して、基礎的な国語力の向上を図ります。また日本語が母語でない生徒を対象に、漢字の授業時に 日本語の授業を実施しています。</p>
+          </section>
+        </div>
+        <div class="col-3">
+          <section class="basic-item">
+            <h3>英単語</h3>
+            <p>大学受験等に対応したテキストで、基礎的な英単語の修得を行います。基礎からじっくりと学習していきます。</p>
+          </section>
+        </div>
+        <div class="col-3">
+          <section class="basic-item">
+            <h3>一般常識</h3>
+            <p>時事に関する事柄や社会科系の内容を中心に独自プリントを用いて学習を行います。</p>
+          </section>
+        </div>
       </div>
       <section class="basic-kumon">
-        <h3>ちょうどの学習で<br>自ら学ぶ力をつける<br>公文式学習</h3>
-        <p>
-          公文式学習ではICT機器を活用し、個人別・学力別学習で一人ひとりの力に応じた「ちょうどの学習」を行うことで、学ぶ楽しさやできる喜びを育みながら、個々の能力を最大限に伸ばします。「自ら学ぶ力」を大切にし、自分で考え解いていく「自学自習」形式で行うことで、答えを導き出す力と夢に挑戦する力を養います。学習成果や学びの状況を振りかえりながら一人ひとりの可能性を引き出しています。
-        </p>
+        <div class="row">
+          <div class="col-4">
+            <h3>ちょうどの学習で<br>自ら学ぶ力をつける<br>公文式学習</h3>
+          </div>
+          <div class="col-8">
+            <p>
+              公文式学習ではICT機器を活用し、個人別・学力別学習で一人ひとりの力に応じた「ちょうどの学習」を行うことで、学ぶ楽しさやできる喜びを育みながら、個々の能力を最大限に伸ばします。「自ら学ぶ力」を大切にし、自分で考え解いていく「自学自習」形式で行うことで、答えを導き出す力と夢に挑戦する力を養います。学習成果や学びの状況を振りかえりながら一人ひとりの可能性を引き出しています。
+            </p>
+          </div>
+        </div>
       </section>
     </div>
   </section>
 
   <div class="container">
     <section class="bus">
-      <h2 class="heading is-sub">スクールバスについて</h2>
-      <div class="bus-flex">
-        <div class="bus-flex-item">
+      <div class="row">
+        <div class="col-6">
+          <h2 class="heading is-sub">スクールバスについて</h2>
           <p>
             長岡駅東口から宮内本校まで、スクールバスを運行しています。<br>
             信越線で新潟方面から通学する生徒が多く利用しています。<br>
@@ -128,8 +152,8 @@
           </p>
           <img src="<%- env.STATIC_URL %>/img/courses/commute/bus.png" alt="">
         </div>
-        <div class="bus-flex-item">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.6280128197022!2d138.85220691530816!3d37.445891529820635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff5a8517ba69e6b%3A0xa2ed1802a409a53c!2z44Kr44Oz44Kz44O844OT44Or!5e0!3m2!1sja!2sjp!4v1656488318923!5m2!1sja!2sjp" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="col-6">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.6280128197022!2d138.85220691530816!3d37.445891529820635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff5a8517ba69e6b%3A0xa2ed1802a409a53c!2z44Kr44Oz44Kz44O844OT44Or!5e0!3m2!1sja!2sjp!4v1656488318923!5m2!1sja!2sjp" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <dl>
             <dt>出発</dt>
             <dd>9時10分発</dd>
@@ -160,57 +184,63 @@
 
     <section class="curriculum">
       <h2 class="heading">カリキュラム <small>CURRICULUM</small></h2>
-      <section>
+      <section class="curriculum-subject">
         <h3 class="heading is-sub">令和 5 年度カリキュラム(予定)</h3>
-        <div class="curriculum-grid">
-          <section class="curriculum-grid-item">
-            <h4>1年次</h4>
-            <ul>
-              <li>現代の国語(2単位)</li>
-              <li>言語文化(2単位)</li>
-              <li>公共(2単位)</li>
-              <li>数学I(4単位)</li>
-              <li>科学と人間生活(2単位)</li>
-              <li>体育(4単位)</li>
-              <li>英語コミュニケーションI(4単位)</li>
-              <li>家庭総合(2単位)</li>
-              <li>情報I(2単位)</li>
-              <li>ベーシックスキル1(4単位)</li>
-              <li>総合的な探究の時間(2単位)</li>
-            </ul>
-          </section>
-          <section class="curriculum-grid-item">
-            <h4>2年次</h4>
-            <ul>
-              <li>国語表現(4単位)</li>
-              <li>地理総合(2単位)</li>
-              <li>歴史総合(2単位)</li>
-              <li>数学A(2単位)</li>
-              <li>生物基礎(2単位)</li>
-              <li>体育(2単位)</li>
-              <li>保健(2単位)</li>
-              <li>書道I(2単位)</li>
-              <li>論理・表現I(2単位)</li>
-              <li>家庭総合(2単位)</li>
-              <li>ベーシックスキル2(4単位)</li>
-              <li>総合的な探究の時間(2単位)</li>
-            </ul>
-          </section>
-          <section class="curriculum-grid-item">
-            <h4>3年次</h4>
-            <ul>
-              <li>地理探求 or 世界史探求(4単位)</li>
-              <li>古典探求 or 数学II(4単位)</li>
-              <li>倫理 or 数学 B(2単位)</li>
-              <li>政治・経済 or 環境(2単位)</li>
-              <li>体育(2単位)</li>
-              <li>論理国語 or 英語コミュニケーションII(4単位)</li>
-              <li>化学基礎(2単位) or 論理・表現II(2単位)</li>
-              <li>社会と情報演習 or スポーツ概論(2単位)</li>
-              <li>ベーシックスキル 3(4単位)</li>
-              <li>総合的な探究の時間(2単位)</li>
-            </ul>
-          </section>
+        <div class="row">
+          <div class="col-4">
+            <section class="curriculum-subject-item">
+              <h4>1年次</h4>
+              <ul>
+                <li>現代の国語(2単位)</li>
+                <li>言語文化(2単位)</li>
+                <li>公共(2単位)</li>
+                <li>数学I(4単位)</li>
+                <li>科学と人間生活(2単位)</li>
+                <li>体育(4単位)</li>
+                <li>英語コミュニケーションI(4単位)</li>
+                <li>家庭総合(2単位)</li>
+                <li>情報I(2単位)</li>
+                <li>ベーシックスキル1(4単位)</li>
+                <li>総合的な探究の時間(2単位)</li>
+              </ul>
+            </section>
+          </div>
+          <div class="col-4">
+            <section class="curriculum-subject-item">
+              <h4>2年次</h4>
+              <ul>
+                <li>国語表現(4単位)</li>
+                <li>地理総合(2単位)</li>
+                <li>歴史総合(2単位)</li>
+                <li>数学A(2単位)</li>
+                <li>生物基礎(2単位)</li>
+                <li>体育(2単位)</li>
+                <li>保健(2単位)</li>
+                <li>書道I(2単位)</li>
+                <li>論理・表現I(2単位)</li>
+                <li>家庭総合(2単位)</li>
+                <li>ベーシックスキル2(4単位)</li>
+                <li>総合的な探究の時間(2単位)</li>
+              </ul>
+            </section>
+          </div>
+          <div class="col-4">
+            <section class="curriculum-subject-item">
+              <h4>3年次</h4>
+              <ul>
+                <li>地理探求 or 世界史探求(4単位)</li>
+                <li>古典探求 or 数学II(4単位)</li>
+                <li>倫理 or 数学 B(2単位)</li>
+                <li>政治・経済 or 環境(2単位)</li>
+                <li>体育(2単位)</li>
+                <li>論理国語 or 英語コミュニケーションII(4単位)</li>
+                <li>化学基礎(2単位) or 論理・表現II(2単位)</li>
+                <li>社会と情報演習 or スポーツ概論(2単位)</li>
+                <li>ベーシックスキル 3(4単位)</li>
+                <li>総合的な探究の時間(2単位)</li>
+              </ul>
+            </section>
+          </div>
         </div>
       </section>
       <section class="curriculum-requirement">
