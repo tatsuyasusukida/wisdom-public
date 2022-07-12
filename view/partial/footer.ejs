@@ -2,11 +2,6 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-flex">
-          <div class="footer-logo">
-            <span class="is-sub">学校法人 英智学院</span>
-            <span class="is-main">長岡英智高等学校</span>
-          </div>
-
           <% if (url.pathname.indexOf('/student/') !== 0) { %>
             <nav aria-label="フッター">
               <ul>
@@ -19,6 +14,11 @@
               </ul>
             </nav>
           <% } %>
+
+          <div class="footer-logo">
+            <span class="is-sub">学校法人 英智学院</span>
+            <span class="is-main">長岡英智高等学校</span>
+          </div>
         </div>
         
         <div class="footer-address">
