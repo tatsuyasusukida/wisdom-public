@@ -92,6 +92,7 @@ async function main () {
     router.get('/', (_, res) => res.render('home'))
     router.get('/news/:newsId([0-9]+)/', (_, res) => res.render('news'))
     router.get('/about/', (_, res) => res.render('about'))
+    router.get('/courses/', (_, res) => res.render('courses'))
     router.get('/courses/commute/', (_, res) => res.render('courses-commute'))
     router.get('/courses/correspondence/', (_, res) => res.render('courses-correspondence'))
     router.get('/admission/', (_, res) => res.render('admission'))

@@ -1,0 +1,104 @@
+<%- include('partial/header') %>
+
+<div class="jumbotron" aria-hidden="true">
+  <img src="<%- env.STATIC_URL %>/img/courses/index/jumbotron.png" alt="">
+  <div class="container">
+    <div class="jumbotron-title">
+      コース紹介<small>COURSE</small>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="パンくずリスト" class="breadcrumb">
+  <div class="container">
+    <ul>
+      <li>
+        <a href="/">TOP</a>
+      </li>
+      <li class="ia-active" aria-current="page">
+        コース紹介
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <h1 class="visually-hidden">コース紹介</h1>
+  <div class="container">
+    <div class="courseIndex">
+      <p class="is-text">
+        新しい一歩を踏み出す勇気は、きっと誰もが持っているもの。その勇気は、どんな小さな目標でも達成するたびに自信へと変わっていきます。<br>
+        長岡英智高等学校は、それぞれの個性に寄り添い、時代のニーズに応える単位制通信制の高等学校として、生徒一人ひとりに寄り添う教育を実践します。
+      </p>
+    </div>
+
+    <section class="target">
+      <div class="target-header">
+        <h2 class="h2">対象者</h2>
+      </div>
+      <div class="target-list">
+        <ol class="ol is-large">
+          <li>中学校卒業または卒業見込みの方</li>
+          <li>中学校卒業後、高校に進学しなかった方</li>
+          <li>高校を中退した方</li>
+          <li>他の高校に在籍しており、転入を希望する方</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="course is-index">
+      <h2 class="visually-hidden">コース一覧</h2>
+
+      <section class="course-item is-first">
+        <div class="row is-course-item">
+          <div class="col-6">
+            <div class="course-item-image">
+              <img src="<%- env.STATIC_URL + '/img/home/course-commute.png' %>" alt="">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="course-item-text">
+              <h3>通学コース</h3>
+              <p>
+                週4日登校。<br>
+                生活リズムを整えながら、ゆとりのあるスクールライフ
+              </p>
+              <div class="course-item-text-link">
+                <a href="/courses/commute/">
+                  詳しく見る
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="course-item">
+        <div class="row is-course-item">
+          <div class="col-6">
+            <div class="course-item-image">
+              <img src="<%- env.STATIC_URL + '/img/home/course-correspondence.png' %>" alt="">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="course-item-text">
+              <h3>通信教育コース</h3>
+              <p>
+                学ぶ場所も学ぶ時間も自分で選ぶ。<br>
+                自由な時間の使い方で高校卒業を目指す。
+              </p>
+              <div class="course-item-text-link">
+                <a href="/courses/correspondence/">
+                  詳しく見る
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<%- include('partial/footer') %>
