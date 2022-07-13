@@ -23,77 +23,79 @@
 <main>
   <h1 class="visually-hidden">長岡英智高等学校</h1>
 
-  <section class="course container">
-    <h2 class="heading">
-      コース紹介<small>COURSE</small>
-    </h2>
-    <section class="course-item is-first">
-      <div class="row row-cols-1 row-cols-lg-2 is-course-item">
-        <div class="col">
-          <div class="course-item-image">
-            <a href="/courses/commute">
-              <img src="<%- env.STATIC_URL + '/img/home/course-commute.png' %>" alt="">
-            </a>
-          </div>
-        </div>
-        <div class="col">
-          <div class="course-item-text">
-            <h3>通学コース</h3>
-            <p>
-              週4日登校。<br>
-              生活リズムを整えながら、ゆとりのあるスクールライフ
-            </p>
-            <div class="course-item-text-link">
-              <a href="/courses/commute/">
-                詳しく見る
+  <div class="container">
+    <section class="course">
+      <h2 class="heading">
+        コース紹介<small>COURSE</small>
+      </h2>
+      <section class="course-item is-first">
+        <div class="row row-cols-1 row-cols-lg-2 is-course-item">
+          <div class="col">
+            <div class="course-item-image">
+              <a href="/courses/commute">
+                <img src="<%- env.STATIC_URL + '/img/home/course-commute.png' %>" alt="">
               </a>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-    <section class="course-item">
-      <div class="row row-cols-1 row-cols-lg-2 is-course-item">
-        <div class="col">
-          <div class="course-item-image">
-            <a href="/courses/correspondence/">
-              <img src="<%- env.STATIC_URL + '/img/home/course-correspondence.png' %>" alt="">
-            </a>
+          <div class="col">
+            <div class="course-item-text">
+              <h3>通学コース</h3>
+              <p>
+                週4日登校。<br>
+                生活リズムを整えながら、ゆとりのあるスクールライフ
+              </p>
+              <div class="course-item-text-link">
+                <a href="/courses/commute/">
+                  詳しく見る
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col">
-          <div class="course-item-text">
-            <h3>通信教育コース</h3>
-            <p>
-              学ぶ場所も学ぶ時間も自分で選ぶ。<br>
-              自由な時間の使い方で高校卒業を目指す。
-            </p>
-            <div class="course-item-text-link">
+      </section>
+      <section class="course-item">
+        <div class="row row-cols-1 row-cols-lg-2 is-course-item">
+          <div class="col">
+            <div class="course-item-image">
               <a href="/courses/correspondence/">
-                詳しく見る
+                <img src="<%- env.STATIC_URL + '/img/home/course-correspondence.png' %>" alt="">
               </a>
             </div>
           </div>
+          <div class="col">
+            <div class="course-item-text">
+              <h3>通信教育コース</h3>
+              <p>
+                学ぶ場所も学ぶ時間も自分で選ぶ。<br>
+                自由な時間の使い方で高校卒業を目指す。
+              </p>
+              <div class="course-item-text-link">
+                <a href="/courses/correspondence/">
+                  詳しく見る
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </section>
-  </section>
 
-  <section class="container news">
-    <h2 class="heading">
-      新着情報<small>NEWS</small>
-    </h2>
-    <ul>
-      <% for (const news of newses) { %>
-        <li>
-          <span class="is-date">2022.07.01</span>
-          <a href="/news/1/">
-            新着情報のタイトルが入ります
-          </a>
-        </li>
-      <% } %>
-    </ul>
-  </section>
+    <section class="news">
+      <h2 class="heading">
+        新着情報<small>NEWS</small>
+      </h2>
+      <ul>
+        <% for (const news of newses) { %>
+          <li>
+            <span class="is-date">2022.07.01</span>
+            <a href="/news/1/">
+              新着情報のタイトルが入ります
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </section>
+  </div>
 
   <section class="gallery">
     <div class="container">

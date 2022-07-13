@@ -46,17 +46,19 @@
       </div>
     </section>
 
+
     <section class="course is-index">
       <h2 class="visually-hidden">コース一覧</h2>
-
       <section class="course-item is-first">
-        <div class="row is-course-item">
-          <div class="col-6">
+        <div class="row row-cols-1 row-cols-lg-2 is-course-item">
+          <div class="col">
             <div class="course-item-image">
-              <img src="<%- env.STATIC_URL + '/img/home/course-commute.png' %>" alt="">
+              <a href="/courses/commute">
+                <img src="<%- env.STATIC_URL + '/img/home/course-commute.png' %>" alt="">
+              </a>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col">
             <div class="course-item-text">
               <h3>通学コース</h3>
               <p>
@@ -73,13 +75,15 @@
         </div>
       </section>
       <section class="course-item">
-        <div class="row is-course-item">
-          <div class="col-6">
+        <div class="row row-cols-1 row-cols-lg-2 is-course-item">
+          <div class="col">
             <div class="course-item-image">
-              <img src="<%- env.STATIC_URL + '/img/home/course-correspondence.png' %>" alt="">
+              <a href="/courses/correspondence/">
+                <img src="<%- env.STATIC_URL + '/img/home/course-correspondence.png' %>" alt="">
+              </a>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col">
             <div class="course-item-text">
               <h3>通信教育コース</h3>
               <p>
@@ -95,7 +99,6 @@
           </div>
         </div>
       </section>
-      </div>
     </section>
 
   </div>

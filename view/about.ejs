@@ -26,33 +26,39 @@
   <h1 class="visually-hidden">学校紹介</h1>
 
   <div class="container">
-    <section class="vision is-motto">
-      <h2>校訓</h2>
-      <p>立ち止まる・考える・行動する</p>
-    </section>
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="vision">
+          <section class="vision-item is-motto">
+            <h2>校訓</h2>
+            <p>立ち止まる・考える・行動する</p>
+          </section>
 
-    <section class="vision">
-      <h2>教育目標</h2>
-      <ol class="ol is-large">
-        <li>自ら考え、判断し、行動できる人間の育成</li>
-        <li>個性の伸長と創造力豊かな人間の育成</li>
-        <li>互いの人格を尊重し、自己主張と他者受容ができる人間の育成</li>
-        <li>社会のニーズに対応し、使命感をもって社会貢献できる人間の育成</li>
-        <li>常に目的意識を持ち、望ましい職業観・勤労観をもった人間の育成</li>
-        <li>社会福祉の増進に寄与する創造的な能力と実践的な態度の育成</li>
-      </ol>
-    </section>
+          <section class="vision-item">
+            <h2>教育目標</h2>
+            <ol class="ol is-large">
+              <li>自ら考え、判断し、行動できる人間の育成</li>
+              <li>個性の伸長と創造力豊かな人間の育成</li>
+              <li>互いの人格を尊重し、自己主張と他者受容ができる人間の育成</li>
+              <li>社会のニーズに対応し、使命感をもって社会貢献できる人間の育成</li>
+              <li>常に目的意識を持ち、望ましい職業観・勤労観をもった人間の育成</li>
+              <li>社会福祉の増進に寄与する創造的な能力と実践的な態度の育成</li>
+            </ol>
+          </section>
 
-    <section class="vision">
-      <h2>特色</h2>
-      <ol class="ol is-large">
-        <li>時代のニーズに応える単位制通信制高校</li>
-        <li>生徒一人ひとりに寄り添う教育の実践</li>
-        <li>通学コースと通信教育コースの2コース制</li>
-        <li>キャリア教育の充実</li>
-        <li>多彩な学校行事の設定</li>
-      </ol>
-    </section>
+          <section class="vision-item">
+            <h2>特色</h2>
+            <ol class="ol is-large">
+              <li>時代のニーズに応える単位制通信制高校</li>
+              <li>生徒一人ひとりに寄り添う教育の実践</li>
+              <li>通学コースと通信教育コースの2コース制</li>
+              <li>キャリア教育の充実</li>
+              <li>多彩な学校行事の設定</li>
+            </ol>
+          </section>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="message is-advisor">
@@ -168,9 +174,13 @@
                   〒940-1154 新潟県長岡市宮栄 3-16-14<br>
                   TEL: 0258-31-6771 FAX: 0258-31-6772
                 </div>
-                <div class="address-item-image">
-                  <img src="<%- env.STATIC_URL %>/img/about/address-miyauchi.png" alt="">
-                  <img src="<%- env.STATIC_URL %>/img/about/address-miyauchi.png" alt="">
+                <div class="row row-cols-1 row-cols-lg-2">
+                  <div class="col">
+                    <img src="<%- env.STATIC_URL %>/img/about/address-miyauchi.png" alt="">
+                  </div>
+                  <div class="col">
+                    <img src="<%- env.STATIC_URL %>/img/about/address-miyauchi.png" alt="">
+                  </div>
                 </div>
               </div>
             <% } %>
