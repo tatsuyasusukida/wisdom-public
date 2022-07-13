@@ -1,16 +1,16 @@
 <%- include('partial/header') %>
 
 <div class="hero">
-  <div class="hero-image">
-    <img src="<%- env.STATIC_URL %>/img/student/index/hero.png" alt="">
-  </div>
-
   <div class="hero-text">
     <p class="is-student">
       立ち止まる<br>
       考える<br>
       行動する
     </p>
+  </div>
+
+  <div class="hero-image">
+    <img src="<%- env.STATIC_URL %>/img/student/index/hero.png" alt="">
   </div>
 </div>
 
@@ -21,13 +21,15 @@
     <section class="admission">
       <h2 class="heading is-student">入学希望者の方へ<small>for ADMISSION</small></h2>
       <section class="admission-item">
-        <div class="row is-admission-item">
-          <div class="col-6">
+        <div class="row row-cols-1 row-cols-lg-2 is-admission-item">
+          <div class="col">
             <div class="admission-item-image">
-              <img src="<%- env.STATIC_URL %>/img/student/index/admission.png" alt="">
+              <a href="/">
+                <img src="<%- env.STATIC_URL %>/img/student/index/admission.png" alt="">
+              </a>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col">
             <div class="admission-item-text">
               <h3>入学希望者向けページ</h3>
               <p>

@@ -22,7 +22,7 @@
     <header class="header">
       <nav aria-label="ヘッダー">
         <div class="header-logo">
-          <a href="/" aria-label="ホーム">
+          <a href="<%- url.pathname.indexOf('/student/') === 0 ? '/student/' : '/'  %>" aria-label="ホーム">
             <span class="header-logo-image">
               <img src="<%- env.STATIC_URL + '/img/layout/logo.png' %>" alt="">
             </span>
