@@ -26,88 +26,92 @@
   <h1 class="visually-hidden">お問い合わせ</h1>
 
   <div class="container">
-    <div class="contact">
-      <ol>
-        <li class="is-active">入力</li>
-        <li>確認</li>
-        <li>完了</li>
-      </ol>
-      <p class="is-guide">
-        下記の内容をご入力の上、確認ボタンを押してください。<br>
-        なお、個人情報の取り扱いにつきましては<a href="/privacy/" target="_blank">プライバシーポリシー</a>をご確認ください。
-      </p>
-      <form class="contact-form">
-        <div class="contact-form-item">
-          <label for="name">お名前</label>
-          <div class="contact-form-item-input">
-            <input type="text" name="name" id="name" aria-required="true" placeholder="例：英智 花子">
-            <p class="is-feedback">feed&nbsp;</p>
-          </div>
-        </div>
-
-        <div class="contact-form-item">
-          <label for="phone">電話番号</label>
-          <div class="contact-form-item-input">
-            <input type="tel" name="phone" id="phone" aria-required="true" placeholder="例：09012345678">
-            <p class="is-feedback">&nbsp;</p>
-          </div>
-        </div>
-
-        <div class="contact-form-item">
-          <label for="email">メールアドレス</label>
-          <div class="contact-form-item-input">
-            <input type="email" name="email" id="email" aria-required="true" placeholder="例：eichi@example.com">
-            <p class="is-feedback">&nbsp;</p>
-          </div>
-        </div>
-
-        <div class="contact-form-item">
-          <label for="zip">郵便番号</label>
-          <div class="contact-form-item-input">
-            <input type="tel" name="zip" id="zip" aria-required="true" placeholder="例：9401234" class="is-zip">
-            <p class="is-feedback">&nbsp;</p>
-          </div>
-        </div>
-
-        <div class="contact-form-item">
-          <label for="address">住所</label>
-          <div class="contact-form-item-input">
-            <input type="text" name="address" id="address" aria-required="true" placeholder="例：新潟県長岡市宮栄3-16-14">
-            <p class="is-feedback">&nbsp;</p>
-          </div>
-        </div>
-
-        <fieldset class="contact-form-item">
-          <legend>お問い合わせの種類</legend>
-          <div class="contact-form-item-input">
-            <div class="contact-form-item-input-radio">
-              <input type="radio" name="contactCategoryId" id="contactCategoryId1" aria-required="true" value="1">
-              <label for="contactCategoryId1">資料のお取り寄せ</label>
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="contact">
+          <ol>
+            <li class="is-active">入力</li>
+            <li>確認</li>
+            <li>完了</li>
+          </ol>
+          <p class="is-guide">
+            下記の内容をご入力の上、確認ボタンを押してください。<br>
+            なお、個人情報の取り扱いにつきましては<a href="/privacy/" target="_blank">プライバシーポリシー</a>をご確認ください。
+          </p>
+          <form class="contact-form">
+            <div class="contact-form-item is-first">
+              <label for="name">お名前</label>
+              <div class="contact-form-item-input">
+                <input type="text" name="name" id="name" aria-required="true" placeholder="例：英智 花子">
+                <p class="is-feedback">feed&nbsp;</p>
+              </div>
             </div>
-            <div class="contact-form-item-input-radio">
-              <input type="radio" name="contactCategoryId" id="contactCategoryId2" aria-required="true" value="2">
-              <label for="contactCategoryId2">オープンスクールの申し込み</label>
-            </div>
-            <div class="contact-form-item-input-radio">
-              <input type="radio" name="contactCategoryId" id="contactCategoryId3" aria-required="true" value="3">
-              <label for="contactCategoryId3">見学・相談の申し込み</label>
-            </div>
-            <p class="is-feedback">&nbsp;</p>
-          </div>
-        </fieldset>
 
-        <div class="contact-form-item">
-          <label for="text">内容</label>
-          <div class="contact-form-item-input">
-            <textarea rows="10" name="text" id="text" aria-required="true"></textarea>
-            <p class="is-feedback">&nbsp;</p>
-          </div>
-        </div>
+            <div class="contact-form-item">
+              <label for="phone">電話番号</label>
+              <div class="contact-form-item-input">
+                <input type="tel" name="phone" id="phone" aria-required="true" placeholder="例：09012345678">
+                <p class="is-feedback">&nbsp;</p>
+              </div>
+            </div>
 
-        <div class="contact-form-button">
-          <a class="button" href="/contact/review/">確認画面へ進む</a>
+            <div class="contact-form-item">
+              <label for="email">メールアドレス</label>
+              <div class="contact-form-item-input">
+                <input type="email" name="email" id="email" aria-required="true" placeholder="例：eichi@example.com">
+                <p class="is-feedback">&nbsp;</p>
+              </div>
+            </div>
+
+            <div class="contact-form-item">
+              <label for="zip">郵便番号</label>
+              <div class="contact-form-item-input">
+                <input type="tel" name="zip" id="zip" aria-required="true" placeholder="例：9401234" class="is-zip">
+                <p class="is-feedback">&nbsp;</p>
+              </div>
+            </div>
+
+            <div class="contact-form-item">
+              <label for="address">住所</label>
+              <div class="contact-form-item-input">
+                <input type="text" name="address" id="address" aria-required="true" placeholder="例：新潟県長岡市宮栄3-16-14">
+                <p class="is-feedback">&nbsp;</p>
+              </div>
+            </div>
+
+            <fieldset class="contact-form-item">
+              <legend>お問い合わせの種類</legend>
+              <div class="contact-form-item-input">
+                <div class="contact-form-item-input-radio">
+                  <input type="radio" name="contactCategoryId" id="contactCategoryId1" aria-required="true" value="1">
+                  <label for="contactCategoryId1">資料のお取り寄せ</label>
+                </div>
+                <div class="contact-form-item-input-radio">
+                  <input type="radio" name="contactCategoryId" id="contactCategoryId2" aria-required="true" value="2">
+                  <label for="contactCategoryId2">オープンスクールの申し込み</label>
+                </div>
+                <div class="contact-form-item-input-radio">
+                  <input type="radio" name="contactCategoryId" id="contactCategoryId3" aria-required="true" value="3">
+                  <label for="contactCategoryId3">見学・相談の申し込み</label>
+                </div>
+                <p class="is-feedback">&nbsp;</p>
+              </div>
+            </fieldset>
+
+            <div class="contact-form-item">
+              <label for="text">内容</label>
+              <div class="contact-form-item-input">
+                <textarea rows="10" name="text" id="text" aria-required="true"></textarea>
+                <p class="is-feedback">&nbsp;</p>
+              </div>
+            </div>
+
+            <div class="contact-form-button">
+              <a class="button" href="/contact/review/">確認画面へ進む</a>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 

@@ -147,11 +147,11 @@ async function main () {
             'ここにテキストが入ります',
             'ここにテキストが入ります',
           ],
-          faqLinks: new Array(0).fill(1).map(_ => ({
+          faqLinks: new Array(2).fill(1).map(_ => ({
             title: 'リンクのタイトルが入ります',
             href: '#',
           })),
-          faqImages: new Array(0).fill(1).map(_ => ({
+          faqImages: new Array(3).fill(1).map(_ => ({
             original: process.env.STATIC_URL + '/img/faq/image.png',
             thumbnail: process.env.STATIC_URL + '/img/faq/image.png',
             alt: 'ここに代替テキストが入ります',
