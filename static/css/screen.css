@@ -30,8 +30,16 @@ a {
   color: rgb(56,123,69);
 }
 
+a:hover {
+  color: rgb(96,163,109);
+}
+
 a.is-student {
   color: rgb(65,125,206);
+}
+
+a.is-student:hover {
+  color: rgb(85,145,226);
 }
 
 img {
@@ -79,6 +87,10 @@ address {
   text-decoration: none;
   color: #000;
   display: flex;
+}
+
+.header-logo a:hover {
+  color: rgb(128,128,128);
 }
 
 .header-logo-image img {
@@ -171,6 +183,15 @@ address {
   color: #000;
 }
 
+.header ul li a:hover {
+  color: rgb(128,128,128);
+}
+
+.header ul li a.is-active {
+  transition: none;
+  color: rgb(128,128,128);
+}
+
 .header-site {
   position: absolute;
   right: 0;
@@ -186,7 +207,6 @@ address {
 
 .header-site a {
   display: inline-block;
-  background: rgb(65,125,206);
   color: #fff;
   text-decoration: none;
   padding: 0.5rem 0 0.75rem;
@@ -195,8 +215,26 @@ address {
   text-align: center;
 }
 
+.header-site a.is-admission {
+  background: rgb(65,125,206);
+}
+
+.header-site a.is-admission:hover {
+  background: rgb(85,145,226);
+  color: #fff;
+}
+
 .header-site a.is-student {
   background: rgb(56,123,69);
+}
+
+.header-site a.is-student:hover {
+  background: rgb(76,143,89);
+  color: #fff;
+}
+
+.header-toggler {
+  
 }
 
 .footer {
@@ -255,6 +293,10 @@ address {
   color: #fff;
   text-decoration: none;
   font-weight: 700;
+}
+
+.footer nav ul li a:hover {
+  color: rgb(192,192,192);
 }
 
 .footer-logo span.is-main {
@@ -362,166 +404,175 @@ address {
   }
 }
 
-  .heading.is-gallery small {
-    display: block;
-    margin-top: 0.8rem;
-  }
+.heading.is-gallery small {
+  display: block;
+  margin-top: 0.8rem;
+}
 
-  .heading.is-student small {
-    color: rgb(65,125,206);
-  }
+.heading.is-student small {
+  color: rgb(65,125,206);
+}
 
-  .h2 {
-    font-size: 1.5rem;
-    color: rgb(56,123,69);
-    font-weight: 700;
-  }
+.h2 {
+  font-size: 1.5rem;
+  color: rgb(56,123,69);
+  font-weight: 700;
+}
 
-  .h3 {
-    font-size: 1.25rem;
-    border-left: 5px solid rgb(56,123,69);
-    padding: 0.25rem 0.5rem;
-  }
+.h3 {
+  font-size: 1.25rem;
+  border-left: 5px solid rgb(56,123,69);
+  padding: 0.25rem 0.5rem;
+}
 
-  .ol {
-    flex-basis: calc(100% - 10rem);
-    list-style: none;
-    padding-left: 0;
-    counter-reset: ol;
-    margin-bottom: 0;
-  }
+.ol {
+  flex-basis: calc(100% - 10rem);
+  list-style: none;
+  padding-left: 0;
+  counter-reset: ol;
+  margin-bottom: 0;
+}
 
-  .ol.is-large {
-    font-size: 1.1rem;
-    font-weight: 700;
-  }
+.ol.is-large {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
 
-  .ol li {
-    margin-bottom: 0.5rem;
-    counter-increment: ol;
-    position: relative;
-    padding-left: 1.25rem;
-  }
+.ol li {
+  margin-bottom: 0.5rem;
+  counter-increment: ol;
+  position: relative;
+  padding-left: 1.25rem;
+}
 
-  .ol.is-large li {
-    padding-left: 1.5rem;
-  }
+.ol.is-large li {
+  padding-left: 1.5rem;
+}
 
-  .ol li:before {
-    position: absolute;
-    left: 0;
-    top: 0.25rem;
-    content: "";
-    background: rgb(56,123,69);
-    width: 1.0rem;
-    height: 1.0rem;
-    border-radius: 1.0rem;
-  }
+.ol li:before {
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+  content: "";
+  background: rgb(56,123,69);
+  width: 1.0rem;
+  height: 1.0rem;
+  border-radius: 1.0rem;
+}
 
-  .ol.is-large li:before {
-    left: 0;
-    top: 0.5rem;
-    width: 1.1rem;
-    height: 1.1rem;
-    border-radius: 1.1rem;
-  }
+.ol.is-large li:before {
+  left: 0;
+  top: 0.5rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 1.1rem;
+}
 
-  .ol li:after {
-    position: absolute;
-    left: 0.3rem;
-    top: 0.125rem;
-    content: counter(ol);
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 700;
-  }
+.ol li:after {
+  position: absolute;
+  left: 0.3rem;
+  top: 0.125rem;
+  content: counter(ol);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
 
-  .ol.is-large li:after {
-    left: 0.3rem;
-    top: 0.325rem;
-    font-size: 0.8rem;
-  }
+.ol.is-large li:after {
+  left: 0.3rem;
+  top: 0.325rem;
+  font-size: 0.8rem;
+}
 
-  .ul {
-    flex-basis: calc(100% - 10rem);
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-  }
+.ul {
+  flex-basis: calc(100% - 10rem);
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
 
-  .ul li {
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.25rem;
-  }
+.ul li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.25rem;
+}
 
-  .ul li:before {
-    position: absolute;
-    left: 0;
-    top: 0.4rem;
-    content: "";
-    background: rgb(56,123,69);
-    width: 0.9rem;
-    height: 0.9rem;
-    border-radius: 0.9rem;
-  }
+.ul li:before {
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  content: "";
+  background: rgb(56,123,69);
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 0.9rem;
+}
 
-  .visually-hidden {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    padding: 0 !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    clip: rect(0, 0, 0, 0) !important;
-    white-space: nowrap !important;
-    border: 0 !important;
-  }
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
 
-  a.button {
-    padding: 1rem 1rem;
-    background: rgb(56,123,69);
-    color: #fff;
-    font-weight: 700;
-    display: inline-block;
-    text-decoration: none;
-    border-radius: 0.25rem;
-    min-width: 18rem;
-    text-align: center;
-    position: relative;
-  }
+a.button {
+  padding: 1rem 1rem;
+  background: rgb(56,123,69);
+  color: #fff;
+  font-weight: 700;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  min-width: 18rem;
+  text-align: center;
+  position: relative;
+}
 
-  a.button.is-openSchool:after {
-    content: "→";
-    position: absolute;
-    right: 1rem;
-  }
+a.button:hover {
+  background: rgb(86,153,99);
+}
 
-  a.button.is-top:after {
-    content: "←";
-    position: absolute;
-    left: 1rem;
-  }
+a.button.is-openSchool:after {
+  content: "→";
+  position: absolute;
+  right: 1rem;
+}
 
-  a.button.is-tel {
-    background: #fff;
-    border: 1px solid rgb(56,123,69);
-    color: rgb(56,123,69);
-  }
+a.button.is-top:after {
+  content: "←";
+  position: absolute;
+  left: 1rem;
+}
 
-  a.button.is-back {
-    background: #fff;
-    border: 1px solid rgb(221,221,221);
-    color: rgb(204,204,204);
-  }
+a.button.is-tel {
+  background: #fff;
+  border: 1px solid rgb(56,123,69);
+  color: rgb(56,123,69);
+}
 
-  a.button.is-tel:after {
-    content: "";
-  }
+a.button.is-tel:hover {
+  border: 1px solid rgb(96,163,109);
+  color: rgb(96,163,109);
+}
 
-  a.button.is-student {
-    background: rgb(65,125,206);
-  }
+a.button.is-back {
+  background: #fff;
+  border: 1px solid rgb(221,221,221);
+  color: rgb(204,204,204);
+}
+
+a.button.is-tel:after {
+  content: "";
+}
+
+a.button.is-student {
+  background: rgb(65,125,206);
+}
 
 .hero {
   position: relative;
@@ -583,9 +634,8 @@ address {
     bottom: 0;
     margin-top: auto;
     margin-bottom: auto;
-    left: 2.5rem;
+    left: 5rem;
     font-weight: 700;
-    display: flex;
     flex-direction: column;
     justify-content: center;
   }
@@ -598,7 +648,7 @@ address {
 
 @media (min-width: 768px) {
   .hero-text p.is-admission {
-    height: 12rem;
+    padding: 0;
   }
 }
 
@@ -620,7 +670,8 @@ address {
   display: block;
   font-size: 3.25rem;
   color: rgb(56,123,69);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  z-index: 1;
 }
 
 @media (min-width: 768px) {
@@ -633,12 +684,31 @@ address {
 .hero-text p.is-admission span.is-sub {
   display: block;
   font-size: 1.75rem;
+  z-index: 1;
 }
 
 @media (min-width: 768px) {
   .hero-text p.is-admission span.is-sub {
     display: block;
     font-size: 2rem;
+  }
+}
+
+.hero-text p.is-admission svg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 0.5rem 0 1.5rem;
+  left: -1rem;
+
+}
+
+@media (min-width: 768px) {
+  .hero-text p.is-admission svg {
+    padding: 1rem 0 0;
+    top: auto;
+    bottom: auto;
+    left: -3rem;
   }
 }
 
@@ -651,19 +721,35 @@ address {
   color: #000;
   font-weight: 700;
   padding: 1rem 1.25rem;
+  animation: flash 1.5s linear infinite;
+  transition: transform 0.5s;
+}
+
+@keyframes flash {
+  0% {
+    background: rgb(250,249,108);
+  }
+
+  50% {
+    background: rgb(255, 254, 180);
+  }
+
+  100% {
+    background: rgb(250,249,108);
+  }
 }
 
 @media (min-width: 768px) {
   .hero-link a {
     position: absolute;
     right: 2.5rem;
-    bottom: -6rem;
+    bottom: -7rem;
     background: rgb(250,249,108);
     display: inline-block;
     text-decoration: none;
     border-radius: 50%;
-    width: 13rem;
-    height: 13rem;
+    width: 14rem;
+    height: 14rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -674,13 +760,19 @@ address {
   }
 }
 
+@media (min-width: 768px) {
+  .hero-link a:hover {
+    transform: rotate(10deg);
+  }
+}
+
 .hero-link a span.is-sub {
   color: rgb(56,123,69);
 }
 
 @media (min-width: 768px) {
   .hero-link a span.is-sub {
-    margin-bottom: 0.5rem;
+    margin-top: 2rem;
   }
 }
 
@@ -693,6 +785,22 @@ address {
   .hero-link a span.is-main {
     font-size: 1.5rem;
     margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+.hero-link a svg {
+  width: 3rem;
+  height: 3rem;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .hero-link a svg {
+    margin-top: 0.5rem;
+    margin-left: 0;
+    width: 4rem;
+    height: 4rem;
   }
 }
 
@@ -727,24 +835,30 @@ address {
     font-weight: 700;
   }
 
+.jumbotron-subtitle {
+  position: absolute;
+  font-weight: bold;
+  line-height: 1;
+  height: 4.5rem;
+  bottom: 0;
+  margin: auto;
+  right: 0;
+  background: rgb(56,123,69);
+  display: flex;
+  align-items: center;
+  color: #fff;
+  width: 50%;
+  padding-left: 1rem;
+  font-size: 1.25rem;
+}
+
+@media (min-width: 576px) {
   .jumbotron-subtitle {
-    position: absolute;
-    font-weight: bold;
-    line-height: 1;
-    font-size: 2rem;
-    height: 4.5rem;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    right: 0;
-    background: rgb(56,123,69);
-    display: flex;
-    align-items: center;
-    color: #fff;
-    width: 40%;
-    padding-left: 1rem;
     font-size: 1.75rem;
-  }
+    width: 40%;
+    top: 0;
+  }  
+}
 
 .breadcrumb {
   margin-top: 1.5rem;
@@ -778,12 +892,7 @@ address {
 }
 
 .breadcrumb ul li a {
-  color: rgb(56,123,69);
   text-decoration: none;
-}
-
-.breadcrumb ul li a.is-student {
-  color: rgb(65,125,206);
 }
 
 .course {
@@ -905,7 +1014,7 @@ address {
   text-align: right;
 }
 
-.course-item-text a {
+.course-item-text-link a {
   display: inline-block;
   border: 1px solid rgb(56,123,69);
   font-weight: 700;
@@ -915,8 +1024,13 @@ address {
   text-decoration: none;
 }
 
+.course-item-text-link a:hover {
+  border: 1px solid rgb(96,163,109);
+  color: rgb(96,163,109);
+}
+
 @media (min-width: 1200px) {
-  .course-item-text a {
+  .course-item-text-link a {
     padding: 0.8rem 4rem;
     border-radius: 2rem;
   }
@@ -1124,15 +1238,41 @@ address {
 
 .gallery {
   background: rgb(251,248,245);
-  padding: 3rem 0 4rem;
-  margin-top: 4rem;
+  padding: 0 0 4rem;
+  margin-top: 3rem;
+  position: relative;
 }
 
 @media (min-width: 768px) {
   .gallery {
-    padding: 5rem 0 10rem;
+    padding: 0rem 0 10rem;
     margin-top: 7rem;
   }
+}
+
+.gallery-mountain {
+  background: #fff;
+  border-bottom: 3rem solid rgb(251,248,245);
+}
+
+@media (min-width: 768px) {
+  .gallery-mountain {
+    border-bottom: 4rem solid rgb(251,248,245);
+  }
+}
+
+.gallery-mountain span.is-triangle-full {
+  width: 57.7%;
+  padding-bottom: 45%;
+  background: rgb(0, 0, 0);
+  position: absolute;
+  display: block;
+  transform-origin: 0 0;
+  transform: rotate(-20deg) skewX(45deg);
+}
+
+.gallery-mountain span.is-triangle-half {
+  
 }
 
 .gallery ul {
@@ -1308,8 +1448,17 @@ address {
   }
 }
 
+.newsDetail-image a {
+  overflow: hidden;
+  display: block;
+}
+
 .newsDetail-image a img {
-  max-width: 100%;
+  transition: transform 1s;
+}
+
+.newsDetail-image a:hover img {
+  transform: scale(1.1);
 }
 
 .vision {
@@ -2036,7 +2185,7 @@ address {
   margin-top: 1rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .bus img {
     margin-left: 1rem;
     margin-top: 4rem;
@@ -2075,37 +2224,118 @@ address {
   margin-bottom: 0;
 }
 
+.voice {
+  margin-top: 3rem;
+  background: rgb(251,248,245);
+  padding: 3rem 0 3rem;
+}
+
+@media (min-width: 768px) {
   .voice {
     margin-top: 8rem;
-    background: rgb(251,248,245);
-    padding: 3rem;
-    border-top: 8px solid rgb(56,123,69);
+    padding: 5rem 0 5rem;
   }
+}
 
-  .voice h2 {
+.voice-flex {
+  display: flex;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 0.25rem;
+  position: relative;
+}
 
-  }
-
+@media (min-width: 768px) {
   .voice-flex {
-    display: flex;
+    padding: 3rem;
+    border-radius: 0.5rem;
   }
+}
 
+.voice-flex-text {
+  flex-basis: calc(100% - 10rem - 1rem);
+}
+
+@media (min-width: 768px) {
   .voice-flex-text {
-    flex-basis: calc(100% - 22rem - 1rem);
+    flex-basis: calc(100% - 13rem - 1rem);
   }
+}
 
+@media (min-width: 992px) {
+  .voice-flex-text {
+    flex-basis: calc(100% - 16rem - 3rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .voice-flex-text {
+    flex-basis: calc(100% - 22rem - 5rem);
+  }
+}
+
+.voice-flex-text h2 {
+  position: absolute;
+  top: -2rem;
+  left: 0rem;
+  transform: rotate(-5deg);
+  font-size: 3rem;
+  font-family: "Petit Formal Script";
+  color: rgb(56,123,69);
+}
+
+@media (min-width: 768px) {
+  .voice-flex-text h2 {
+    top: -1rem;
+    left: -2rem;
+  }
+}
+
+.voice-flex-text p {
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
   .voice-flex-text p {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
   }
+}
 
+.voice-flex-image {
+  flex-basis: 10rem;
+  margin-left: 1rem;
+}
+
+@media (min-width: 768px) {
+  .voice-flex-image {
+    flex-basis: 13rem;
+    margin-left: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .voice-flex-image {
+    flex-basis: 16rem;
+    margin-left: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
   .voice-flex-image {
     flex-basis: 22rem;
     margin-left: 5rem;
   }
+}
 
+.voice-flex-image img {
+  border-radius: 0.25rem;
+}
+
+@media (min-width: 768px) {
   .voice-flex-image img {
-    max-width: 100%;
+    border-radius: 0.5rem;
   }
+}
 
 .curriculum {
   margin-top: 2rem;
@@ -2277,6 +2507,44 @@ address {
 
 .credit .row {
   --bs-gutter-y: 1rem;
+}
+
+.example {
+  background: rgb(245,248,246);
+  padding: 2rem 1.5rem 2rem;
+  text-align: center;
+}
+
+.example h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.example table {
+  width: 100%;
+}
+
+.example table td {
+  font-size: 0.8rem;
+}
+
+.example table td.is-time {
+  width: 4rem;
+  background: rgb(56,123,69);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.example table td.is-credit {
+  background: #fff;
+  color: rgb(56,123,69);
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.example table td.is-symbol {
+  color: rgb(56,123,69);
+  font-weight: 700;
 }
 
 .learn {
@@ -3127,6 +3395,19 @@ address {
   .faq-category-item-image .row{
     --bs-gutter-y: 40px;
   }
+}
+
+.faq-category-item-image a {
+  display: block;
+  overflow: hidden;
+}
+
+.faq-category-item-image a img {
+  transition: transform 1.0s;
+}
+
+.faq-category-item-image a:hover img {
+  transform: scale(1.1);
 }
 
 .contact {

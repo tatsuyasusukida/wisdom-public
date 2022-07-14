@@ -4,7 +4,9 @@
   <img src="<%- env.FILE_URL %>/courses-correspondence-jumbotron.jpg" alt="">
   <div class="container">
     <div class="jumbotron-title">
-      コース紹介<small>COURSE</small>
+      <div>
+        コース紹介<small>COURSE</small>
+      </div>
     </div>
     <div class="jumbotron-subtitle">
       通信教育コース
@@ -105,20 +107,100 @@
 
     <section class="credit">
       <div class="row justify-content-center">
-        <div class="col-12 col-lg-5">
+        <div class="col-12 col-xl-5 col-lg-12">
           <h2><b>単位制</b>とは</h2>
           <p class="is-text">
             単位制とは、3年間で単位を積み上げて 74 単位以上 (必履修等条件あり)修得で卒業できます。転入の場合、前籍校での修得単位と長岡英智高校での修得単位の合計が74単位以上になるようにカリキュラムを組むことができます。<br>
             (年間修得可能単位:最大 36 単位)
           </p>
         </div>
-        <div class="col-8 col-lg-3">
-          <img src="<%- env.FILE_URL %>/courses-correspondence-credit-01.jpg" alt="" class="is-left">
+        <div class="col-12 col-sm-8 col-lg-5 col-xl-3">
+          <section class="example">
+            <h3>新入学 修得単位(例)</h3>
+            <table>
+              <thead class="visually-hidden">
+                <tr>
+                  <th>時点</th>
+                  <th>単位</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="is-time">1年次</td>
+                  <td class="is-credit">25単位</td>
+                </tr>
+                <tr aria-hidden="true">
+                  <td></td>
+                  <td class="is-symbol">＋</td>
+                </tr>
+                <tr>
+                  <td class="is-time">2年次</td>
+                  <td class="is-credit">25単位</td>
+                </tr>
+                <tr aria-hidden="true">
+                  <td></td>
+                  <td class="is-symbol">＋</td>
+                </tr>
+                <tr>
+                  <td class="is-time">3年次</td>
+                  <td class="is-credit">24単位</td>
+                </tr>
+                <tr aria-hidden="true">
+                  <td></td>
+                  <td class="is-symbol">↓</td>
+                </tr>
+                <tr>
+                  <td class="is-time">卒業</td>
+                  <td class="is-credit">74単位</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
         </div>
-        <div class="col-8 col-lg-4">
-          <img src="<%- env.FILE_URL %>/courses-correspondence-credit-02.jpg" alt="" class="is-right">
+        <div class="col-12 col-sm-8 col-lg-7 col-xl-4">
+          <section class="example">
+            <h3>転入学修得単位(例)</h3>
+            <table>
+              <thead class="visually-hidden">
+                <tr>
+                  <th>時点</th>
+                  <th>単位</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="is-time">1年次</td>
+                  <td class="is-credit">(前籍校修得)25単位</td>
+                </tr>
+                <tr aria-hidden="true">
+                  <td></td>
+                  <td class="is-symbol">＋</td>
+                </tr>
+                <tr>
+                  <td class="is-time">2年次</td>
+                  <td class="is-credit">(前籍校修得)25単位/10単位</td>
+                </tr>
+                <tr aria-hidden="true">
+                  <td></td>
+                  <td class="is-symbol">＋</td>
+                </tr>
+                <tr>
+                  <td class="is-time">3年次</td>
+                  <td class="is-credit">24単位</td>
+                </tr>
+                <tr aria-hidden="true">
+                  <td></td>
+                  <td class="is-symbol">↓</td>
+                </tr>
+                <tr>
+                  <td class="is-time">卒業</td>
+                  <td class="is-credit">74単位</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
         </div>
-        <div class="col-12 col-lg-7 offset-lg-5">
+        <div class="col-xl-7 offset-xl-5">
           <p class="is-image">
             新・編入は4月・10月のみ可能。<br>
             各種検定および高等学校卒業認定試験の合格科目も一定の条件下で卒業単位に加えることができます。
@@ -190,10 +272,10 @@
   <section class="voice">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-10">
-          <div class="row">
-            <div class="col-8">
-              <h2>生徒の声<small>STUDENT VOICE</small></h2 >
+        <div class="col-12">
+          <div class="voice-flex">
+            <div class="voice-flex-text">
+              <h2><span class="visually-hidden">生徒の声</span><small>Student voice</small></h2>
               <p>
                 勉強についていけるか不安の人は多いと思いますが、多くの教科が中学校の振り返りから始まるため、安心して授業を受けることができます。また将来について考えるきっかけとなる授業もあり、勉強だけでなく進路に対する不安も解消しながら学校生活を送ることができます。そして校外で行う特別活動や体育の授業などもありますが、集団行動でも自分のペースを尊重してもらえるので無理なく楽しむことができるのが通信教育コースの特徴です。<br>
                 <br>
@@ -201,7 +283,7 @@
                 M.T さん
               </p>
             </div>
-            <div class="col-4">
+            <div class="voice-flex-image">
               <img src="<%- env.FILE_URL %>/courses-correspondence-voice.jpg" alt="">
             </div>
           </div>
