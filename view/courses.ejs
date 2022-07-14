@@ -1,7 +1,7 @@
 <%- include('partial/header') %>
 
 <div class="jumbotron" aria-hidden="true">
-  <img src="<%- env.STATIC_URL %>/img/courses/index/jumbotron.png" alt="">
+  <img src="<%- env.FILE_URL %>/courses-jumbotron.jpg" alt="">
   <div class="container">
     <div class="jumbotron-title">
       コース紹介<small>COURSE</small>
@@ -53,8 +53,8 @@
         <div class="row row-cols-1 row-cols-lg-2 is-course-item">
           <div class="col">
             <div class="course-item-image">
-              <a href="/courses/commute">
-                <img src="<%- env.STATIC_URL + '/img/home/course-commute.png' %>" alt="">
+              <a href="/courses/commute/">
+                <img src="<%- env.FILE_URL %>/courses-item-01.jpg" alt="">
               </a>
             </div>
           </div>
@@ -79,7 +79,7 @@
           <div class="col">
             <div class="course-item-image">
               <a href="/courses/correspondence/">
-                <img src="<%- env.STATIC_URL + '/img/home/course-correspondence.png' %>" alt="">
+                <img src="<%- env.FILE_URL %>/courses-item-02.jpg" alt="">
               </a>
             </div>
           </div>
