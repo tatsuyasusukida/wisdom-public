@@ -1346,8 +1346,8 @@ a.button.is-student {
 
 .gallery-item .row.is-gallery-item {
   margin-top: -0.5rem;
-  --bs-gutter-y: 2rem;
   --bs-gutter-x: 1rem;
+  --bs-gutter-y: 2rem;
 }
 
 @media (min-width: 768px) {
@@ -1355,6 +1355,19 @@ a.button.is-student {
     margin-top: -0.5rem;
     --bs-gutter-y: 2.5rem;
     --bs-gutter-x: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .gallery-item .row.is-gallery-item.is-uniform {
+    margin-top: -0.5rem;
+    --bs-gutter-x: 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  .gallery-item .row.is-gallery-item.is-uniform {
+    --bs-gutter-x: 1.5rem;
   }
 }
 
