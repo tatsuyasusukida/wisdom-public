@@ -322,7 +322,7 @@ async function apiContactValidate (req, res) {
 }
 
 async function apiContactSubmit (req, res) {
-  res.send({ok: true, redirect: '/contact/finish/'})
+  res.send({ok: true, redirect: '/contact/finish/?code=1234-1234-1234'})
 }
 
 function onNotFound (_, res) {

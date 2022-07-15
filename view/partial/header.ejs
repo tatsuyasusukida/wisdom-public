@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
   <body>
-    <header class="header">
+    <header class="header" id="jsHeader">
       <nav aria-label="ヘッダー">
         <div class="header-logo">
           <a href="<%- url.pathname.indexOf('/student/') === 0 ? '/student/' : '/'  %>" aria-label="ホーム">
@@ -37,6 +37,10 @@
             </span>
           </a>
         </div>
+
+        <button class="header-toggler is-collapsed" aria-label="ナビゲーションの表示と非表示を切り替える" id="jsNavbarToggler">
+          <span class="header-toggler-icon"></span>
+        </button>
 
         <ul>
           <% headerLinks.forEach(({href, text}, i) => { %>
@@ -59,9 +63,5 @@
             </a>
           </div>
         <% } %>
-
-        <button class="header-toggler">
-          
-        </button>
       </nav>
     </header>

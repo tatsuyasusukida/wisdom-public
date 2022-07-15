@@ -3,11 +3,36 @@
 })();
 
 function main () {
+  header();
+
   if (window.location.pathname === '/') {
     home();
   } else if (window.location.pathname === '/contact/') {
     contact();
   }
+}
+
+function header () {
+  var el = {
+    navbarToggler: document.getElementById('jsNavbarToggler'),
+    header: document.getElementById('jsHeader')
+  }
+
+  var isCollapsed = true;
+
+  el.navbarToggler.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    isCollapsed = !isCollapsed;
+
+    if (isCollapsed) {
+      el.navbarToggler.classList.add('is-collapsed');
+      el.header.classList.remove('is-fixed');
+    } else {
+      el.navbarToggler.classList.remove('is-collapsed');
+      el.header.classList.add('is-fixed');
+    }
+  });
 }
 
 function home () {
