@@ -188,7 +188,6 @@ address {
 }
 
 .header ul li a.is-active {
-  transition: none;
   color: rgb(128,128,128);
 }
 
@@ -520,7 +519,7 @@ address {
   border: 0 !important;
 }
 
-a.button {
+a.button, button.button {
   padding: 1rem 1rem;
   background: rgb(56,123,69);
   color: #fff;
@@ -531,9 +530,10 @@ a.button {
   min-width: 18rem;
   text-align: center;
   position: relative;
+  border: 0;
 }
 
-a.button:hover {
+a.button:hover, button.button:hover  {
   background: rgb(86,153,99);
 }
 
@@ -560,7 +560,7 @@ a.button.is-tel:hover {
   color: rgb(96,163,109);
 }
 
-a.button.is-back {
+a.button.is-back, button.button.is-back {
   background: #fff;
   border: 1px solid rgb(221,221,221);
   color: rgb(204,204,204);
@@ -3572,6 +3572,10 @@ a.button.is-student {
   border-radius: 0.25rem;
 }
 
+.contact-form-item-input input.is-invalid:not([type=radio]) {
+  border: 1px solid #f66;
+}
+
 @media (min-width: 768px) {
   .contact-form-item-input input:not([type=radio]) {
     padding: 0.5rem 1rem;
@@ -3599,10 +3603,22 @@ a.button.is-student {
   }
 }
 
+.contact-form-item-input textarea.is-invalid {
+  border: 1px solid #f66;
+}
+
 .contact-form-item-input p.is-feedback {
   margin-top: 0.5rem;
   color: #f66;
   font-weight: 700;
+}
+
+.contact-form-item-input p.is-feedback span {
+  display: none;
+}
+
+.contact-form-item-input p.is-feedback span.is-invalid {
+  display: inline;
 }
 
 .contact-form-item-input-radio {

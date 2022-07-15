@@ -35,7 +35,7 @@ async function main () {
           "frame-src": ["'self'", "https://www.google.com"],
           "img-src": ["'self'", "data:", "https://storage.googleapis.com"],
           "object-src": ["'none'"],
-          "script-src": ["'self'", process.env.STATIC_URL],
+          "script-src": ["'self'", process.env.STATIC_URL, "'unsafe-eval'"],
           "script-src-attr": ["'none'"],
           "style-src": ["'self'", "'unsafe-inline'", process.env.STATIC_URL, 'https://fonts.googleapis.com'],
           "upgrade-insecure-requests": [],
@@ -200,6 +200,9 @@ async function main () {
 
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())
+    router.get('/api/v1/contact/initialize', wrap(apiContactInitialize))
+    router.post('/api/v1/contact/validate', wrap(apiContactValidate))
+    router.post('/api/v1/contact/submit', wrap(apiContactSubmit))
 
     router.use(onNotFound)
     router.use(onError)
@@ -230,6 +233,96 @@ function home (req, res, next) {
   }))
 
   next()
+}
+
+async function apiContactInitialize (_, res) {
+  const form = {
+    name: '1',
+    phone: '2',
+    email: '3',
+    zip: '1234567',
+    address: '5',
+    contactCategoryId: '',
+    text: '',
+  }
+
+  const validation = {
+    ok: null,
+    name: {ok: null, isNotEmpty: null},
+    phone: {ok: null, isNotEmpty: null},
+    email: {ok: null, isNotEmpty: null},
+    zip: {ok: null, isSevenDigit: null},
+    address: {ok: null, isNotEmpty: null},
+    contactCategoryId: {ok: null, isNotEmpty: null},
+    text: {ok: null, isNotEmpty: null},
+  }
+
+  const contactCategories = [
+    {
+      id: 1,
+      title: '資料のお取り寄せ',
+      text: [
+        'ここに例文が入ります',
+        'ここに例文が入ります',
+        'ここに例文が入ります',
+      ].join('\n'),
+    },
+    {
+      id: 2,
+      title: '見学・相談の申し込み',
+      text: [
+        'ここに例文が入ります!',
+        'ここに例文が入ります!',
+        'ここに例文が入ります!',
+      ].join('\n'),
+    },
+  ]
+
+  res.send({form, validation, contactCategories})
+}
+
+async function apiContactValidate (req, res) {
+  const validation = {
+    ok: null,
+    name: {ok: null, isNotEmpty: null},
+    phone: {ok: null, isNotEmpty: null},
+    email: {ok: null, isNotEmpty: null},
+    zip: {ok: null, isSevenDigit: null},
+    address: {ok: null, isNotEmpty: null},
+    contactCategoryId: {ok: null, isNotEmpty: null},
+    text: {ok: null, isNotEmpty: null},
+  }
+
+  validation.name.ok =
+  validation.name.isNotEmpty = !/^\s*$/.test(req.body.form.name)
+
+  validation.phone.ok =
+  validation.phone.isNotEmpty = !/^\s*$/.test(req.body.form.phone)
+
+  validation.email.ok =
+  validation.email.isNotEmpty = !/^\s*$/.test(req.body.form.email)
+
+  validation.zip.ok =
+  validation.zip.isSevenDigit = /^\d{7}$/.test(req.body.form.zip)
+
+  validation.address.ok =
+  validation.address.isNotEmpty = !/^\s*$/.test(req.body.form.address)
+
+  validation.contactCategoryId.ok =
+  validation.contactCategoryId.isNotEmpty = !/^\s*$/.test(req.body.form.contactCategoryId)
+
+  validation.text.ok =
+  validation.text.isNotEmpty = !/^\s*$/.test(req.body.form.text)
+
+  validation.ok = Object.keys(validation).every((key) => {
+    return key === 'ok' || validation[key].ok
+  })
+
+  res.send({validation})
+}
+
+async function apiContactSubmit (req, res) {
+  res.send({ok: true, redirect: '/contact/finish/'})
 }
 
 function onNotFound (_, res) {

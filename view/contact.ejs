@@ -24,99 +24,168 @@
   </div>
 </nav>
 
-<main>
-  <h1 class="visually-hidden">お問い合わせ</h1>
+<div id="app">
+  <main>
+    <h1 class="visually-hidden">お問い合わせ</h1>
 
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-10">
-        <div class="contact">
-          <ol>
-            <li class="is-active">入力</li>
-            <li>確認</li>
-            <li>完了</li>
-          </ol>
-          <p class="is-guide">
-            下記の内容をご入力の上、確認ボタンを押してください。<br>
-            なお、個人情報の取り扱いにつきましては<a href="/privacy/" target="_blank">プライバシーポリシー</a>をご確認ください。
-          </p>
-          <form class="contact-form">
-            <div class="contact-form-item is-first">
-              <label for="name">お名前</label>
-              <div class="contact-form-item-input">
-                <input type="text" name="name" id="name" aria-required="true" placeholder="例：英智 花子">
-                <p class="is-feedback">feed&nbsp;</p>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <div v-if="">
+            <div class="contact">
+              <ol>
+                <li v-bind:class="{'is-active': page === 'input'}">入力</li>
+                <li v-bind:class="{'is-active': page === 'review'}">確認</li>
+                <li>完了</li>
+              </ol>
+              <div v-if="page === 'input'">
+                <p class="is-guide">
+                  下記の内容をご入力の上、確認ボタンを押してください。<br>
+                  なお、個人情報の取り扱いにつきましては<a href="/privacy/" target="_blank">プライバシーポリシー</a>をご確認ください。
+                </p>
+                <form class="contact-form" v-if="form && validation && contactCategories">
+                  <div class="contact-form-item is-first">
+                    <label for="name">お名前</label>
+                    <div class="contact-form-item-input">
+                      <input type="text" name="name" id="name" aria-required="true" aria-describedby="nameFeedback" placeholder="例：英智 花子" v-bind:class="{'is-invalid': validation.name.ok === false}" v-bind:class="{'is-invalid': validation.name.ok === false}" v-model="form.name">
+                      <p class="is-feedback" id="nameFeedback">
+                        <span v-bind:class="{'is-invalid': validation.name.isNotEmpty === false}">
+                          お名前をご入力ください
+                        </span>
+                        &nbsp;
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="contact-form-item">
+                    <label for="phone">電話番号</label>
+                    <div class="contact-form-item-input">
+                      <input type="tel" name="phone" id="phone" aria-required="true" aria-describedby="phoneFeedback" placeholder="例：09012345678" v-bind:class="{'is-invalid': validation.phone.ok === false}" v-bind:class="{'is-invalid': validation.phone.ok === false}" v-model="form.phone">
+                      <p class="is-feedback" id="phoneFeedback">
+                        <span v-bind:class="{'is-invalid': validation.phone.isNotEmpty === false}">
+                          電話番号をご入力ください
+                        </span>
+                        &nbsp;
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="contact-form-item">
+                    <label for="email">メールアドレス</label>
+                    <div class="contact-form-item-input">
+                      <input type="email" name="email" id="email" aria-required="true" aria-describedby="emailFeedback" placeholder="例：eichi@example.com" v-bind:class="{'is-invalid': validation.email.ok === false}" v-bind:class="{'is-invalid': validation.email.ok === false}" v-model="form.email">
+                      <p class="is-feedback" id="emailFeedback">
+                        <span v-bind:class="{'is-invalid': validation.email.isNotEmpty === false}">
+                          メールアドレスをご入力ください
+                        </span>
+                        &nbsp;
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="contact-form-item">
+                    <label for="zip">郵便番号</label>
+                    <div class="contact-form-item-input">
+                      <input type="tel" name="zip" id="zip" aria-required="true" aria-describedby="zipFeedback" placeholder="例：9401234" class="is-zip" v-bind:class="{'is-invalid': validation.zip.ok === false}" v-bind:class="{'is-invalid': validation.zip.ok === false}" v-model="form.zip">
+                      <p class="is-feedback" id="zipFeedback">
+                        <span v-bind:class="{'is-invalid': validation.zip.isSevenDigit === false}">
+                          郵便番号を数字7桁でご入力ください
+                        </span>
+                        &nbsp;
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="contact-form-item">
+                    <label for="address">住所</label>
+                    <div class="contact-form-item-input">
+                      <input type="text" name="address" id="address" aria-required="true" aria-describedby="addressFeedback" placeholder="例：新潟県長岡市宮栄3-16-14" v-bind:class="{'is-invalid': validation.address.ok === false}" v-bind:class="{'is-invalid': validation.address.ok === false}" v-model="form.address">
+                      <p class="is-feedback" id="addressFeedback">
+                        <span v-bind:class="{'is-invalid': validation.address.isNotEmpty === false}">
+                          住所をご入力ください
+                        </span>
+                        &nbsp;
+                      </p>
+                    </div>
+                  </div>
+
+                  <fieldset class="contact-form-item">
+                    <legend>お問い合わせの種類</legend>
+                    <div class="contact-form-item-input">
+                      <div class="contact-form-item-input-radio" v-for="contactCategory of contactCategories">
+                        <input type="radio" name="contactCategoryId" v-bind:id="'contactCategoryId' + contactCategory.id" aria-required="true" aria-describedby="addressFeedback" v-bind:value="'' + contactCategory.id" v-bind:class="{'is-invalid': validation.contactCategoryId.ok === false}" v-bind:class="{'is-invalid': validation.contactCategoryId.ok === false}" v-model="form.contactCategoryId" v-on:change="onChangeContactCategoryId">
+                        <label v-bind:for="'contactCategoryId' + contactCategory.id">{{contactCategory.title}}</label>
+                      </div>
+                      <p class="is-feedback" id="contactCategoryIdFeedback">
+                        <span v-bind:class="{'is-invalid': validation.contactCategoryId.isNotEmpty === false}">
+                          お問い合わせの種類をお選びください
+                        </span>
+                        &nbsp;
+                      </p>
+                    </div>
+                  </fieldset>
+
+                  <div class="contact-form-item">
+                    <label for="text">内容</label>
+                    <div class="contact-form-item-input">
+                      <textarea rows="10" name="text" id="text" aria-required="true" aria-describedby="textFeedback" v-bind:class="{'is-invalid': validation.text.ok === false}" v-bind:class="{'is-invalid': validation.text.ok === false}" v-model="form.text"></textarea>
+                      <p class="is-feedback" id="textFeedback">
+                        <span v-bind:class="{'is-invalid': validation.text.isNotEmpty === false}">
+                          内容をご入力ください
+                        </span>
+                        &nbsp;
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="contact-form-button">
+                    <button type="submit" class="button" v-on:click.prevent="onClickButtonNext">確認画面へ進む</button>
+                  </div>
+                </form>
+              </div>
+              <div v-if="page === 'review'">
+                <p class="is-guide">
+                  下記の内容をご確認の上、この内容で送信するボタンを押してください。<br>
+                  修正する場合は修正ボタンを押すと入力画面に戻ることができます。
+                </p>
+
+                <form class="contact-form" v-if="review">
+                  <dl class="is-review">
+                    <dt>お名前</dt><dd>{{review.name}}</dd>
+                    <dt>電話番号</dt><dd>{{review.phone}}</dd>
+                    <dt>メールアドレス</dt><dd>{{review.email}}</dd>
+                    <dt>郵便番号</dt><dd>{{review.zip}}</dd>
+                    <dt>住所</dt><dd>{{review.address}}</dd>
+                    <dt>お問い合わせの種類</dt><dd>{{review.contactCategory}}</dd>
+                    <dt>内容</dt>
+                    <dd>
+                      <p>
+                        <div v-for="line of review.textLines">{{line}}</div>
+                      </p>
+                    </dd>
+                  </dl>
+                  <div class="contact-form-button">
+                    <div class="row row-cols-1 row-cols-md-auto justify-content-center flex-row-reverse">
+                      <div class="col">
+                        <button type="submit" class="button" v-on:click.prevent="onClickButtonSubmit">
+                          この内容で送信する
+                        </button>
+                      </div>
+                      <div class="col">
+                        <button type="button" class="button is-back" v-on:click.prevent="onClickButtonPrevious">
+                          修正
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
-
-            <div class="contact-form-item">
-              <label for="phone">電話番号</label>
-              <div class="contact-form-item-input">
-                <input type="tel" name="phone" id="phone" aria-required="true" placeholder="例：09012345678">
-                <p class="is-feedback">&nbsp;</p>
-              </div>
-            </div>
-
-            <div class="contact-form-item">
-              <label for="email">メールアドレス</label>
-              <div class="contact-form-item-input">
-                <input type="email" name="email" id="email" aria-required="true" placeholder="例：eichi@example.com">
-                <p class="is-feedback">&nbsp;</p>
-              </div>
-            </div>
-
-            <div class="contact-form-item">
-              <label for="zip">郵便番号</label>
-              <div class="contact-form-item-input">
-                <input type="tel" name="zip" id="zip" aria-required="true" placeholder="例：9401234" class="is-zip">
-                <p class="is-feedback">&nbsp;</p>
-              </div>
-            </div>
-
-            <div class="contact-form-item">
-              <label for="address">住所</label>
-              <div class="contact-form-item-input">
-                <input type="text" name="address" id="address" aria-required="true" placeholder="例：新潟県長岡市宮栄3-16-14">
-                <p class="is-feedback">&nbsp;</p>
-              </div>
-            </div>
-
-            <fieldset class="contact-form-item">
-              <legend>お問い合わせの種類</legend>
-              <div class="contact-form-item-input">
-                <div class="contact-form-item-input-radio">
-                  <input type="radio" name="contactCategoryId" id="contactCategoryId1" aria-required="true" value="1">
-                  <label for="contactCategoryId1">資料のお取り寄せ</label>
-                </div>
-                <div class="contact-form-item-input-radio">
-                  <input type="radio" name="contactCategoryId" id="contactCategoryId2" aria-required="true" value="2">
-                  <label for="contactCategoryId2">オープンスクールの申し込み</label>
-                </div>
-                <div class="contact-form-item-input-radio">
-                  <input type="radio" name="contactCategoryId" id="contactCategoryId3" aria-required="true" value="3">
-                  <label for="contactCategoryId3">見学・相談の申し込み</label>
-                </div>
-                <p class="is-feedback">&nbsp;</p>
-              </div>
-            </fieldset>
-
-            <div class="contact-form-item">
-              <label for="text">内容</label>
-              <div class="contact-form-item-input">
-                <textarea rows="10" name="text" id="text" aria-required="true"></textarea>
-                <p class="is-feedback">&nbsp;</p>
-              </div>
-            </div>
-
-            <div class="contact-form-button">
-              <a class="button" href="/contact/review/">確認画面へ進む</a>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-</main>
+  </main>  
+</div>
 
 <%- include('partial/footer') %>

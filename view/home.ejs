@@ -1,438 +1,440 @@
 <%- include('partial/header') %>
 
-<div class="hero">
-  <div class="hero-text">
-    <p class="is-admission">
-      <span class="is-main">Re-START !</span>
-      <span class="is-sub">〜夢の実現に向けて〜</span>
-      <svg height="220" width="220" viewBox="0 0 48 48">
-        <path d="M9.4 38.85 20.45 24 9.4 9.15h5.85L26.3 24 15.25 38.85Zm14.75 0L35.2 24 24.15 9.15h5.8L41.05 24l-11.1 14.85Z" fill="rgb(239,245,240)"/>
-      </svg>
-    </p>
-  </div>
-
-  <div class="hero-image is-admission">
-    <img src="<%- env.FILE_URL %>/home-hero.jpg" alt="">
-  </div>
-
-  <div class="hero-link">
-    <a href="/admission/#open-school">
-      <span class="is-sub">オープンスクール</span>
-      <span class="is-main">申し込み受付中</span>
-      <svg viewBox="0 0 48 48">
-        <path d="M9.4 38.85 20.45 24 9.4 9.15h5.85L26.3 24 15.25 38.85Zm14.75 0L35.2 24 24.15 9.15h5.8L41.05 24l-11.1 14.85Z" fill="rgb(56,123,69)"/>
-      </svg>
-    </a>
-  </div>
-</div>
-
-<main>
-  <h1 class="visually-hidden">長岡英智高等学校</h1>
-
-  <div class="container">
-    <section class="course">
-      <h2 class="heading">
-        コース紹介<small>COURSE</small>
-      </h2>
-      <section class="course-item is-first">
-        <div class="row row-cols-1 row-cols-lg-2 is-course-item">
-          <div class="col">
-            <div class="course-item-image">
-              <a href="/courses/commute/">
-                <img src="<%- env.FILE_URL %>/home-course-01.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="course-item-text">
-              <h3>通学コース</h3>
-              <p>
-                週4日登校。<br>
-                生活リズムを整えながら、ゆとりのあるスクールライフ
-              </p>
-              <div class="course-item-text-link">
-                <a href="/courses/commute/">
-                  詳しく見る
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="course-item">
-        <div class="row row-cols-1 row-cols-lg-2 is-course-item">
-          <div class="col">
-            <div class="course-item-image">
-              <a href="/courses/correspondence/">
-                <img src="<%- env.FILE_URL %>/home-course-02.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="course-item-text">
-              <h3>通信教育コース</h3>
-              <p>
-                学ぶ場所も学ぶ時間も自分で選ぶ。<br>
-                自由な時間の使い方で高校卒業を目指す。
-              </p>
-              <div class="course-item-text-link">
-                <a href="/courses/correspondence/">
-                  詳しく見る
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <section class="news">
-      <h2 class="heading">
-        新着情報<small>NEWS</small>
-      </h2>
-      <ul>
-        <% for (const news of newses) { %>
-          <li>
-            <span class="is-date">2022.07.01</span>
-            <a href="/news/1/">
-              新着情報のタイトルが入ります
-            </a>
-          </li>
-        <% } %>
-      </ul>
-    </section>
-  </div>
-  <section class="gallery">
-    <div class="gallery-mountain">
-      <svg width="100%" viewBox="0 0 2000 100">
-        <g fill="rgb(250,248,245)">
-          <path d="M 0 100 L 500 100 L 250 0 Z" />
-          <path d="M 500 100 L 750 100 L 625 50 Z" />
-          <path d="M 750 100 L 1000 100 L 875 50 Z" />
-          <path d="M 1000 100 L 1500 100 L 1250 0 Z" />
-          <path d="M 1500 100 L 1750 100 L 1625 50 Z" />
-          <path d="M 1750 100 L 2000 100 L 1875 50 Z" />
-        </g>
-      </svg>
+<div id="app">
+  <div class="hero">
+    <div class="hero-text">
+      <p class="is-admission">
+        <span class="is-main">Re-START !</span>
+        <span class="is-sub">〜夢の実現に向けて〜</span>
+        <svg height="220" width="220" viewBox="0 0 48 48">
+          <path d="M9.4 38.85 20.45 24 9.4 9.15h5.85L26.3 24 15.25 38.85Zm14.75 0L35.2 24 24.15 9.15h5.8L41.05 24l-11.1 14.85Z" fill="rgb(239,245,240)"/>
+        </svg>
+      </p>
     </div>
+
+    <div class="hero-image is-admission">
+      <img src="<%- env.FILE_URL %>/home-hero.jpg" alt="">
+    </div>
+
+    <div class="hero-link">
+      <a href="/admission/#open-school">
+        <span class="is-sub">オープンスクール</span>
+        <span class="is-main">申し込み受付中</span>
+        <svg viewBox="0 0 48 48">
+          <path d="M9.4 38.85 20.45 24 9.4 9.15h5.85L26.3 24 15.25 38.85Zm14.75 0L35.2 24 24.15 9.15h5.8L41.05 24l-11.1 14.85Z" fill="rgb(56,123,69)"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <h1 class="visually-hidden">長岡英智高等学校</h1>
+
     <div class="container">
-      <h2 class="heading is-gallery">
-        ギャラリー<small>GALLERY</small>
-      </h2>
-      <ul>
-        <li>
-          <a href="#" class="is-active" id="jsTabGalleryCommute">通学コース</a>
-        </li><li class="inline-block">
-          <a href="#" id="jsTabGalleryCorrespondance">通信教育コース</a>
-        </li>
-      </ul>
-
-      <div id="jsGalleryCommute">
-        <section class="gallery-item is-first">
-          <h3>宮内本校</h3>
-          <div class="row row-cols-2 row-cols-lg-3 is-gallery-item">
+      <section class="course">
+        <h2 class="heading">
+          コース紹介<small>COURSE</small>
+        </h2>
+        <section class="course-item is-first">
+          <div class="row row-cols-1 row-cols-lg-2 is-course-item">
             <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-miyauchi-01.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-miyauchi-01.jpg' %>" alt="">
+              <div class="course-item-image">
+                <a href="/courses/commute/">
+                  <img src="<%- env.FILE_URL %>/home-course-01.jpg" alt="">
                 </a>
-                <figcaption>外観</figcaption>
-              </figure>
+              </div>
             </div>
             <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-miyauchi-02.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-miyauchi-02.jpg' %>" alt="">
-                </a>
-                <figcaption>生徒玄関</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-miyauchi-03.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-miyauchi-03.jpg' %>" alt="">
-                </a>
-                <figcaption>図書ラウンジ</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-miyauchi-04.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-miyauchi-04.jpg' %>" alt="">
-                </a>
-                <figcaption>保健室</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-miyauchi-05.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-miyauchi-05.jpg' %>" alt="">
-                </a>
-                <figcaption>普通教室</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-miyauchi-06.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-miyauchi-06.jpg' %>" alt="">
-                </a>
-                <figcaption>相談室</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-miyauchi-07.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-miyauchi-07.jpg' %>" alt="">
-                </a>
-                <figcaption>進路指導室</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-miyauchi-08.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-miyauchi-08.jpg' %>" alt="">
-                </a>
-                <figcaption>情報実習室</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-miyauchi-09.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-miyauchi-09.jpg' %>" alt="">
-                </a>
-                <figcaption>多目的ホール</figcaption>
-              </figure>
+              <div class="course-item-text">
+                <h3>通学コース</h3>
+                <p>
+                  週4日登校。<br>
+                  生活リズムを整えながら、ゆとりのあるスクールライフ
+                </p>
+                <div class="course-item-text-link">
+                  <a href="/courses/commute/">
+                    詳しく見る
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-
-        <section class="gallery-item">
-          <h3>制服</h3>
-          <div class="row row-cols-2 row-cols-lg-4 is-gallery-item is-uniform">
+        <section class="course-item">
+          <div class="row row-cols-1 row-cols-lg-2 is-course-item">
             <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-uniform-01.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-uniform-01.jpg' %>" alt="">
+              <div class="course-item-image">
+                <a href="/courses/correspondence/">
+                  <img src="<%- env.FILE_URL %>/home-course-02.jpg" alt="">
                 </a>
-                <figcaption>夏服正面</figcaption>
-              </figure>
+              </div>
             </div>
             <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-uniform-02.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-uniform-02.jpg' %>" alt="">
-                </a>
-                <figcaption>夏服背面</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-uniform-03.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-uniform-03.jpg' %>" alt="">
-                </a>
-                <figcaption>冬服正面</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-uniform-04.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-uniform-04.jpg' %>" alt="">
-                </a>
-                <figcaption>冬服背面</figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>        
-      </div>
-      <div id="jsGalleryCorrespondance" style="display: none;">
-        <section class="gallery-item is-first">
-          <h3>長岡駅前校</h3>
-          <div class="row row-cols-2 row-cols-lg-3 is-gallery-item">
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekimae-01.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekimae-01.jpg' %>" alt="">
-                </a>
-                <figcaption>外観</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekimae-02.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekimae-02.jpg' %>" alt="">
-                </a>
-                <figcaption>玄関</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekimae-03.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekimae-03.jpg' %>" alt="">
-                </a>
-                <figcaption>職員室カウンター</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekimae-04.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekimae-04.jpg' %>" alt="">
-                </a>
-                <figcaption>ラウンジ</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekimae-05.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekimae-05.jpg' %>" alt="">
-                </a>
-                <figcaption>教室</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekimae-06.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekimae-06.jpg' %>" alt="">
-                </a>
-                <figcaption>相談室</figcaption>
-              </figure>
+              <div class="course-item-text">
+                <h3>通信教育コース</h3>
+                <p>
+                  学ぶ場所も学ぶ時間も自分で選ぶ。<br>
+                  自由な時間の使い方で高校卒業を目指す。
+                </p>
+                <div class="course-item-text-link">
+                  <a href="/courses/correspondence/">
+                    詳しく見る
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
+      </section>
 
-        <section class="gallery-item">
-          <h3>長岡駅東校</h3>
-          <div class="row row-cols-2 row-cols-lg-3 is-gallery-item">
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekihigashi-01.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekihigashi-01.jpg' %>" alt="">
-                </a>
-                <figcaption>外観</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekihigashi-02.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekihigashi-02.jpg' %>" alt="">
-                </a>
-                <figcaption>玄関</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekihigashi-03.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekihigashi-03.jpg' %>" alt="">
-                </a>
-                <figcaption>職員室カウンター</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekihigashi-04.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekihigashi-04.jpg' %>" alt="">
-                </a>
-                <figcaption>ラウンジ</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekihigashi-05.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekihigashi-05.jpg' %>" alt="">
-                </a>
-                <figcaption>教室</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekihigashi-06.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekihigashi-06.jpg' %>" alt="">
-                </a>
-                <figcaption>ワークショップ室</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekihigashi-07.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekihigashi-07.jpg' %>" alt="">
-                </a>
-                <figcaption>情報実習室</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekihigashi-08.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekihigashi-08.jpg' %>" alt="">
-                </a>
-                <figcaption>運動室</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-ekihigashi-09.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-ekihigashi-09.jpg' %>" alt="">
-                </a>
-                <figcaption>応接室</figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
-
-        <section class="gallery-item">
-          <h3>三条校</h3>
-          <div class="row row-cols-2 row-cols-lg-3 is-gallery-item">
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-sanjo-01.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-sanjo-01.jpg' %>" alt="">
-                </a>
-                <figcaption>外観</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-sanjo-02.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-sanjo-02.jpg' %>" alt="">
-                </a>
-                <figcaption>玄関</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-sanjo-03.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-sanjo-03.jpg' %>" alt="">
-                </a>
-                <figcaption>職員室カウンター</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-sanjo-04.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-sanjo-04.jpg' %>" alt="">
-                </a>
-                <figcaption>ラウンジ</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-sanjo-05.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-sanjo-05.jpg' %>" alt="">
-                </a>
-                <figcaption>教室</figcaption>
-              </figure>
-            </div>
-            <div class="col">
-              <figure>
-                <a href="<%- env.FILE_URL + '/home-sanjo-06.jpg' %>" target="_blank">
-                  <img src="<%- env.FILE_URL + '/home-sanjo-06.jpg' %>" alt="">
-                </a>
-                <figcaption>相談室</figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
-      </div>
+      <section class="news">
+        <h2 class="heading">
+          新着情報<small>NEWS</small>
+        </h2>
+        <ul>
+          <% for (const news of newses) { %>
+            <li>
+              <span class="is-date">2022.07.01</span>
+              <a href="/news/1/">
+                新着情報のタイトルが入ります
+              </a>
+            </li>
+          <% } %>
+        </ul>
+      </section>
     </div>
-  </section>
-</main>
+    <section class="gallery">
+      <div class="gallery-mountain">
+        <svg width="100%" viewBox="0 0 2000 100">
+          <g fill="rgb(250,248,245)">
+            <path d="M 0 100 L 500 100 L 250 0 Z" />
+            <path d="M 500 100 L 750 100 L 625 50 Z" />
+            <path d="M 750 100 L 1000 100 L 875 50 Z" />
+            <path d="M 1000 100 L 1500 100 L 1250 0 Z" />
+            <path d="M 1500 100 L 1750 100 L 1625 50 Z" />
+            <path d="M 1750 100 L 2000 100 L 1875 50 Z" />
+          </g>
+        </svg>
+      </div>
+      <div class="container">
+        <h2 class="heading is-gallery">
+          ギャラリー<small>GALLERY</small>
+        </h2>
+        <ul>
+          <li>
+            <a href="#" v-bind:class="{'is-active': tab === 'commute'}" v-on:click.prevent="onClickTab('commute')">通学コース</a>
+          </li><li class="inline-block">
+            <a href="#" v-bind:class="{'is-active': tab === 'correspondence'}" v-on:click.prevent="onClickTab('correspondence')">通信教育コース</a>
+          </li>
+        </ul>
 
+        <div v-bind:style="{'display': tab === 'commute' ? 'block' : 'none'}">
+          <section class="gallery-item is-first">
+            <h3>宮内本校</h3>
+            <div class="row row-cols-2 row-cols-lg-3 is-gallery-item">
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-miyauchi-01.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-miyauchi-01.jpg' %>" alt="">
+                  </a>
+                  <figcaption>外観</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-miyauchi-02.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-miyauchi-02.jpg' %>" alt="">
+                  </a>
+                  <figcaption>生徒玄関</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-miyauchi-03.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-miyauchi-03.jpg' %>" alt="">
+                  </a>
+                  <figcaption>図書ラウンジ</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-miyauchi-04.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-miyauchi-04.jpg' %>" alt="">
+                  </a>
+                  <figcaption>保健室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-miyauchi-05.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-miyauchi-05.jpg' %>" alt="">
+                  </a>
+                  <figcaption>普通教室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-miyauchi-06.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-miyauchi-06.jpg' %>" alt="">
+                  </a>
+                  <figcaption>相談室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-miyauchi-07.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-miyauchi-07.jpg' %>" alt="">
+                  </a>
+                  <figcaption>進路指導室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-miyauchi-08.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-miyauchi-08.jpg' %>" alt="">
+                  </a>
+                  <figcaption>情報実習室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-miyauchi-09.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-miyauchi-09.jpg' %>" alt="">
+                  </a>
+                  <figcaption>多目的ホール</figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>
+
+          <section class="gallery-item">
+            <h3>制服</h3>
+            <div class="row row-cols-2 row-cols-lg-4 is-gallery-item is-uniform">
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-uniform-01.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-uniform-01.jpg' %>" alt="">
+                  </a>
+                  <figcaption>夏服正面</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-uniform-02.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-uniform-02.jpg' %>" alt="">
+                  </a>
+                  <figcaption>夏服背面</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-uniform-03.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-uniform-03.jpg' %>" alt="">
+                  </a>
+                  <figcaption>冬服正面</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-uniform-04.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-uniform-04.jpg' %>" alt="">
+                  </a>
+                  <figcaption>冬服背面</figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>        
+        </div>
+        <div v-bind:style="{'display': tab === 'correspondence' ? 'block' : 'none'}">
+          <section class="gallery-item is-first">
+            <h3>長岡駅前校</h3>
+            <div class="row row-cols-2 row-cols-lg-3 is-gallery-item">
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekimae-01.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekimae-01.jpg' %>" alt="">
+                  </a>
+                  <figcaption>外観</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekimae-02.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekimae-02.jpg' %>" alt="">
+                  </a>
+                  <figcaption>玄関</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekimae-03.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekimae-03.jpg' %>" alt="">
+                  </a>
+                  <figcaption>職員室カウンター</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekimae-04.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekimae-04.jpg' %>" alt="">
+                  </a>
+                  <figcaption>ラウンジ</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekimae-05.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekimae-05.jpg' %>" alt="">
+                  </a>
+                  <figcaption>教室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekimae-06.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekimae-06.jpg' %>" alt="">
+                  </a>
+                  <figcaption>相談室</figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>
+
+          <section class="gallery-item">
+            <h3>長岡駅東校</h3>
+            <div class="row row-cols-2 row-cols-lg-3 is-gallery-item">
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekihigashi-01.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekihigashi-01.jpg' %>" alt="">
+                  </a>
+                  <figcaption>外観</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekihigashi-02.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekihigashi-02.jpg' %>" alt="">
+                  </a>
+                  <figcaption>玄関</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekihigashi-03.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekihigashi-03.jpg' %>" alt="">
+                  </a>
+                  <figcaption>職員室カウンター</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekihigashi-04.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekihigashi-04.jpg' %>" alt="">
+                  </a>
+                  <figcaption>ラウンジ</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekihigashi-05.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekihigashi-05.jpg' %>" alt="">
+                  </a>
+                  <figcaption>教室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekihigashi-06.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekihigashi-06.jpg' %>" alt="">
+                  </a>
+                  <figcaption>ワークショップ室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekihigashi-07.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekihigashi-07.jpg' %>" alt="">
+                  </a>
+                  <figcaption>情報実習室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekihigashi-08.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekihigashi-08.jpg' %>" alt="">
+                  </a>
+                  <figcaption>運動室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-ekihigashi-09.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-ekihigashi-09.jpg' %>" alt="">
+                  </a>
+                  <figcaption>応接室</figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>
+
+          <section class="gallery-item">
+            <h3>三条校</h3>
+            <div class="row row-cols-2 row-cols-lg-3 is-gallery-item">
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-sanjo-01.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-sanjo-01.jpg' %>" alt="">
+                  </a>
+                  <figcaption>外観</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-sanjo-02.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-sanjo-02.jpg' %>" alt="">
+                  </a>
+                  <figcaption>玄関</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-sanjo-03.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-sanjo-03.jpg' %>" alt="">
+                  </a>
+                  <figcaption>職員室カウンター</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-sanjo-04.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-sanjo-04.jpg' %>" alt="">
+                  </a>
+                  <figcaption>ラウンジ</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-sanjo-05.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-sanjo-05.jpg' %>" alt="">
+                  </a>
+                  <figcaption>教室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%- env.FILE_URL + '/home-sanjo-06.jpg' %>" target="_blank">
+                    <img src="<%- env.FILE_URL + '/home-sanjo-06.jpg' %>" alt="">
+                  </a>
+                  <figcaption>相談室</figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+  
 <%- include('partial/footer') %>
