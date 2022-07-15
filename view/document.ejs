@@ -30,6 +30,16 @@
     <div class="document">
       <% documentCategories.forEach(({title, documents}, i) => { %>
         <section class="document-item<%- i === 0 ? ' is-first' : ''%>">
+          <% if (title === '高校生活') { %>
+            <div class="row row-cols-1 row-cols-md-2 is-document-item">
+              <div class="col">
+                <img src="<%- env.FILE_URL %>/document-life-01.jpg" alt="">
+              </div>
+              <div class="col">
+                <img src="<%- env.FILE_URL %>/document-life-02.jpg" alt="">
+              </div>
+            </div>
+          <% } %>
           <h2 class="h2"><%= title %></h2>
           <table>
             <thead>

@@ -1314,64 +1314,105 @@ a.button.is-student {
 
 .news {
   margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 @media (min-width: 768px) {
   .news {
     margin-top: 8rem;
-    display: flex;
   }
 }
 
 .news h2 {
-  flex-basis: 260px;
+  flex-basis: 15rem;
 }
 
 .news ul {
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
   list-style: none;
   padding: 0;
+  flex-basis: calc(100%);
 }
 
 @media (min-width: 768px) {
   .news ul {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .news ul {
+    margin-top: 0rem;
     flex-basis: calc(100% - 260px);
-    margin-top: 0;
   }
 }
 
 .news li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   padding: 1rem 0;
   border-bottom: 2px dotted rgb(56,123,69);
 }
 
 @media (min-width: 768px) {
   .news li {
-    display: flex;
     border-bottom: 1px solid rgb(233,233,233);
   }
 }
 
-.news li span.is-date {
-  flex-basis: 9rem;
+.news ul li span.is-date {
+  flex-basis: 7.5rem;
   font-weight: 700;
   color: rgb(56,123,69);
   display: block;
 }
 
-.news li a {
+@media (min-width: 768px) {
+  .news ul li span.is-date {
+    flex-basis: 8rem;
+  }
+}
+
+.news ul li span.is-category {
+  flex-basis: 7.5rem;
+  font-weight: 700;
+  color: rgb(56,123,69);
+  display: block;
+  color: #fff;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.news ul li span.is-category.is-admission {
+  background: rgb(56,123,69);
+}
+
+.news ul li span.is-category.is-student {
+  background: rgb(65,125,206);
+}
+
+.news ul li a {
   color: #000;
   text-decoration: none;
   margin-top: 0.25rem;
   display: block;
+  flex-basis: 100%;
 }
 
 @media (min-width: 768px) {
-  .news li a {
+  .news ul li a {
     color: #000;
     text-decoration: none;
     margin-top: 0;
+    margin-left: 2.5rem;
+    flex-basis: calc(100% - 8rem - 7.5rem - 2.5rem);
   }
+}
+
+.news ul li a:hover {
+  color: rgb(128,128,128);
 }
 
 .gallery {
@@ -1696,7 +1737,7 @@ a.button.is-student {
 
 @media (min-width: 768px) {
   .message {
-    margin-top: 6rem;
+    margin-top: 5rem;
   }
 }
 
@@ -1709,7 +1750,7 @@ a.button.is-student {
 @media (min-width: 768px) {
   .message.is-advisor {
     padding: 6rem 0 6rem;
-    margin-top: 4rem;
+    margin-top: 5rem;
   }
 }
 
@@ -1882,7 +1923,7 @@ a.button.is-student {
 
 @media (min-width: 768px) {
   .about {
-    margin-top: 10rem;
+    margin-top: 6rem;
   }
 }
 
@@ -3329,6 +3370,27 @@ a.button.is-student {
 
 .document-item.is-first {
   margin-top: 0;
+}
+
+.document-item .row.is-document-item {
+  --bs-gutter-y: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .document-item .row.is-document-item {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.document-item img {
+  border-radius: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .document-item img {
+    border-radius: 0.5rem;
+  }
 }
 
 .document-item table {
