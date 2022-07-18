@@ -25,7 +25,7 @@
         <div class="header-logo">
           <a href="<%- url.pathname.indexOf('/student/') === 0 ? '/student/' : '/'  %>" aria-label="ホーム">
             <span class="header-logo-image">
-              <img src="<%- env.FILE_URL + '/header-logo.jpg' %>" alt="">
+              <img src="<%- env.STATIC_URL + '/header-logo.jpg' %>" alt="">
             </span>
             <span class="header-logo-text">
               <% if (url.pathname.indexOf('/student/') === 0) { %>

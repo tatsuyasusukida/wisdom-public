@@ -822,34 +822,18 @@ async function insertRecordsPageProduction (sites) {
 
   await model.partial.create({
     order: 1,
-    title: '入学希望者向けヘッダー',
+    title: 'ヘッダー',
     code: 'admissionHeader',
-    html: await readView('partial/header.ejs'),
+    html: await readView('partial-header.ejs'),
     siteId: siteAdmission.id,
   })
 
   await model.partial.create({
     order: 2,
-    title: '入学希望者向けフッター',
+    title: 'フッター',
     code: 'admissionFooter',
-    html: await readView('partial/footer.ejs'),
+    html: await readView('partial-footer.ejs'),
     siteId: siteAdmission.id,
-  })
-
-  await model.partial.create({
-    order: 1,
-    title: '在校生・卒業生向けヘッダー',
-    code: 'studentHeader',
-    html: await readView('partial/header.ejs'),
-    siteId: siteStudent.id,
-  })
-
-  await model.partial.create({
-    order: 2,
-    title: '在校生・卒業生向けフッター',
-    code: 'studentFooter',
-    html: await readView('partial/footer.ejs'),
-    siteId: siteStudent.id,
   })
 
   let i = 0
