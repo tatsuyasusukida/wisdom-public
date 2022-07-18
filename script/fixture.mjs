@@ -35,7 +35,7 @@ async function main () {
     await insertRecordsEmail()
     await insertRecordsAdmin()
     await insertRecordsFile()
-    await insertRecordsSource()
+    await insertRecordsSourceProduction()
     await insertRecordsSetting()
   } catch (err) {
     console.error(err)
@@ -816,6 +816,14 @@ async function readView (view) {
   return (await fsPromises.readFile(source)).toString()
 }
 
+async function readFile (file) {
+  const {pathname} = new URL(import.meta.url)
+  const dirname = path.dirname(pathname)
+  const source = path.join(dirname, '..', file)
+
+  return (await fsPromises.readFile(source)).toString()
+}
+
 async function insertRecordsPageProduction (sites) {
   const siteAdmission = sites.find((site) => site.code === 'admission')
   const siteStudent = sites.find((site) => site.code === 'student')
@@ -1231,7 +1239,59 @@ async function insertRecordsFile () {
   }
 }
 
-async function insertRecordsSource () {
+async function insertRecordsSourceProduction () {
+  let i = 0
+
+  await model.source.create({
+    order: i += 1,
+    title: 'bootstrap-reboot.min.css',
+    filename: 'bootstrap-reboot.min.css',
+    text: await readFile('static/css/bootstrap-reboot.min.css'),
+    isPublished: true,
+  })
+
+  await model.source.create({
+    order: i += 1,
+    title: 'bootstrap-grid.min.css',
+    filename: 'bootstrap-grid.min.css',
+    text: await readFile('static/css/bootstrap-grid.min.css'),
+    isPublished: true,
+  })
+
+  await model.source.create({
+    order: i += 1,
+    title: 'screen.css',
+    filename: 'screen.css',
+    text: await readFile('static/css/screen.css'),
+    isPublished: true,
+  })
+
+  await model.source.create({
+    order: i += 1,
+    title: 'vue.js',
+    filename: 'vue.js',
+    text: await readFile('static/js/vue.js'),
+    isPublished: true,
+  })
+
+  await model.source.create({
+    order: i += 1,
+    title: 'vue.min.js',
+    filename: 'vue.min.js',
+    text: await readFile('static/js/vue.min.js'),
+    isPublished: true,
+  })
+
+  await model.source.create({
+    order: i += 1,
+    title: 'main.js',
+    filename: 'main.js',
+    text: await readFile('static/js/main.js'),
+    isPublished: true,
+  })
+}
+
+async function insertRecordsSourceDevelopment () {
   for (let i = 1; i <= 3; i += 1) {
     await model.source.create({
       order: i,

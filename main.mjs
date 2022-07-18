@@ -68,11 +68,11 @@ async function main () {
     }
 
     router.use('/static/', express.static(new URL('static', import.meta.url).pathname))
-    router.use('/static/', express.static(new URL('node_modules/bootstrap/dist', import.meta.url).pathname))
 
     router.use('/', wrap(layout))
     router.use('/', wrap(renderFixedPage))
     router.get('/news/:newsId([0-9]+)/', wrap(news))
+    router.get('/source/:sourceFilename([0-9a-z-_\\.]+)', wrap(source))
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())
     router.get('/api/v1/contact/initialize', wrap(apiContactInitialize))
@@ -200,6 +200,22 @@ async function findNewsImages (req) {
 
 async function news (req, res, next) {
   await renderFixedPage(req, res, next, {code: '/news/0/'})
+}
+
+async function source (req, res) {
+  const source = await model.source.findOne({
+    where: {
+      filename: {[Op.eq]: req.params.sourceFilename},
+      isPublished: {[Op.eq]: true},
+    },
+  })
+
+  if (!source) {
+    res.status(404).end()
+    return
+  }
+
+  res.type(req.params.sourceFilename).send(source.text)
 }
 
 async function findAdmissionDocumentCategories () {
