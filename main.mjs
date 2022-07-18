@@ -72,29 +72,7 @@ async function main () {
 
     router.use('/', wrap(layout))
     router.use('/', wrap(renderFixedPage))
-    // router.get('/', (_, res) => res.render('home'))
     router.get('/news/:newsId([0-9]+)/', wrap(news))
-    // router.get('/news/:newsId([0-9]+)/', (_, res) => res.render('news'))
-    // router.get('/about/', (_, res) => res.render('about'))
-    // router.get('/courses/', (_, res) => res.render('courses'))
-    // router.get('/courses/commute/', (_, res) => res.render('courses-commute'))
-    // router.get('/courses/correspondence/', (_, res) => res.render('courses-correspondence'))
-    // router.get('/admission/', wrap(admission))
-    // router.get('/admission/', (_, res) => res.render('admission'))
-    // router.get('/document/', wrap(document))
-    // router.get('/document/', (_, res) => res.render('document'))
-    // router.get('/faq/', wrap(faq))
-    // router.get('/faq/', (_, res) => res.render('faq'))
-    // router.get('/contact/', (_, res) => res.render('contact'))
-    // router.get('/contact/review/', (_, res) => res.render('contact-review'))
-    // router.get('/contact/finish/', (_, res) => res.render('contact-finish'))
-    // router.get('/recruit/', (_, res) => res.render('recruit'))
-    // router.get('/privacy/', (_, res) => res.render('privacy'))
-    // router.get('/student/', (_, res) => res.render('student'))
-    // router.get('/student/document/', wrap(studentDocument))
-    // router.get('/student/document/', (_, res) => res.render('student-document'))
-    // router.get('/student/faq/', wrap(studentFaq))
-    // router.get('/student/faq/', (_, res) => res.render('student-faq'))
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())
     router.get('/api/v1/contact/initialize', wrap(apiContactInitialize))
@@ -224,21 +202,6 @@ async function news (req, res, next) {
   await renderFixedPage(req, res, next, {code: '/news/0/'})
 }
 
-async function admission (_, res, next) {
-  res.locals.setting = await findSetting(['openSchoolIsAccepting'])
-  next()
-}
-
-async function document (_, res, next) {
-  res.locals.documentCategories = await findDocumentCategories('admission')
-  next()
-}
-
-async function studentDocument (_, res, next) {
-  res.locals.documentCategories = await findDocumentCategories('student')
-  next()
-}
-
 async function findAdmissionDocumentCategories () {
   return await findDocumentCategories('admission')
 }
@@ -300,11 +263,11 @@ async function findDocumentCategories (siteCode) {
   return documentCategories
 }
 
-async function findAdmissionFaqCategories (_, res, next) {
+async function findAdmissionFaqCategories () {
   return await findFaqCategories('admission')
 }
 
-async function findStudentFaqCategories (_, res, next) {
+async function findStudentFaqCategories () {
   return await findFaqCategories('student')
 }
 
@@ -505,6 +468,11 @@ async function apiContactValidate (req, res) {
 
 async function apiContactSubmit (req, res) {
   const {ok} = await v.validateContact(req)
+
+  if (!ok) {
+    res.status(400).end()
+    return
+  }
 
   await model.sequelize.transaction(async (transaction) => {
     const contactCategory = await model.contactCategory.findOne({

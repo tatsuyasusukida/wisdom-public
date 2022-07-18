@@ -1020,6 +1020,34 @@ async function insertRecordsPageProduction (sites) {
 
   await model.fixedPage.create({
     order: i += 1,
+    title: '採用情報',
+    code: '/recruit/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: ['recruitIsAccepting'],
+      locals: [],
+    }, null, 2),
+    html: await readView('recruit.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: 'プライバシーポリシー',
+    code: '/privacy/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [],
+    }, null, 2),
+    html: await readView('privacy.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
     title: 'お探しのページは見つかりませんでした',
     code: '/404/',
     frontmatter: JSON.stringify({
@@ -1242,6 +1270,13 @@ async function insertRecordsSetting () {
     order: i += 1,
     title: 'オープンスクール申し込み受付中（受付中→1）',
     code: `openSchoolIsAccepting`,
+    value: JSON.stringify(1, null, 2),
+  })
+
+  await model.setting.create({
+    order: i += 1,
+    title: '教職員募集中（募集中→1）',
+    code: `recruitIsAccepting`,
     value: JSON.stringify(1, null, 2),
   })
 
