@@ -9,7 +9,8 @@ import winston from 'winston'
 import {Op, QueryTypes} from 'sequelize'
 import model from './model/index.mjs'
 import * as c from './lib/convert.mjs'
-import faqCategory from './model/faq-category.mjs'
+import * as f from './lib/form.mjs'
+import * as v from './lib/validate.mjs'
 
 main()
 
@@ -417,6 +418,8 @@ async function findSetting (codes) {
 }
 
 async function apiContactInitialize (_, res) {
+  const form = f.makeFormContact()
+  const validation = v.makeValidationContact()
   const contactCategories = await model.contactCategory.findAll({
     attributes: ['id', 'title', 'template'],
     where: {
@@ -424,86 +427,25 @@ async function apiContactInitialize (_, res) {
     },
   })
 
-  const form = process.env.NODE_ENV === 'production'
-    ? {
-      name: '',
-      phone: '',
-      email: '',
-      zip: '',
-      address: '',
-      contactCategoryId: '',
-      text: '',
-    }
-    : {
-      name: '英智 太郎',
-      phone: '09012345678',
-      email: 'eichi@example.com',
-      zip: '1234567',
-      address: '新潟県長岡市宮栄3-16-14',
-      contactCategoryId: contactCategories[0].id + '',
-      text: '\nここにお問合せの内容が入ります。'.repeat(3).slice(1),
-    }
-
-  const validation = {
-    ok: null,
-    name: {ok: null, isNotEmpty: null},
-    phone: {ok: null, isNotEmpty: null},
-    email: {ok: null, isNotEmpty: null},
-    zip: {ok: null, isSevenDigit: null},
-    address: {ok: null, isNotEmpty: null},
-    contactCategoryId: {ok: null, isNotEmpty: null},
-    text: {ok: null, isNotEmpty: null},
+  if (process.env.NODE_ENV === 'production') {
+    form.name = '英智 太郎',
+    form.phone = '09012345678',
+    form.email = 'eichi@example.com',
+    form.zip = '1234567',
+    form.address = '新潟県長岡市宮栄3-16-14',
+    form.contactCategoryId = contactCategories[0].id + '',
+    form.text = '\nここにお問合せの内容が入ります。'.repeat(3).slice(1),
   }
 
   res.send({form, validation, contactCategories})
 }
 
 async function apiContactValidate (req, res) {
-  res.send({validation: await validateContact(req)})
+  res.send({validation: await v.validateContact(req)})
 }
 
 async function apiContactSubmit (req, res) {
   res.send({ok: true, redirect: '/contact/finish/?code=1234-1234-1234'})
-}
-
-async function validateContact (req) {
-  const validation = {
-    ok: null,
-    name: {ok: null, isNotEmpty: null},
-    phone: {ok: null, isNotEmpty: null},
-    email: {ok: null, isNotEmpty: null},
-    zip: {ok: null, isSevenDigit: null},
-    address: {ok: null, isNotEmpty: null},
-    contactCategoryId: {ok: null, isNotEmpty: null},
-    text: {ok: null, isNotEmpty: null},
-  }
-
-  validation.name.ok =
-  validation.name.isNotEmpty = !/^\s*$/.test(req.body.form.name)
-
-  validation.phone.ok =
-  validation.phone.isNotEmpty = !/^\s*$/.test(req.body.form.phone)
-
-  validation.email.ok =
-  validation.email.isNotEmpty = !/^\s*$/.test(req.body.form.email)
-
-  validation.zip.ok =
-  validation.zip.isSevenDigit = /^\d{7}$/.test(req.body.form.zip)
-
-  validation.address.ok =
-  validation.address.isNotEmpty = !/^\s*$/.test(req.body.form.address)
-
-  validation.contactCategoryId.ok =
-  validation.contactCategoryId.isNotEmpty = !/^\s*$/.test(req.body.form.contactCategoryId)
-
-  validation.text.ok =
-  validation.text.isNotEmpty = !/^\s*$/.test(req.body.form.text)
-
-  validation.ok = Object.keys(validation).every((key) => {
-    return key === 'ok' || validation[key].ok
-  })
-
-  return validation
 }
 
 function onNotFound (_, res) {
