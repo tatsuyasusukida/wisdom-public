@@ -1349,4 +1349,31 @@ async function insertRecordsSetting () {
       },
     }, null, 2),
   })
+
+  await model.setting.create({
+    order: i += 1,
+    title: 'セキュリティ設定',
+    code: `security`,
+    value: JSON.stringify({
+      contentSecurityPolicy: {
+        directives: {
+          "default-src": ["'self'"],
+          "base-uri": ["'self'"],
+          "block-all-mixed-content": [],
+          "font-src": ["'self'", "https:", "data:"],
+          "form-action": ["'self'"],
+          "frame-ancestors": ["'self'"],
+          "frame-src": ["'self'", "https://www.google.com"],
+          "img-src": ["'self'", "data:", "https://storage.googleapis.com", "https:"],
+          "object-src": ["'none'"],
+          "script-src": ["'self'", process.env.STATIC_URL, "'unsafe-eval'"],
+          "script-src-attr": ["'none'"],
+          "style-src": ["'self'", "'unsafe-inline'", process.env.STATIC_URL, 'https://fonts.googleapis.com'],
+          "upgrade-insecure-requests": [],
+          "connect-src": ["'self'", "https://storage.googleapis.com"],
+        },
+      },
+      crossOriginEmbedderPolicy: false,
+    }, null, 2),
+  })
 }

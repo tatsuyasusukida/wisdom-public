@@ -30,28 +30,6 @@ async function main () {
     router.set('views', path.join(process.cwd(), 'view'))
     router.set('view engine', 'ejs')
 
-    router.use(helmet({
-      contentSecurityPolicy: {
-        directives: {
-          "default-src": ["'self'"],
-          "base-uri": ["'self'"],
-          "block-all-mixed-content": [],
-          "font-src": ["'self'", "https:", "data:"],
-          "form-action": ["'self'"],
-          "frame-ancestors": ["'self'"],
-          "frame-src": ["'self'", "https://www.google.com"],
-          "img-src": ["'self'", "data:", "https://storage.googleapis.com", "https:"],
-          "object-src": ["'none'"],
-          "script-src": ["'self'", process.env.STATIC_URL, "'unsafe-eval'"],
-          "script-src-attr": ["'none'"],
-          "style-src": ["'self'", "'unsafe-inline'", process.env.STATIC_URL, 'https://fonts.googleapis.com'],
-          "upgrade-insecure-requests": [],
-          "connect-src": ["'self'", "https://storage.googleapis.com"],
-        },
-      },
-      crossOriginEmbedderPolicy: false,
-    }))
-
     router.use(morgan(process.env.ACCESS_LOG, {
       stream: {
         write: message => {
@@ -67,12 +45,11 @@ async function main () {
       router.use(basicAuth(username, password))
     }
 
-    router.use('/static/', express.static(new URL('static', import.meta.url).pathname))
-
     router.use('/', wrap(layout))
     router.use('/', wrap(renderFixedPage))
     router.get('/news/:newsId([0-9]+)/', wrap(news))
     router.get('/source/:sourceFilename([0-9a-z-_\\.]+)', wrap(source))
+    router.use('/static/', express.static(new URL('static', import.meta.url).pathname))
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())
     router.get('/api/v1/contact/initialize', wrap(apiContactInitialize))
@@ -101,14 +78,14 @@ function wrap (fn) {
 }
 
 async function layout (req, res, next) {
-  const {layout} = await findSetting(['layout'])
+  const {layout, security} = await findSetting(['layout', 'security'])
 
   req.locals = {}
   res.locals.env = process.env
   res.locals.url = new URL(req.originalUrl, process.env.BASE_URL)
   res.locals.layout = layout
 
-  next()
+  helmet(security)(req, res, next)
 }
 
 async function renderFixedPage (req, res, next, options) {
