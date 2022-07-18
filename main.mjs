@@ -75,26 +75,26 @@ async function main () {
     // router.get('/', (_, res) => res.render('home'))
     router.get('/news/:newsId([0-9]+)/', wrap(news))
     // router.get('/news/:newsId([0-9]+)/', (_, res) => res.render('news'))
-    router.get('/about/', (_, res) => res.render('about'))
-    router.get('/courses/', (_, res) => res.render('courses'))
-    router.get('/courses/commute/', (_, res) => res.render('courses-commute'))
-    router.get('/courses/correspondence/', (_, res) => res.render('courses-correspondence'))
-    router.get('/admission/', wrap(admission))
-    router.get('/admission/', (_, res) => res.render('admission'))
-    router.get('/document/', wrap(document))
-    router.get('/document/', (_, res) => res.render('document'))
-    router.get('/faq/', wrap(faq))
-    router.get('/faq/', (_, res) => res.render('faq'))
-    router.get('/contact/', (_, res) => res.render('contact'))
-    router.get('/contact/review/', (_, res) => res.render('contact-review'))
-    router.get('/contact/finish/', (_, res) => res.render('contact-finish'))
-    router.get('/recruit/', (_, res) => res.render('recruit'))
-    router.get('/privacy/', (_, res) => res.render('privacy'))
-    router.get('/student/', (_, res) => res.render('student'))
-    router.get('/student/document/', wrap(studentDocument))
-    router.get('/student/document/', (_, res) => res.render('student-document'))
-    router.get('/student/faq/', wrap(studentFaq))
-    router.get('/student/faq/', (_, res) => res.render('student-faq'))
+    // router.get('/about/', (_, res) => res.render('about'))
+    // router.get('/courses/', (_, res) => res.render('courses'))
+    // router.get('/courses/commute/', (_, res) => res.render('courses-commute'))
+    // router.get('/courses/correspondence/', (_, res) => res.render('courses-correspondence'))
+    // router.get('/admission/', wrap(admission))
+    // router.get('/admission/', (_, res) => res.render('admission'))
+    // router.get('/document/', wrap(document))
+    // router.get('/document/', (_, res) => res.render('document'))
+    // router.get('/faq/', wrap(faq))
+    // router.get('/faq/', (_, res) => res.render('faq'))
+    // router.get('/contact/', (_, res) => res.render('contact'))
+    // router.get('/contact/review/', (_, res) => res.render('contact-review'))
+    // router.get('/contact/finish/', (_, res) => res.render('contact-finish'))
+    // router.get('/recruit/', (_, res) => res.render('recruit'))
+    // router.get('/privacy/', (_, res) => res.render('privacy'))
+    // router.get('/student/', (_, res) => res.render('student'))
+    // router.get('/student/document/', wrap(studentDocument))
+    // router.get('/student/document/', (_, res) => res.render('student-document'))
+    // router.get('/student/faq/', wrap(studentFaq))
+    // router.get('/student/faq/', (_, res) => res.render('student-faq'))
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())
     router.get('/api/v1/contact/initialize', wrap(apiContactInitialize))
@@ -138,7 +138,7 @@ async function renderFixedPage (req, res, next, options) {
 
   const fixedPage = await model.fixedPage.findOne({
     where: {
-      code: {[Op.eq]: (options.code || req.url)},
+      code: {[Op.eq]: (options.code || res.locals.url.pathname)},
     },
   })
 
@@ -153,6 +153,10 @@ async function renderFixedPage (req, res, next, options) {
     findNews,
     findNewsLinks,
     findNewsImages,
+    findAdmissionDocumentCategories,
+    findStudentDocumentCategories,
+    findAdmissionFaqCategories,
+    findStudentFaqCategories,
   }
 
   for (const local of frontmatter.locals) {
@@ -235,6 +239,14 @@ async function studentDocument (_, res, next) {
   next()
 }
 
+async function findAdmissionDocumentCategories () {
+  return await findDocumentCategories('admission')
+}
+
+async function findStudentDocumentCategories () {
+  return await findDocumentCategories('student')
+}
+
 async function findDocumentCategories (siteCode) {
   const sql = `
     select
@@ -288,14 +300,12 @@ async function findDocumentCategories (siteCode) {
   return documentCategories
 }
 
-async function faq (_, res, next) {
-  res.locals.faqCategories = await findFaqCategories('admission')
-  next()
+async function findAdmissionFaqCategories (_, res, next) {
+  return await findFaqCategories('admission')
 }
 
-async function studentFaq (_, res, next) {
-  res.locals.faqCategories = await findFaqCategories('student')
-  next()
+async function findStudentFaqCategories (_, res, next) {
+  return await findFaqCategories('student')
 }
 
 async function findFaqCategories (siteCode) {
@@ -547,8 +557,9 @@ async function generateContactHistoryNumber (transaction, retry) {
   }
 }
 
-function onNotFound (_, res) {
-  res.status(404).render('404')
+function onNotFound (req, res, next) {
+  res.status(404)
+  renderFixedPage(req, res, next, {code: '/404/'})
 }
 
 function onError (err, _, res, __) {

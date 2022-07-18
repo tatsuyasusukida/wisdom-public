@@ -887,6 +887,199 @@ async function insertRecordsPageProduction (sites) {
     isPublished: true,
     siteId: siteAdmission.id,
   })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: '学校紹介',
+    code: '/about/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [],
+    }, null, 2),
+    html: await readView('about.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: 'コース紹介',
+    code: '/courses/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [],
+    }, null, 2),
+    html: await readView('courses.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: '通学コース',
+    code: '/courses/commute/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [],
+    }, null, 2),
+    html: await readView('courses-commute.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: '通信教育コース',
+    code: '/courses/correspondence/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [],
+    }, null, 2),
+    html: await readView('courses-correspondence.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: '入試情報',
+    code: '/admission/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: ['openSchoolIsAccepting'],
+      locals: [],
+    }, null, 2),
+    html: await readView('admission.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: 'ダウンロード資料',
+    code: '/document/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [
+        {name: 'documentCategories', function: 'findAdmissionDocumentCategories'},
+      ],
+    }, null, 2),
+    html: await readView('document.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: 'よくある質問',
+    code: '/faq/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [
+        {name: 'faqCategories', function: 'findAdmissionFaqCategories'},
+      ],
+    }, null, 2),
+    html: await readView('faq.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: 'お問い合わせ',
+    code: '/contact/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [],
+    }, null, 2),
+    html: await readView('contact.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: 'お問い合わせ完了',
+    code: '/contact/finish/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [],
+    }, null, 2),
+    html: await readView('contact-finish.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: 'お探しのページは見つかりませんでした',
+    code: '/404/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [],
+    }, null, 2),
+    html: await readView('404.ejs'),
+    isPublished: true,
+    siteId: siteAdmission.id,
+  })
+
+  i = 0
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: '在校生・卒業生向けページ',
+    code: '/student/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [],
+    }, null, 2),
+    html: await readView('student.ejs'),
+    isPublished: true,
+    siteId: siteStudent.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: '様式ダウンロード',
+    code: '/student/document/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [
+        {name: 'documentCategories', function: 'findStudentDocumentCategories'},
+      ],
+    }, null, 2),
+    html: await readView('student-document.ejs'),
+    isPublished: true,
+    siteId: siteStudent.id,
+  })
+
+  await model.fixedPage.create({
+    order: i += 1,
+    title: '在校生・卒業生向けよくある質問',
+    code: '/student/faq/',
+    frontmatter: JSON.stringify({
+      partials: ['admissionHeader', 'admissionFooter'],
+      settings: [],
+      locals: [
+        {name: 'faqCategories', function: 'findStudentFaqCategories'},
+      ],
+    }, null, 2),
+    html: await readView('student-faq.ejs'),
+    isPublished: true,
+    siteId: siteStudent.id,
+  })
+
 }
 
 async function insertRecordsPageDevelopment (sites) {
@@ -1072,7 +1265,6 @@ async function insertRecordsSetting () {
           items: [
             {text: '様式ダウンロード', href: '/student/document/'},
             {text: 'よくある質問', href: '/student/faq/'},
-            {text: 'お問い合わせ', href: '/contact/'},
           ],
         },
       },

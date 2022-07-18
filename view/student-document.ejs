@@ -1,4 +1,4 @@
-<%- include('partial/header') %>
+<%- partial.admissionHeader %>
 
 <div class="jumbotron" aria-hidden="true">
   <img src="<%- env.FILE_URL %>/student-document-jumbotron.jpg" alt="">
@@ -28,7 +28,7 @@
   <h1 class="visually-hidden">様式ダウンロード</h1>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-12 col-lg-10">
+      <div class="col-lg-10">
         <div class="format">
           <% documentCategories.forEach((documentCategory, i) => { %>
             <% documentCategory.documents.forEach((document, j) => { %>
@@ -55,4 +55,4 @@
   </div>
 </main>
 
-<%- include('partial/footer') %>
+<%- partial.admissionFooter %>
