@@ -1,4 +1,5 @@
 import path from 'path'
+import crypto from 'crypto'
 import express from 'express'
 import morgan from 'morgan'
 import basicAuth from 'basic-auth-connect'
@@ -117,6 +118,7 @@ async function main () {
     })
 
     router.get('/student/faq/', (_, res) => res.render('student-faq'))
+    router.get('/student/document/', wrap(studentDocument))
     router.get('/student/document/', (_, res) => res.render('student-document'))
 
     router.use('/api/v1/', express.json())
@@ -210,13 +212,26 @@ async function admission (_, res, next) {
 }
 
 async function document (_, res, next) {
+  res.locals.documentCategories = await findDocumentCategories('admission')
+  next()
+}
+
+async function studentDocument (_, res, next) {
+  res.locals.documentCategories = await findDocumentCategories('student')
+  next()
+}
+
+async function findDocumentCategories (siteCode) {
   const sql = `
     select
       documentCategory.id as documentCategoryId,
       documentCategory.title as documentCategoryTitle,
+      documentCategory.isUncategorized as documentCategoryIsUncategorized,
+      document.id as documentId,
       document.title as documentTitle,
       document.datePublish as documentDatePublish,
       document.dateUpdate as documentDateUpdate,
+      document.description as documentDescription,
       document.location as documentLocation
     from wisdomDocument as document
     inner join wisdomDocumentCategoryDocument as documentCategoryDocument
@@ -234,26 +249,29 @@ async function document (_, res, next) {
 
   const rows = await model.sequelize.query(sql, {
     type: QueryTypes.SELECT,
-    replacements: ['admission'],
+    replacements: [siteCode],
   })
 
   const partitions = partitionBy((row) => row.documentCategoryId, rows)
   const documentCategories = partitions.map((rows) => ({
+    id: rows[0].documentCategoryId,
     title: rows[0].documentCategoryTitle,
+    isUncategorized: rows[0].documentCategoryIsUncategorized,
     documents: rows.map((row) => ({
+      id: row.documentId,
       title: row.documentTitle,
       datePublish: row.documentDatePublish,
       datePublishText: c.convertDate(row.documentDatePublish),
       dateUpdate: row.documentDateUpdate,
       dateUpdateText: c.convertDate(row.documentDateUpdate),
       location: row.documentLocation,
+      description: row.documentDescription,
+      descriptionLines: c.splitText(row.documentDescription),
       locationUrl: c.convertLocation(row.documentLocation),
     }))
   }))
 
-  res.locals.documentCategories = documentCategories
-
-  next()
+  return documentCategories
 }
 
 async function faq (_, res, next) {
@@ -427,14 +445,14 @@ async function apiContactInitialize (_, res) {
     },
   })
 
-  if (process.env.NODE_ENV === 'production') {
-    form.name = '英智 太郎',
-    form.phone = '09012345678',
-    form.email = 'eichi@example.com',
-    form.zip = '1234567',
-    form.address = '新潟県長岡市宮栄3-16-14',
-    form.contactCategoryId = contactCategories[0].id + '',
-    form.text = '\nここにお問合せの内容が入ります。'.repeat(3).slice(1),
+  if (process.env.NODE_ENV === 'development') {
+    form.name = '英智 太郎'
+    form.phone = '09012345678'
+    form.email = 'eichi@example.com'
+    form.zip = '1234567'
+    form.address = '新潟県長岡市宮栄3-16-14'
+    form.contactCategoryId = contactCategories[0].id + ''
+    form.text = '\nここにお問合せの内容が入ります。'.repeat(3).slice(1)
   }
 
   res.send({form, validation, contactCategories})
@@ -445,7 +463,57 @@ async function apiContactValidate (req, res) {
 }
 
 async function apiContactSubmit (req, res) {
-  res.send({ok: true, redirect: '/contact/finish/?code=1234-1234-1234'})
+  const {ok} = await v.validateContact(req)
+
+  await model.sequelize.transaction(async (transaction) => {
+    const contactCategory = await model.contactCategory.findOne({
+      where: {
+        id: {[Op.eq]: req.body.form.contactCategoryId},
+      },
+      transaction,
+    })
+
+    const contactHistory = await model.contactHistory.create({
+      number: await generateContactHistoryNumber(transaction, 10),
+      postedAt: new Date(),
+      name: req.body.form.name,
+      phone: req.body.form.phone,
+      email: req.body.form.email,
+      zip: req.body.form.zip,
+      address: req.body.form.address,
+      category: contactCategory.title,
+      text: req.body.form.text,
+    }, {transaction})
+
+    const search = '?' + new URLSearchParams({
+      number: contactHistory.number,
+    }).toString()
+
+    res.send({ok: true, redirect: '/contact/finish/' + search})
+  })
+}
+
+async function generateContactHistoryNumber (transaction, retry) {
+  if (retry <= 0) {
+    throw new Error('retry <= 0')
+  }
+
+  const number = new Array(3).fill(1).map(_ => {
+    return crypto.randomInt(10000).toString().padStart(4, '0')
+  }).join('-')
+
+  const contactHistory = await model.contactHistory.findOne({
+    where: {
+      number: {[Op.eq]: number},
+    },
+    transaction,
+  })
+
+  if (!contactHistory) {
+    return number
+  } else {
+    return await generateContactHistoryNumber(transaction, retry - 1)
+  }
 }
 
 function onNotFound (_, res) {

@@ -104,13 +104,6 @@ async function insertRecordsDocument (sites) {
       isUncategorized: false,
       siteId: siteAdmission.id,
     }),
-
-    await model.documentCategory.create({
-      order: 1,
-      title: '未分類',
-      isUncategorized: true,
-      siteId: siteStudent.id,
-    }),
   ]
 
   for (const documentCategory of documentCategories) {
@@ -132,6 +125,80 @@ async function insertRecordsDocument (sites) {
         documentId: document.id,
       })
     }
+  }
+
+  const documentCategory = await model.documentCategory.create({
+    order: 1,
+    title: '未分類',
+    isUncategorized: true,
+    siteId: siteStudent.id,
+  })
+
+  const documents = [
+    await model.document.create({
+      order: 1,
+      datePublish: '2022-08-01',
+      dateUpdate: '2022-08-01',
+      title: '証明書(学校感染症)',
+      description: [
+        [
+          '医師から、「学校感染症の分類」PDFに記載のある感染症と診断された場合、学校までご連絡ください。',
+          '学校保健安全法の規定により、学校感染症に感染している、またはその疑いがある場合、生徒は出席停止となります。',
+          '医師の判断に基づき、登校許可が出るまでは学校を休んで十分に休養をしてください。',
+          '出席停止期間は欠席にはなりません。',
+          'なお、登校する際は「証明書」PDFをダウンロードし、医師からの記入後、速やかに担任までご提出ください。',
+          '「証明書」は本校で直接配布するか郵送、またはHPからダウンロードできます。',
+        ].join(''),
+        '',
+        '※ 必要な書類は、下のPDF版をダウンロードしてください。',
+        '※ 感染が分かった時点で、速やかに学校までご連絡ください。',
+        '※ 詳細をお知りになりたい場合は、養護教諭までお問い合わせください。',
+      ].join('\n'),
+      filename: `document-01.pdf`,
+      location: process.env.STATIC_URL + `/pdf/document-01.pdf`,
+      isPublished: true,
+      siteId: siteStudent.id,
+    }),
+
+    await model.document.create({
+      order: 2,
+      datePublish: '2022-08-01',
+      dateUpdate: '2022-08-01',
+      title: '学校感染症と出席停止期間の基準',
+      description: '',
+      filename: `document-02.pdf`,
+      location: process.env.STATIC_URL + `/pdf/document-02.pdf`,
+      isPublished: true,
+      siteId: siteStudent.id,
+    }),
+
+    await model.document.create({
+      order: 3,
+      datePublish: '2022-08-01',
+      dateUpdate: '2022-08-01',
+      title: '証明書(学校感染症)',
+      description: [
+        '【請求できる証明書の種類】',
+        '卒業証明書、成績証明書、単位修得証明書、調査書',
+        '',
+        '【発行料金】',
+        '1通につき 300 円(在学生は無料)',
+        '',
+        '【請求方法】',
+        '「学校に来校しての手続き」と「郵送による手続き」の2通りの方法があり、利用しやすい方で請求してください。',
+      ].join('\n'),
+      filename: `document-01.pdf`,
+      location: process.env.STATIC_URL + `/pdf/document-03.pdf`,
+      isPublished: true,
+      siteId: siteStudent.id,
+    })
+  ]
+
+  for (const document of documents) {
+    await model.documentCategoryDocument.create({
+      documentCategoryId: documentCategory.id,
+      documentId: document.id,
+    })
   }
 }
 
