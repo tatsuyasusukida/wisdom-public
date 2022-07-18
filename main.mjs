@@ -1,5 +1,6 @@
 import path from 'path'
 import crypto from 'crypto'
+import ejs from 'ejs'
 import express from 'express'
 import morgan from 'morgan'
 import basicAuth from 'basic-auth-connect'
@@ -70,10 +71,10 @@ async function main () {
     router.use('/static/', express.static(new URL('node_modules/bootstrap/dist', import.meta.url).pathname))
 
     router.use('/', wrap(layout))
-    router.get('/', wrap(home))
-    router.get('/', (_, res) => res.render('home'))
+    router.use('/', wrap(renderFixedPage))
+    // router.get('/', (_, res) => res.render('home'))
     router.get('/news/:newsId([0-9]+)/', wrap(news))
-    router.get('/news/:newsId([0-9]+)/', (_, res) => res.render('news'))
+    // router.get('/news/:newsId([0-9]+)/', (_, res) => res.render('news'))
     router.get('/about/', (_, res) => res.render('about'))
     router.get('/courses/', (_, res) => res.render('courses'))
     router.get('/courses/commute/', (_, res) => res.render('courses-commute'))
@@ -90,37 +91,10 @@ async function main () {
     router.get('/recruit/', (_, res) => res.render('recruit'))
     router.get('/privacy/', (_, res) => res.render('privacy'))
     router.get('/student/', (_, res) => res.render('student'))
-
-    router.get('/student/faq/', (_, res, next) => {
-      res.locals.faqCategories = new Array(3).fill(1).map(_ => ({
-        title: 'カテゴリ',
-        faqs: new Array(3).fill(1).map(_ => ({
-          questionLines: [
-            'ここにテキストが入ります',
-          ],
-          answerLines: [
-            'ここにテキストが入ります',
-            'ここにテキストが入ります',
-            'ここにテキストが入ります',
-          ],
-          faqLinks: new Array(0).fill(1).map(_ => ({
-            title: 'リンクのタイトルが入ります',
-            href: '#',
-          })),
-          faqImages: new Array(0).fill(1).map(_ => ({
-            original: process.env.STATIC_URL + '/img/faq/image.png',
-            thumbnail: process.env.STATIC_URL + '/img/faq/image.png',
-            alt: 'ここに代替テキストが入ります',
-          })),
-        })),
-      }))
-      next()
-    })
-
-    router.get('/student/faq/', (_, res) => res.render('student-faq'))
     router.get('/student/document/', wrap(studentDocument))
     router.get('/student/document/', (_, res) => res.render('student-document'))
-
+    router.get('/student/faq/', wrap(studentFaq))
+    router.get('/student/faq/', (_, res) => res.render('student-faq'))
     router.use('/api/v1/', express.json())
     router.use('/api/v1/', nocache())
     router.get('/api/v1/contact/initialize', wrap(apiContactInitialize))
@@ -159,7 +133,60 @@ async function layout (req, res, next) {
   next()
 }
 
-async function news (req, res, next) {
+async function renderFixedPage (req, res, next, options) {
+  options = options || {}
+
+  const fixedPage = await model.fixedPage.findOne({
+    where: {
+      code: {[Op.eq]: (options.code || req.url)},
+    },
+  })
+
+  if (!fixedPage) {
+    next()
+    return
+  }
+
+  const frontmatter = JSON.parse(fixedPage.frontmatter)
+  const functions = {
+    findNewses,
+    findNews,
+    findNewsLinks,
+    findNewsImages,
+  }
+
+  for (const local of frontmatter.locals) {
+    if (functions[local.function]) {
+      const resource = await functions[local.function](req)
+
+      if (local.required && !resource) {
+        onNotFound(req, res)
+        return
+      }
+
+      res.locals[local.name] = resource
+    }
+  }
+
+  res.locals.setting = await findSetting(frontmatter.settings)
+  res.locals.partial = res.locals.partial || {}
+
+  const partials = await model.partial.findAll({
+    where: {
+      code: {[Op.in]: frontmatter.partials},
+    },
+  })
+
+  for (const partial of partials) {
+    const html = ejs.render(partial.html, res.locals)
+    res.locals.partial[partial.code] = html
+  }
+
+  const html = ejs.render(fixedPage.html, res.locals)
+  res.send(html)
+}
+
+async function findNews (req) {
   const news = await model.news.findOne({
     where: {
       id: {[Op.eq]: req.params.newsId},
@@ -168,42 +195,29 @@ async function news (req, res, next) {
     include: [{model: model.site, as: 'site'}],
   })
 
-  if (!news) {
-    onNotFound(req, res)
-    return
-  }
-
-  const newsLinks = await model.newsLink.findAll({
-    where: {
-      newsId: {[Op.eq]: news.id},
-    },
-    order: [['order', 'asc']],
-  })
-
-  const newsImages = await model.newsImage.findAll({
-    where: {
-      newsId: {[Op.eq]: news.id},
-    },
-    order: [['order', 'asc']],
-  })
-
-  res.locals.news = c.convertNews(news)
-  res.locals.newsLinks = newsLinks
-  res.locals.newsImages = newsImages.map(newsImage => {
-    return c.convertNewsImage(newsImage)
-  })
-
-  next()
+  return c.convertNews(news)
 }
 
-async function home (_, res, next) {
-  const newses = await findNewses()
-  const setting = await findSetting(['openSchoolIsAccepting'])
+async function findNewsLinks (req) {
+  return await model.newsLink.findAll({
+    where: {
+      newsId: {[Op.eq]: req.params.newsId},
+    },
+    order: [['order', 'asc'], ['id', 'asc']],
+  })
+}
 
-  res.locals.newses = newses.map((news) => c.convertNews(news))
-  res.locals.setting = setting
+async function findNewsImages (req) {
+  return await model.newsImage.findAll({
+    where: {
+      newsId: {[Op.eq]: req.params.newsId},
+    },
+    order: [['order', 'asc'], ['id', 'asc']],
+  })
+}
 
-  next()
+async function news (req, res, next) {
+  await renderFixedPage(req, res, next, {code: '/news/0/'})
 }
 
 async function admission (_, res, next) {
@@ -275,38 +289,38 @@ async function findDocumentCategories (siteCode) {
 }
 
 async function faq (_, res, next) {
-  const faqCategories = await findFaqCategories('admission')
+  res.locals.faqCategories = await findFaqCategories('admission')
+  next()
+}
+
+async function studentFaq (_, res, next) {
+  res.locals.faqCategories = await findFaqCategories('student')
+  next()
+}
+
+async function findFaqCategories (siteCode) {
+  const rows = await findFaqRows(siteCode)
+  const partitions = partitionBy((row) => row.faqCategoryId, rows)
+  const faqCategories = partitions.map((rows) => ({
+    title: rows[0].faqCategoryTitle,
+    faqs: rows.map((row) => ({
+      id: row.faqId,
+      question: row.faqQuestion,
+      questionLines: c.splitText(row.faqQuestion),
+      answer: row.faqAnswer,
+      answerLines: c.splitText(row.faqAnswer),
+      faqLinks: [],
+      faqImages: [],
+    }))
+  }))
 
   const faqIds = faqCategories.map(({faqs}) => {
     return faqs.map(({id}) => id)
   })
     .reduce((memo, ids) => memo.concat(ids), [])
 
-  const faqLinks = partitionBy(({faqId}) => faqId,
-    await model.faqLink.findAll({
-      where: {
-        faqId: {[Op.in]: faqIds},
-      },
-      order: [['faqId', 'asc'], ['order', 'asc'], ['id', 'asc']],
-    }))
-    .reduce((memo, faqLinks) => {
-      const [first] = faqLinks
-      memo[first.faqId] = faqLinks
-      return memo
-    }, {})
-
-  const faqImages = partitionBy(({faqId}) => faqId,
-    await model.faqImage.findAll({
-      where: {
-        faqId: {[Op.in]: faqIds},
-      },
-      order: [['faqId', 'asc'], ['order', 'asc'], ['id', 'asc']],
-    }))
-    .reduce((memo, faqImages) => {
-      const [first] = faqImages
-      memo[first.faqId] = faqImages
-      return memo
-    }, {})
+  const faqLinks = await findFaqLinks(faqIds)
+  const faqImages = await findFaqImages(faqIds)
 
   for (const faqCategory of faqCategories) {
     for (const faq of faqCategory.faqs) {
@@ -320,12 +334,10 @@ async function faq (_, res, next) {
     }
   }
 
-  res.locals.faqCategories = faqCategories
-
-  next()
+  return faqCategories
 }
 
-async function findFaqCategories (siteCode) {
+async function findFaqRows (siteCode) {
   const sql = `
     select
       faqCategory.id as faqCategoryId,
@@ -347,25 +359,40 @@ async function findFaqCategories (siteCode) {
       faq.id asc
   `
 
-  const rows = await model.sequelize.query(sql, {
+  return await model.sequelize.query(sql, {
     type: QueryTypes.SELECT,
     replacements: [siteCode],
   })
+}
 
-  const partitions = partitionBy((row) => row.faqCategoryId, rows)
-
-  return partitions.map((rows) => ({
-    title: rows[0].faqCategoryTitle,
-    faqs: rows.map((row) => ({
-      id: row.faqId,
-      question: row.faqQuestion,
-      questionLines: c.splitText(row.faqQuestion),
-      answer: row.faqAnswer,
-      answerLines: c.splitText(row.faqAnswer),
-      faqLinks: [],
-      faqImages: [],
+async function findFaqLinks (faqIds) {
+  return partitionBy(({faqId}) => faqId,
+    await model.faqLink.findAll({
+      where: {
+        faqId: {[Op.in]: faqIds},
+      },
+      order: [['faqId', 'asc'], ['order', 'asc'], ['id', 'asc']],
     }))
-  }))
+    .reduce((memo, faqLinks) => {
+      const [first] = faqLinks
+      memo[first.faqId] = faqLinks
+      return memo
+    }, {})
+}
+
+async function findFaqImages (faqIds) {
+  return partitionBy(({faqId}) => faqId,
+    await model.faqImage.findAll({
+      where: {
+        faqId: {[Op.in]: faqIds},
+      },
+      order: [['faqId', 'asc'], ['order', 'asc'], ['id', 'asc']],
+    }))
+    .reduce((memo, faqImages) => {
+      const [first] = faqImages
+      memo[first.faqId] = faqImages
+      return memo
+    }, {})
 }
 
 function partitionBy(fn, coll) {
@@ -413,6 +440,10 @@ async function findNewses () {
 
 async function findSetting (codes) {
   const memo = {}
+
+  if (!codes) {
+    return memo
+  }
 
   for (const code of codes) {
     const setting = await model.setting.findOne({

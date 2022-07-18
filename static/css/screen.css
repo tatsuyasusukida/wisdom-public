@@ -3510,11 +3510,12 @@ a.button.is-student {
   padding: 1.0rem 1.0rem 1.0rem 3rem;
   position: relative;
   margin: 0;
+  line-height: 1.75;
 }
 
 @media (min-width: 768px) {
   .faq-category-item h3 {
-    padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+    padding: 1.25rem 1.5rem 1.5rem 3.5rem;
   }
 }
 
@@ -3535,7 +3536,7 @@ a.button.is-student {
 @media (min-width: 768px) {
   .faq-category-item h3:before {
     left: 1.25rem;
-    top: 1.25rem;
+    top: 1rem;
   }
 }
 
@@ -3582,10 +3583,6 @@ a.button.is-student {
     padding-left: 3.5rem;
     margin: 1rem 0 0;
   }
-}
-
-.faq-category-item ul li a {
-  color: rgb(56,123,69);
 }
 
 .faq-category-item-image {
