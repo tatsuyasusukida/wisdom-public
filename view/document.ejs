@@ -1,7 +1,7 @@
 <%- partial.admissionHeader %>
 
 <div class="jumbotron" aria-hidden="true">
-  <img src="<%- env.STATIC_URL %>/document-jumbotron.jpg" alt="">
+  <img src="<%= env.STATIC_URL %>/document-jumbotron.jpg" alt="">
   <div class="container">
     <div class="jumbotron-title">
       <div>
@@ -29,14 +29,14 @@
   <div class="container">
     <div class="document">
       <% documentCategories.forEach(({title, documents}, i) => { %>
-        <section class="document-item<%- i === 0 ? ' is-first' : ''%>">
+        <section class="document-item<%= i === 0 ? ' is-first' : ''%>">
           <% if (title === '高校生活') { %>
             <div class="row row-cols-1 row-cols-md-2 is-document-item">
               <div class="col">
-                <img src="<%- env.STATIC_URL %>/document-life-01.jpg" alt="">
+                <img src="<%= env.STATIC_URL %>/document-life-01.jpg" alt="">
               </div>
               <div class="col">
-                <img src="<%- env.STATIC_URL %>/document-life-02.jpg" alt="">
+                <img src="<%= env.STATIC_URL %>/document-life-02.jpg" alt="">
               </div>
             </div>
           <% } %>
