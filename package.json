@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node main.mjs",
     "dev": "nodemon -r dotenv/config main.mjs",
-    "css": "tailwindcss -i input.css -o static/css/output.css --watch"
+    "fixture": "node -r dotenv/config script/fixture.mjs"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +19,9 @@
     "express": "^4.18.1",
     "helmet": "^5.1.0",
     "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
     "nocache": "^3.0.4",
+    "sequelize": "^6.21.3",
     "winston": "^3.8.0"
   },
   "engines": {

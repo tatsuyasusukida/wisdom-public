@@ -6,6 +6,10 @@ import nocache from 'nocache'
 import helmet from 'helmet'
 import {makeLogger} from './util/logging.mjs'
 import winston from 'winston'
+import {Op, QueryTypes} from 'sequelize'
+import model from './model/index.mjs'
+import * as c from './lib/convert.mjs'
+import faqCategory from './model/faq-category.mjs'
 
 main()
 
@@ -33,7 +37,7 @@ async function main () {
           "form-action": ["'self'"],
           "frame-ancestors": ["'self'"],
           "frame-src": ["'self'", "https://www.google.com"],
-          "img-src": ["'self'", "data:", "https://storage.googleapis.com"],
+          "img-src": ["'self'", "data:", "https://storage.googleapis.com", "https:"],
           "object-src": ["'none'"],
           "script-src": ["'self'", process.env.STATIC_URL, "'unsafe-eval'"],
           "script-src-attr": ["'none'"],
@@ -60,107 +64,23 @@ async function main () {
       router.use(basicAuth(username, password))
     }
 
-    router.use((req, res, next) => {
-      req.locals = {}
-      res.locals.env = process.env
-      res.locals.url = new URL(req.originalUrl, process.env.BASE_URL)
-
-      if (res.locals.url.pathname.indexOf('/student/') === 0) {
-        res.locals.headerLinks = [
-          {text: '様式ダウンロード', href: '/student/document/'},
-          {text: 'よくある質問', href: '/student/faq/'},
-          {text: 'お問い合わせ', href: '/contact/'},
-        ]
-      } else {
-        res.locals.headerLinks = [
-          {text: '学校紹介', href: '/about/'},
-          {text: 'コース紹介', href: '/courses/'},
-          {text: '入試情報', href: '/admission/'},
-          {text: 'ダウンロード資料', href: '/document/'},
-          {text: 'よくある質問', href: '/faq/'},
-          {text: 'お問い合わせ', href: '/contact/'},
-        ]
-      }
-
-      next()
-    })
-
     router.use('/static/', express.static(new URL('static', import.meta.url).pathname))
     router.use('/static/', express.static(new URL('node_modules/bootstrap/dist', import.meta.url).pathname))
 
+    router.use('/', wrap(layout))
     router.get('/', wrap(home))
     router.get('/', (_, res) => res.render('home'))
+    router.get('/news/:newsId([0-9]+)/', wrap(news))
     router.get('/news/:newsId([0-9]+)/', (_, res) => res.render('news'))
     router.get('/about/', (_, res) => res.render('about'))
     router.get('/courses/', (_, res) => res.render('courses'))
     router.get('/courses/commute/', (_, res) => res.render('courses-commute'))
     router.get('/courses/correspondence/', (_, res) => res.render('courses-correspondence'))
+    router.get('/admission/', wrap(admission))
     router.get('/admission/', (_, res) => res.render('admission'))
-
-    router.get('/document/', (_, res, next) => {
-      res.locals.documentCategories = [
-        {
-          title: '入試情報',
-          documents: [
-            {title: '令和4年度 パンフレット'},
-          ],
-        },
-        {
-          title: '写真',
-          documents: [
-            {title: '制服の写真'},
-            {title: '宮内本校の写真'},
-            {title: '長岡駅前校の写真'},
-            {title: '長岡駅東校の写真'},
-            {title: '三条校の写真'},
-          ],
-        },
-        {
-          title: '高校生活',
-          documents: [
-            {title: '年間行事／部活動'},
-          ],
-        },
-        {
-          title: 'データ',
-          documents: [
-            {title: '生徒状況（在校生出身中学校）'},
-            {title: '進路状況調査結果（卒業生の進路先）'},
-          ],
-        },
-      ]
-
-      next()
-    })
-
+    router.get('/document/', wrap(document))
     router.get('/document/', (_, res) => res.render('document'))
-
-    router.get('/faq/', (_, res, next) => {
-      res.locals.faqCategories = new Array(3).fill(1).map(_ => ({
-        title: 'カテゴリ',
-        faqs: new Array(3).fill(1).map(_ => ({
-          questionLines: [
-            'ここにテキストが入ります',
-          ],
-          answerLines: [
-            'ここにテキストが入ります',
-            'ここにテキストが入ります',
-            'ここにテキストが入ります',
-          ],
-          faqLinks: new Array(2).fill(1).map(_ => ({
-            title: 'リンクのタイトルが入ります',
-            href: '#',
-          })),
-          faqImages: new Array(3).fill(1).map(_ => ({
-            original: process.env.STATIC_URL + '/img/faq/image.png',
-            thumbnail: process.env.STATIC_URL + '/img/faq/image.png',
-            alt: 'ここに代替テキストが入ります',
-          })),
-        })),
-      }))
-      next()
-    })
-
+    router.get('/faq/', wrap(faq))
     router.get('/faq/', (_, res) => res.render('faq'))
     router.get('/contact/', (_, res) => res.render('contact'))
     router.get('/contact/review/', (_, res) => res.render('contact-review'))
@@ -225,26 +145,304 @@ function wrap (fn) {
   }
 }
 
-function home (req, res, next) {
-  res.locals.newses = new Array(5).fill(1).map(_ => ({
-    dateText: '2022.07.01',
-    title: '新着情報のタイトルが入ります',
-    href: '/news/1/',
-  }))
+async function layout (req, res, next) {
+  const {layout} = await findSetting(['layout'])
+
+  req.locals = {}
+  res.locals.env = process.env
+  res.locals.url = new URL(req.originalUrl, process.env.BASE_URL)
+  res.locals.layout = layout
 
   next()
 }
 
-async function apiContactInitialize (_, res) {
-  const form = {
-    name: '1',
-    phone: '2',
-    email: '3',
-    zip: '1234567',
-    address: '5',
-    contactCategoryId: '',
-    text: '',
+async function news (req, res, next) {
+  const news = await model.news.findOne({
+    where: {
+      id: {[Op.eq]: req.params.newsId},
+      isPublished: {[Op.eq]: true},
+    },
+    include: [{model: model.site, as: 'site'}],
+  })
+
+  if (!news) {
+    onNotFound(req, res)
+    return
   }
+
+  const newsLinks = await model.newsLink.findAll({
+    where: {
+      newsId: {[Op.eq]: news.id},
+    },
+    order: [['order', 'asc']],
+  })
+
+  const newsImages = await model.newsImage.findAll({
+    where: {
+      newsId: {[Op.eq]: news.id},
+    },
+    order: [['order', 'asc']],
+  })
+
+  res.locals.news = c.convertNews(news)
+  res.locals.newsLinks = newsLinks
+  res.locals.newsImages = newsImages.map(newsImage => {
+    return c.convertNewsImage(newsImage)
+  })
+
+  next()
+}
+
+async function home (_, res, next) {
+  const newses = await findNewses()
+  const setting = await findSetting(['openSchoolIsAccepting'])
+
+  res.locals.newses = newses.map((news) => c.convertNews(news))
+  res.locals.setting = setting
+
+  next()
+}
+
+async function admission (_, res, next) {
+  res.locals.setting = await findSetting(['openSchoolIsAccepting'])
+  next()
+}
+
+async function document (_, res, next) {
+  const sql = `
+    select
+      documentCategory.id as documentCategoryId,
+      documentCategory.title as documentCategoryTitle,
+      document.title as documentTitle,
+      document.datePublish as documentDatePublish,
+      document.dateUpdate as documentDateUpdate,
+      document.location as documentLocation
+    from wisdomDocument as document
+    inner join wisdomDocumentCategoryDocument as documentCategoryDocument
+      on documentCategoryDocument.documentId = document.id
+    inner join wisdomDocumentCategory as documentCategory
+      on documentCategory.id = documentCategoryDocument.documentCategoryId
+    inner join wisdomSite as site
+      on site.id = documentCategory.siteId
+    where site.code = ? and document.isPublished = 1
+    order by documentCategory.order asc,
+      documentCategory.id asc,
+      document.order asc,
+      document.id asc
+  `
+
+  const rows = await model.sequelize.query(sql, {
+    type: QueryTypes.SELECT,
+    replacements: ['admission'],
+  })
+
+  const partitions = partitionBy((row) => row.documentCategoryId, rows)
+  const documentCategories = partitions.map((rows) => ({
+    title: rows[0].documentCategoryTitle,
+    documents: rows.map((row) => ({
+      title: row.documentTitle,
+      datePublish: row.documentDatePublish,
+      datePublishText: c.convertDate(row.documentDatePublish),
+      dateUpdate: row.documentDateUpdate,
+      dateUpdateText: c.convertDate(row.documentDateUpdate),
+      location: row.documentLocation,
+      locationUrl: c.convertLocation(row.documentLocation),
+    }))
+  }))
+
+  res.locals.documentCategories = documentCategories
+
+  next()
+}
+
+async function faq (_, res, next) {
+  const faqCategories = await findFaqCategories('admission')
+
+  const faqIds = faqCategories.map(({faqs}) => {
+    return faqs.map(({id}) => id)
+  })
+    .reduce((memo, ids) => memo.concat(ids), [])
+
+  const faqLinks = partitionBy(({faqId}) => faqId,
+    await model.faqLink.findAll({
+      where: {
+        faqId: {[Op.in]: faqIds},
+      },
+      order: [['faqId', 'asc'], ['order', 'asc'], ['id', 'asc']],
+    }))
+    .reduce((memo, faqLinks) => {
+      const [first] = faqLinks
+      memo[first.faqId] = faqLinks
+      return memo
+    }, {})
+
+  const faqImages = partitionBy(({faqId}) => faqId,
+    await model.faqImage.findAll({
+      where: {
+        faqId: {[Op.in]: faqIds},
+      },
+      order: [['faqId', 'asc'], ['order', 'asc'], ['id', 'asc']],
+    }))
+    .reduce((memo, faqImages) => {
+      const [first] = faqImages
+      memo[first.faqId] = faqImages
+      return memo
+    }, {})
+
+  for (const faqCategory of faqCategories) {
+    for (const faq of faqCategory.faqs) {
+      if (faqLinks[faq.id]) {
+        faq.faqLinks = faqLinks[faq.id]
+      }
+
+      if (faqImages[faq.id]) {
+        faq.faqImages = faqImages[faq.id]
+      }
+    }
+  }
+
+  res.locals.faqCategories = faqCategories
+
+  next()
+}
+
+async function findFaqCategories (siteCode) {
+  const sql = `
+    select
+      faqCategory.id as faqCategoryId,
+      faqCategory.title as faqCategoryTitle,
+      faq.id as faqId,
+      faq.question as faqQuestion,
+      faq.answer as faqAnswer
+    from wisdomFaq as faq
+    inner join wisdomFaqCategoryFaq as faqCategoryFaq
+      on faqCategoryFaq.faqId = faq.id
+    inner join wisdomFaqCategory as faqCategory
+      on faqCategory.id = faqCategoryFaq.faqCategoryId
+    inner join wisdomSite as site
+      on site.id = faqCategory.siteId
+    where site.code = ? and faq.isPublished = 1
+    order by faqCategory.order asc,
+      faqCategory.id asc,
+      faq.order asc,
+      faq.id asc
+  `
+
+  const rows = await model.sequelize.query(sql, {
+    type: QueryTypes.SELECT,
+    replacements: [siteCode],
+  })
+
+  const partitions = partitionBy((row) => row.faqCategoryId, rows)
+
+  return partitions.map((rows) => ({
+    title: rows[0].faqCategoryTitle,
+    faqs: rows.map((row) => ({
+      id: row.faqId,
+      question: row.faqQuestion,
+      questionLines: c.splitText(row.faqQuestion),
+      answer: row.faqAnswer,
+      answerLines: c.splitText(row.faqAnswer),
+      faqLinks: [],
+      faqImages: [],
+    }))
+  }))
+}
+
+function partitionBy(fn, coll) {
+  if (coll.length === 0) {
+    return []
+  } else {
+    return partitionByRecurse(fn, coll.slice(1), [[coll[0]]])
+      .map((partition) => partition.reverse())
+      .reverse() 
+  }
+}
+
+function partitionByRecurse(fn, coll, memo) {
+  if (coll.length === 0) {
+    return memo
+  } else {
+    if (fn(coll[0]) === fn(memo[0][0])) {
+      memo[0].unshift(coll[0])
+    } else {
+      memo.unshift([coll[0]])
+    }
+
+    return partitionByRecurse(fn, coll.slice(1), memo)
+  }
+}
+
+function isJson (text) {
+  try {
+    JSON.parse(text)
+    return true
+  } catch (_) {
+    return false
+  }
+}
+
+async function findNewses () {
+  return await model.news.findAll({
+    where: {
+      isPublished: {[Op.eq]: true},
+    },
+    include: [{model: model.site, as: 'site'}],
+    order: [['date', 'desc'], ['id', 'desc']],
+  })
+}
+
+async function findSetting (codes) {
+  const memo = {}
+
+  for (const code of codes) {
+    const setting = await model.setting.findOne({
+      where: {
+        code: {[Op.eq]: code},
+      },
+    })
+
+    if (!setting) {
+      continue
+    }
+
+    if (isJson(setting.value)) {
+      memo[setting.code] = JSON.parse(setting.value)
+    } else {
+      memo[setting.code] = setting.value
+    }
+  }
+
+  return memo
+}
+
+async function apiContactInitialize (_, res) {
+  const contactCategories = await model.contactCategory.findAll({
+    attributes: ['id', 'title', 'template'],
+    where: {
+      isPublished: {[Op.eq]: true},
+    },
+  })
+
+  const form = process.env.NODE_ENV === 'production'
+    ? {
+      name: '',
+      phone: '',
+      email: '',
+      zip: '',
+      address: '',
+      contactCategoryId: '',
+      text: '',
+    }
+    : {
+      name: '英智 太郎',
+      phone: '09012345678',
+      email: 'eichi@example.com',
+      zip: '1234567',
+      address: '新潟県長岡市宮栄3-16-14',
+      contactCategoryId: contactCategories[0].id + '',
+      text: '\nここにお問合せの内容が入ります。'.repeat(3).slice(1),
+    }
 
   const validation = {
     ok: null,
@@ -257,31 +455,18 @@ async function apiContactInitialize (_, res) {
     text: {ok: null, isNotEmpty: null},
   }
 
-  const contactCategories = [
-    {
-      id: 1,
-      title: '資料のお取り寄せ',
-      text: [
-        'ここに例文が入ります',
-        'ここに例文が入ります',
-        'ここに例文が入ります',
-      ].join('\n'),
-    },
-    {
-      id: 2,
-      title: '見学・相談の申し込み',
-      text: [
-        'ここに例文が入ります!',
-        'ここに例文が入ります!',
-        'ここに例文が入ります!',
-      ].join('\n'),
-    },
-  ]
-
   res.send({form, validation, contactCategories})
 }
 
 async function apiContactValidate (req, res) {
+  res.send({validation: await validateContact(req)})
+}
+
+async function apiContactSubmit (req, res) {
+  res.send({ok: true, redirect: '/contact/finish/?code=1234-1234-1234'})
+}
+
+async function validateContact (req) {
   const validation = {
     ok: null,
     name: {ok: null, isNotEmpty: null},
@@ -318,11 +503,7 @@ async function apiContactValidate (req, res) {
     return key === 'ok' || validation[key].ok
   })
 
-  res.send({validation})
-}
-
-async function apiContactSubmit (req, res) {
-  res.send({ok: true, redirect: '/contact/finish/?code=1234-1234-1234'})
+  return validation
 }
 
 function onNotFound (_, res) {

@@ -119,11 +119,16 @@
           </ul>
           ※内容は予告なしに変更される場合があります。<br>
           <br>
-          事前申し込みが必要です。ホームページの申し込みフォームまたはお電話にてお申込みください。<br>
-          <br>
-          <a href="/contact/" class="button">申し込みフォーム</a><br>
-          <br>
-          <a href="tel:0258316771" class="button is-tel">TEL: 0258-31-6771</a><br>
+          <% if (setting.openSchoolIsAccepting === 1) { %>
+            事前申し込みが必要です。下記の申し込みフォームまたはお電話にてお申込みください。<br>
+            <br>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfsjfJ_M2cU_PxfdfdtX7ts-i1HGTPM8JNJl5iWIFptac3HDw/viewform" target="_blank" class="button">申し込みフォーム</a><br>
+            <br>
+            <a href="tel:0258316771" class="button is-tel">TEL: 0258-31-6771</a><br>
+          <% } else { %>
+            事前申し込みが必要です。申し込み受付期間中は下記にボタンが表示されますので、申し込みフォームまたはお電話にてお申込みください。
+            <br>
+          <% } %>
           <br>
           オープンスクール以外でも随時、見学・相談を受け付けております。お気軽にご相談ください。
         </dd>

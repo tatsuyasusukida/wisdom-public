@@ -16,15 +16,17 @@
       <img src="<%- env.FILE_URL %>/home-hero.jpg" alt="">
     </div>
 
-    <div class="hero-link">
-      <a href="/admission/#open-school">
-        <span class="is-sub">オープンスクール</span>
-        <span class="is-main">申し込み受付中</span>
-        <svg viewBox="0 0 48 48">
-          <path d="M9.4 38.85 20.45 24 9.4 9.15h5.85L26.3 24 15.25 38.85Zm14.75 0L35.2 24 24.15 9.15h5.8L41.05 24l-11.1 14.85Z" fill="rgb(56,123,69)"/>
-        </svg>
-      </a>
-    </div>
+    <% if (setting.openSchoolIsAccepting === 1) { %>
+      <div class="hero-link">
+        <a href="/admission/#open-school">
+          <span class="is-sub">オープンスクール</span>
+          <span class="is-main">申し込み受付中</span>
+          <svg viewBox="0 0 48 48">
+            <path d="M9.4 38.85 20.45 24 9.4 9.15h5.85L26.3 24 15.25 38.85Zm14.75 0L35.2 24 24.15 9.15h5.8L41.05 24l-11.1 14.85Z" fill="rgb(56,123,69)"/>
+          </svg>
+        </a>
+      </div>
+    <% } %>
   </div>
 
   <main>
@@ -94,10 +96,16 @@
         <ul>
           <% for (const news of newses) { %>
             <li>
-              <span class="is-date">2022.07.01</span>
-              <span class="is-category is-admission">入学希望者向け</span>
-              <a href="/news/1/">
-                新着情報のタイトルが入ります
+              <span class="is-date"><%= news.dateText %></span>
+              <span class="is-category is-<%= news.site.code %>">
+                <% if (news.site.code === 'admission') { %>
+                  入学希望者向け
+                <% } else if (news.site.code === 'student') { %>
+                  在校生向け
+                <% } %>
+              </span>
+              <a href="/news/<%= news.id %>/">
+                <%= news.title %>
               </a>
             </li>
           <% } %>

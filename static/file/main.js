@@ -90,13 +90,13 @@ function contact () {
           }.bind(this));
 
           if (previous) {
-            if (this.form.text === '' || this.form.text === previous.text) {
-              this.form.text = contactCategory.text;
+            if (this.form.text === '' || this.form.text === previous.template) {
+              this.form.text = contactCategory.template;
             }
           }
         } else {
           if (this.form.text === '') {
-            this.form.text = contactCategory.text;
+            this.form.text = contactCategory.template;
           }
         }
 

@@ -42,13 +42,24 @@
           <span class="header-toggler-icon"></span>
         </button>
 
-        <ul>
-          <% headerLinks.forEach(({href, text}, i) => { %>
-            <li>
-              <a href="<%- href %>" class="<%- url.pathname.indexOf(href) === 0 ? 'is-active' : '' %>"><%= text %></a>
-            </li>
-          <% }) %>
-        </ul>
+        <% if (url.pathname.indexOf('/student/') === 0) { %>
+          <ul>
+            <% layout.headerNav.student.items.forEach(({href, text}, i) => { %>
+              <li>
+                <a href="<%- href %>" class="<%- url.pathname.indexOf(href) === 0 ? 'is-active' : '' %>"><%= text %></a>
+              </li>
+            <% }) %>
+          </ul>
+        <% } else { %>
+          <ul>
+            <% layout.headerNav.admission.items.forEach(({href, text}, i) => { %>
+              <li>
+                <a href="<%- href %>" class="<%- url.pathname.indexOf(href) === 0 ? 'is-active' : '' %>"><%= text %></a>
+              </li>
+            <% }) %>
+          </ul>
+
+        <% } %>
 
         <% if (url.pathname.indexOf('/student/') === 0) { %>
           <div class="header-site">

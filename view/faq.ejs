@@ -1,7 +1,7 @@
 <%- include('partial/header') %>
 
 <div class="jumbotron" aria-hidden="true">
-  <img src="<%- env.FILE_URL %>/faq-jumbotron.jpg" alt="">
+  <img src="<%= env.FILE_URL %>/faq-jumbotron.jpg" alt="">
   <div class="container">
     <div class="jumbotron-title">
       <div>
@@ -29,38 +29,42 @@
   <div class="container">
     <div class="faq">
       <% faqCategories.forEach(({title, faqs}, h) => { %>
-        <section class="faq-category<%- h === 0 ? ' is-first' : '' %>">
+        <section class="faq-category<%= h === 0 ? ' is-first' : '' %>">
           <h2 class="h2"><%= title %></h2>
           <% faqs.forEach((faq, i) => { %>
-            <article class="faq-category-item<%- i === 0 ? ' is-first' : '' %>">
+            <article class="faq-category-item<%= i === 0 ? ' is-first' : '' %>">
               <h3>
                 <% faq.questionLines.forEach((line, j) => { %>
-                  <%- j >= 1 ? '<br>' : '' %>
+                  <% if (j >= 1) { %>
+                    <br>
+                  <% } %>
                   <%= line %>
                 <% }) %>
               </h3>
               <p>
                 <% faq.answerLines.forEach((line, j) => { %>
-                  <%- j >= 1 ? '<br>' : '' %>
+                  <% if (j >= 1) { %>
+                    <br>
+                  <% } %>
                   <%= line %>
                 <% }) %>
               </p>
-              <% if (faq.faqLinks.length >= 1 ) { %>
+              <% if (faq.faqLinks && faq.faqLinks.length >= 1 ) { %>
                 <ul>
-                  <% faq.faqLinks.forEach(({title, href}) => { %>
+                  <% faq.faqLinks.forEach(({title, url}) => { %>
                     <li>
-                      <a href="<%- href %>"><%= title %></a>
+                      <a href="<%= url %>"><%= title %></a>
                     </li>
                   <% }) %>
                 </ul>
               <% } %>
-              <% if (faq.faqImages.length >= 1 ) { %>
+              <% if (faq.faqImages && faq.faqImages.length >= 1 ) { %>
                 <div class="faq-category-item-image">
                   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
                     <% faq.faqImages.forEach(({original, thumbnail, alt}) => { %>
                       <div class="col">
-                        <a href="<%- original %>">
-                          <img src="<%- thumbnail %>" alt="<%- alt %>">
+                        <a href="<%= original %>">
+                          <img src="<%= thumbnail %>" alt="<%= alt %>">
                         </a>
                       </div>
                     <% }) %>

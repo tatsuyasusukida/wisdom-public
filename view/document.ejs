@@ -52,14 +52,14 @@
             <tbody>
               <% documents.forEach((document) => { %>
                 <tr>
-                  <td class="is-publish">2022年5月17日</td>
-                  <td class="is-update">2022年5月17日</td>
+                  <td class="is-publish"><%= document.datePublishText %></td>
+                  <td class="is-update"><%= document.dateUpdateText %></td>
                   <td class="is-title">
-                    <a href="#" target="_blank">
+                    <a href="<%= document.locationUrl %>" target="_blank">
                       <%= document.title %>
                     </a>
                     <div class="d-lg-none">
-                      2022年5月17日公開／2022年5月17日更新
+                      <%= document.datePublishText %>公開／<%= document.dateUpdateText %>更新
                     </div>
                   </td>
                 </tr>

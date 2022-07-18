@@ -29,40 +29,38 @@
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div class="newsDetail">
-          <h1>新着情報のタイトル</h1>
-          <div class="newsDetail-date">2022.07.01</div>
+          <h1><%= news.title %></h1>
+          <div class="newsDetail-date"><%= news.dateText %></div>
           <p>
-            ここに本文が入ります。<br>
-            ここに本文が入ります。<br>
-            ここに本文が入ります。
+            <% news.textLines.forEach((line, i) => { %>
+              <% if (i >= 1) { %>
+                <br>
+              <% } %>
+              <%= line %>
+            <% }) %>
           </p>
-          <ul>
-            <li>
-              <a href="#">リンクが入ります</a>
-            </li>
-            <li>
-              <a href="#">リンクが入ります</a>
-            </li>
-          </ul>
-          <div class="newsDetail-image">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-              <div class="col">
-                <a href="#">
-                  <img src="<%- env.STATIC_URL %>/img/news/image.png" alt="">
-                </a>
-              </div>
-              <div class="col">
-                <a href="#">
-                  <img src="<%- env.STATIC_URL %>/img/news/image.png" alt="">
-                </a>
-              </div>
-              <div class="col">
-                <a href="#">
-                  <img src="<%- env.STATIC_URL %>/img/news/image.png" alt="">
-                </a>
+          <% if (newsLinks && newsLinks.length >= 1) { %>
+            <ul>
+              <% for (const newsLink of newsLinks) { %>
+                <li>
+                  <a href="<%= newsLink.url %>"><%= newsLink.title %></a>
+                </li>
+              <% } %>
+            </ul>
+          <% } %>
+          <% if (newsImages && newsImages.length >= 1) { %>
+            <div class="newsDetail-image">
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+                <% for (const newsImage of newsImages) { %>
+                  <div class="col">
+                    <a href="<%= newsImage.originalUrl %>">
+                      <img src="<%= newsImage.thumbnailUrl %>" alt="<%= newsImage.alt %>">
+                    </a>
+                  </div>
+                <% } %>
               </div>
             </div>
-          </div>
+          <% } %>
         </div>
       </div>
     </div>
