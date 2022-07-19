@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>制服の写真｜長岡英智高等学校</title>
+  <style type="text/css">
+    @page {
+      margin: 20mm 20mm 20mm 20mm;
+    }
+
+    body {font-size: 12pt}
+    h3 {font-size: 16pt}
+    figure {width: 100%; padding: 0; margin: 0; text-align: center;}
+    img {width: 90%}
+    .col figure {
+      page-break-before: always;
+      margin-top: 1rem;
+    }
+    .col:first-child figure {
+      page-break-before: avoid;
+    }
+  </style>
+</head>
+<body>
+
+          <section class="gallery-item">
+            <h3>制服の写真｜長岡英智高等学校</h3>
+            <div class="row row-cols-2 row-cols-lg-4 is-gallery-item is-uniform">
+              <div class="col">
+                <figure>
+                  <a href="<%= env.STATIC_URL + '/img/home-uniform-01.jpg' %>" target="_blank">
+                    <img src="<%= env.STATIC_URL + '/img/home-uniform-01.jpg' %>" alt="">
+                  </a>
+                  <figcaption>夏服正面</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%= env.STATIC_URL + '/img/home-uniform-02.jpg' %>" target="_blank">
+                    <img src="<%= env.STATIC_URL + '/img/home-uniform-02.jpg' %>" alt="">
+                  </a>
+                  <figcaption>夏服背面</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%= env.STATIC_URL + '/img/home-uniform-03.jpg' %>" target="_blank">
+                    <img src="<%= env.STATIC_URL + '/img/home-uniform-03.jpg' %>" alt="">
+                  </a>
+                  <figcaption>冬服正面</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%= env.STATIC_URL + '/img/home-uniform-04.jpg' %>" target="_blank">
+                    <img src="<%= env.STATIC_URL + '/img/home-uniform-04.jpg' %>" alt="">
+                  </a>
+                  <figcaption>冬服背面</figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>        
+        </div>
+
+</body>
+</html>

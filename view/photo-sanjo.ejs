@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三条校の写真｜長岡英智高等学校</title>
+  <style type="text/css">
+    @page {
+      margin: 20mm 20mm 20mm 20mm;
+    }
+
+    body {font-size: 12pt}
+    h3 {font-size: 16pt}
+    figure {width: 100%; padding: 0; margin: 0 0 16pt; text-align: center;}
+    img {width: 95%}
+    .col:nth-child(2n + 1) figure {
+      page-break-before: always;
+      margin-top: 1rem;
+    }
+    .col:first-child figure {
+      page-break-before: avoid;
+    }
+  </style>
+</head>
+<body>
+
+          <section class="gallery-item">
+            <h3>三条校の写真｜長岡英智高等学校</h3>
+            <div class="row row-cols-2 row-cols-lg-3 is-gallery-item">
+              <div class="col">
+                <figure>
+                  <a href="<%= env.STATIC_URL + '/img/home-sanjo-01.jpg' %>" target="_blank">
+                    <img src="<%= env.STATIC_URL + '/img/home-sanjo-01.jpg' %>" alt="">
+                  </a>
+                  <figcaption>外観</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%= env.STATIC_URL + '/img/home-sanjo-02.jpg' %>" target="_blank">
+                    <img src="<%= env.STATIC_URL + '/img/home-sanjo-02.jpg' %>" alt="">
+                  </a>
+                  <figcaption>玄関</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%= env.STATIC_URL + '/img/home-sanjo-03.jpg' %>" target="_blank">
+                    <img src="<%= env.STATIC_URL + '/img/home-sanjo-03.jpg' %>" alt="">
+                  </a>
+                  <figcaption>職員室カウンター</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%= env.STATIC_URL + '/img/home-sanjo-04.jpg' %>" target="_blank">
+                    <img src="<%= env.STATIC_URL + '/img/home-sanjo-04.jpg' %>" alt="">
+                  </a>
+                  <figcaption>ラウンジ</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%= env.STATIC_URL + '/img/home-sanjo-05.jpg' %>" target="_blank">
+                    <img src="<%= env.STATIC_URL + '/img/home-sanjo-05.jpg' %>" alt="">
+                  </a>
+                  <figcaption>教室</figcaption>
+                </figure>
+              </div>
+              <div class="col">
+                <figure>
+                  <a href="<%= env.STATIC_URL + '/img/home-sanjo-06.jpg' %>" target="_blank">
+                    <img src="<%= env.STATIC_URL + '/img/home-sanjo-06.jpg' %>" alt="">
+                  </a>
+                  <figcaption>相談室</figcaption>
+                </figure>
+              </div>
+            </div>
+          </section>
+
+</body>
+</html>

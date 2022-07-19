@@ -28,9 +28,9 @@ async function main () {
     ]
 
     await insertRecordsNewsProduction(sites)
-    await insertRecordsDocumentProduction(sites)
+    await insertRecordsDocument(sites)
     await insertRecordsFaqProduction(sites)
-    await insertRecordsPageProduction(sites)
+    await insertRecordsPage(sites)
     await insertRecordsContact()
     await insertRecordsEmail()
     await insertRecordsAdmin()
@@ -91,12 +91,12 @@ async function insertRecordsNewsDevelopment (sites) {
   }
 }
 
-async function insertRecordsDocumentProduction (sites) {
-  await insertRecordsDocumentProductionAdmission(sites)
-  await insertRecordsDocumentProductionStudent(sites)
+async function insertRecordsDocument (sites) {
+  await insertRecordsDocumentAdmission(sites)
+  await insertRecordsDocumentStudent(sites)
 }
 
-async function insertRecordsDocumentProductionAdmission (sites) {
+async function insertRecordsDocumentAdmission (sites) {
   const siteAdmission = sites.find((site) => site.code === 'admission')
 
   {
@@ -114,8 +114,8 @@ async function insertRecordsDocumentProductionAdmission (sites) {
         dateUpdate: '2022-08-01',
         title: '令和4年度 パンフレット',
         description: '',
-        filename: 'category-01-document-01.pdf',
-        location: process.env.STATIC_URL + '/pdf/document/category-01-document-01.pdf',
+        filename: 'pamphlet.pdf',
+        location: process.env.STATIC_URL + '/pdf/pamphlet.pdf',
         isPublished: true,
         siteId: siteAdmission.id,
       }),
@@ -145,7 +145,7 @@ async function insertRecordsDocumentProductionAdmission (sites) {
         title: '制服の写真',
         description: '',
         filename: 'category-02-document-01.pdf',
-        location: process.env.STATIC_URL + '/pdf/document/category-02-document-01.pdf',
+        location: process.env.STATIC_URL + '/pdf/photo-uniform.pdf',
         isPublished: true,
         siteId: siteAdmission.id,
       }),
@@ -156,7 +156,7 @@ async function insertRecordsDocumentProductionAdmission (sites) {
         title: '宮内本校の写真',
         description: '',
         filename: 'category-02-document-02.pdf',
-        location: process.env.STATIC_URL + '/pdf/document/category-02-document-02.pdf',
+        location: process.env.STATIC_URL + '/pdf/photo-miyauchi.pdf',
         isPublished: true,
         siteId: siteAdmission.id,
       }),
@@ -167,7 +167,7 @@ async function insertRecordsDocumentProductionAdmission (sites) {
         title: '長岡駅前校の写真',
         description: '',
         filename: 'category-02-document-03.pdf',
-        location: process.env.STATIC_URL + '/pdf/document/category-02-document-03.pdf',
+        location: process.env.STATIC_URL + '/pdf/photo-ekimae.pdf',
         isPublished: true,
         siteId: siteAdmission.id,
       }),
@@ -178,7 +178,7 @@ async function insertRecordsDocumentProductionAdmission (sites) {
         title: '長岡駅東校の写真',
         description: '',
         filename: 'category-02-document-04.pdf',
-        location: process.env.STATIC_URL + '/pdf/document/category-02-document-04.pdf',
+        location: process.env.STATIC_URL + '/pdf/photo-ekihigashi.pdf',
         isPublished: true,
         siteId: siteAdmission.id,
       }),
@@ -189,7 +189,7 @@ async function insertRecordsDocumentProductionAdmission (sites) {
         title: '三条校の写真',
         description: '',
         filename: 'category-02-document-05.pdf',
-        location: process.env.STATIC_URL + '/pdf/document/category-02-document-05.pdf',
+        location: process.env.STATIC_URL + '/pdf/photo-sanjo.pdf',
         isPublished: true,
         siteId: siteAdmission.id,
       }),
@@ -218,8 +218,8 @@ async function insertRecordsDocumentProductionAdmission (sites) {
         dateUpdate: '2022-08-01',
         title: '年間行事／部活動',
         description: '',
-        filename: 'category-03-document-01.pdf',
-        location: process.env.STATIC_URL + '/pdf/document/category-03-document-01.pdf',
+        filename: 'event-schedule.pdf',
+        location: process.env.STATIC_URL + '/pdf/event-schedule.pdf',
         isPublished: true,
         siteId: siteAdmission.id,
       }),
@@ -236,7 +236,7 @@ async function insertRecordsDocumentProductionAdmission (sites) {
   {
     const documentCategory = await model.documentCategory.create({
       order: 4,
-      title: '写真',
+      title: 'データ',
       isUncategorized: false,
       siteId: siteAdmission.id,
     })
@@ -248,8 +248,8 @@ async function insertRecordsDocumentProductionAdmission (sites) {
         dateUpdate: '2022-08-01',
         title: '生徒状況（在校生出身中学校）',
         description: '',
-        filename: 'category-04-document-01.pdf',
-        location: process.env.STATIC_URL + '/pdf/document/category-04-document-01.pdf',
+        filename: 'junior-high-school.pdf',
+        location: process.env.STATIC_URL + '/pdf/junior-high-school.pdf',
         isPublished: true,
         siteId: siteAdmission.id,
       }),
@@ -260,7 +260,7 @@ async function insertRecordsDocumentProductionAdmission (sites) {
         title: '進路状況調査結果（卒業生の進路先）',
         description: '',
         filename: 'category-04-document-02.pdf',
-        location: process.env.STATIC_URL + '/pdf/document/category-04-document-02.pdf',
+        location: process.env.STATIC_URL + '/pdf/career.pdf',
         isPublished: true,
         siteId: siteAdmission.id,
       }),
@@ -275,7 +275,7 @@ async function insertRecordsDocumentProductionAdmission (sites) {
   }
 }
 
-async function insertRecordsDocumentProductionStudent (sites) {
+async function insertRecordsDocumentStudent (sites) {
   const siteStudent = sites.find((site) => site.code === 'student')
   const documentCategory = await model.documentCategory.create({
     order: 1,
@@ -349,63 +349,6 @@ async function insertRecordsDocumentProductionStudent (sites) {
       documentCategoryId: documentCategory.id,
       documentId: document.id,
     })
-  }
-}
-
-async function insertRecordsDocumentDevelopment (sites) {
-  const [siteAdmission, siteStudent] = sites
-  const documentCategories = [
-    await model.documentCategory.create({
-      order: 1,
-      title: '入試情報',
-      isUncategorized: false,
-      siteId: siteAdmission.id,
-    }),
-    await model.documentCategory.create({
-      order: 2,
-      title: '写真',
-      isUncategorized: false,
-      siteId: siteAdmission.id,
-    }),
-    await model.documentCategory.create({
-      order: 3,
-      title: '高校生活',
-      isUncategorized: false,
-      siteId: siteAdmission.id,
-    }),
-    await model.documentCategory.create({
-      order: 4,
-      title: 'データ',
-      isUncategorized: false,
-      siteId: siteAdmission.id,
-    }),
-    await model.documentCategory.create({
-      order: 1,
-      title: '未分類',
-      isUncategorized: true,
-      siteId: siteStudent.id,
-    }),
-  ]
-
-  for (const documentCategory of documentCategories) {
-    for (let i = 1; i <= 3; i += 1) {
-      const document = await model.document.create({
-        order: i,
-        datePublish: '2021-04-0' + i,
-        dateUpdate: '2021-04-0' + i,
-        title: 'ここにダウンロード資料のタイトルが入ります' + i,
-        description: new Array(3).fill('ここに説明が入ります。').join('\n'),
-        filename: `document${i}.pdf`,
-        location: process.env.BASE_URL + `/static/pdf/document${i}.pdf`,
-        isPublished: i <= 2,
-        siteId: documentCategory.siteId,
-      })
-
-      await model.documentCategoryDocument.create({
-        documentCategoryId: documentCategory.id,
-        documentId: document.id,
-      })
-    }
   }
 }
 
@@ -824,7 +767,7 @@ async function readFile (file) {
   return (await fsPromises.readFile(source)).toString()
 }
 
-async function insertRecordsPageProduction (sites) {
+async function insertRecordsPage (sites) {
   const siteAdmission = sites.find((site) => site.code === 'admission')
   const siteStudent = sites.find((site) => site.code === 'student')
 
@@ -851,6 +794,7 @@ async function insertRecordsPageProduction (sites) {
     title: 'トップ',
     code: '/',
     frontmatter: JSON.stringify({
+      title: '長岡英智高等学校｜通学できる通信制高校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: ['openSchoolIsAccepting'],
       locals: [
@@ -867,6 +811,7 @@ async function insertRecordsPageProduction (sites) {
     title: '新着情報',
     code: '/news/0/',
     frontmatter: JSON.stringify({
+      title: '新着情報｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [
@@ -885,6 +830,7 @@ async function insertRecordsPageProduction (sites) {
     title: '学校紹介',
     code: '/about/',
     frontmatter: JSON.stringify({
+      title: '学校紹介｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [],
@@ -899,6 +845,7 @@ async function insertRecordsPageProduction (sites) {
     title: 'コース紹介',
     code: '/courses/',
     frontmatter: JSON.stringify({
+      title: 'コース紹介｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [],
@@ -913,6 +860,7 @@ async function insertRecordsPageProduction (sites) {
     title: '通学コース',
     code: '/courses/commute/',
     frontmatter: JSON.stringify({
+      title: '通学コース｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [],
@@ -927,6 +875,7 @@ async function insertRecordsPageProduction (sites) {
     title: '通信教育コース',
     code: '/courses/correspondence/',
     frontmatter: JSON.stringify({
+      title: '通信教育コース｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [],
@@ -941,6 +890,7 @@ async function insertRecordsPageProduction (sites) {
     title: '入試情報',
     code: '/admission/',
     frontmatter: JSON.stringify({
+      title: '入試情報｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: ['openSchoolIsAccepting'],
       locals: [],
@@ -955,6 +905,7 @@ async function insertRecordsPageProduction (sites) {
     title: 'ダウンロード資料',
     code: '/document/',
     frontmatter: JSON.stringify({
+      title: 'ダウンロード資料｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [
@@ -971,6 +922,7 @@ async function insertRecordsPageProduction (sites) {
     title: 'よくある質問',
     code: '/faq/',
     frontmatter: JSON.stringify({
+      title: 'よくある質問｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [
@@ -987,6 +939,7 @@ async function insertRecordsPageProduction (sites) {
     title: 'お問い合わせ',
     code: '/contact/',
     frontmatter: JSON.stringify({
+      title: 'お問い合わせ｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [],
@@ -1001,6 +954,7 @@ async function insertRecordsPageProduction (sites) {
     title: 'お問い合わせ完了',
     code: '/contact/finish/',
     frontmatter: JSON.stringify({
+      title: 'お問い合わせ完了｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [],
@@ -1015,6 +969,7 @@ async function insertRecordsPageProduction (sites) {
     title: '採用情報',
     code: '/recruit/',
     frontmatter: JSON.stringify({
+      title: '採用情報｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: ['recruitIsAccepting'],
       locals: [],
@@ -1029,6 +984,7 @@ async function insertRecordsPageProduction (sites) {
     title: 'プライバシーポリシー',
     code: '/privacy/',
     frontmatter: JSON.stringify({
+      title: 'プライバシーポリシー｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [],
@@ -1040,9 +996,10 @@ async function insertRecordsPageProduction (sites) {
 
   await model.fixedPage.create({
     order: i += 1,
-    title: 'お探しのページは見つかりませんでした',
+    title: '404 Not Found',
     code: '/404/',
     frontmatter: JSON.stringify({
+      title: 'お探しのページは見つかりませんでした｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [],
@@ -1059,6 +1016,7 @@ async function insertRecordsPageProduction (sites) {
     title: '在校生・卒業生向けページ',
     code: '/student/',
     frontmatter: JSON.stringify({
+      title: '在校生・卒業生向けページ｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [],
@@ -1073,6 +1031,7 @@ async function insertRecordsPageProduction (sites) {
     title: '様式ダウンロード',
     code: '/student/document/',
     frontmatter: JSON.stringify({
+      title: '様式ダウンロード｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [
@@ -1086,9 +1045,10 @@ async function insertRecordsPageProduction (sites) {
 
   await model.fixedPage.create({
     order: i += 1,
-    title: '在校生・卒業生向けよくある質問',
+    title: 'よくある質問',
     code: '/student/faq/',
     frontmatter: JSON.stringify({
+      title: '在校生・卒業生向けよくある質問｜長岡英智高等学校',
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [
@@ -1102,121 +1062,112 @@ async function insertRecordsPageProduction (sites) {
 
 }
 
-async function insertRecordsPageDevelopment (sites) {
-  for (const site of sites) {
-    await model.partial.create({
-      order: 1,
-      title: 'ヘッダー',
-      code: site.code + '-header',
-      html: [
-        `<html>`,
-      ].join('\n'),
-      siteId: site.id,
-    })
-
-    await model.partial.create({
-      order: 2,
-      title: 'フッター',
-      code: site.code + '-footer',
-      html: [
-        `</html>`,
-      ].join('\n'),
-      siteId: site.id,
-    })
-
-    for (let i = 1; i <= 3; i += 1) {
-      await model.fixedPage.create({
-        order: i,
-        title: 'ここに固定ページのタイトルが入ります',
-        code: site.code + '-page-' + i,
-        frontmatter: '',
-        html: [
-          `----------`,
-          `partials: ['${site.code}-header', '${site.code}-footer']`,
-          `----------`,
-          `<h1>ここにタイトルが入ります</h1>`,
-          `<p>ここに本文が入ります。</p>`,
-        ].join('\n'),
-        isPublished: i % 2 === 0,
-        siteId: site.id,
-      })
-    }
-  }
-}
-
 async function insertRecordsContact () {
-  for (let i = 1; i <= 3; i += 1) {
-    await model.contactCategory.create({
-      order: i,
-      title: 'カテゴリ' + i,
-      template: [
-        `ここにカテゴリ${i}の例文が入ります。`,
-        `ここにカテゴリ${i}の例文が入ります。`,
-        `ここにカテゴリ${i}の例文が入ります。`,
-      ].join('\n'),
-      isPublished: i <= 2,
-    })
+  await model.contactCategory.create({
+    order: 1,
+    title: '資料のお取り寄せ',
+    template: [
+      `下記の通り資料を請求いたします。`,
+      ``,
+      `パンフレット：●部`,
+      `生徒募集要項：●部`,
+      `転入学生徒募集要項：●部`,
+    ].join('\n'),
+    isPublished: true,
+  })
 
-    await model.contactHistory.create({
-      number: `0000-0000-000${i}`,
-      postedAt: '2022-04-01',
-      name: '英智 太郎',
-      phone: '09012345678',
-      email: 'eichi@example.com',
-      zip: '9401154',
-      address: '新潟県⻑岡市宮栄3丁目16番14号',
-      category: 'カテゴリ1',
-      text: [
-        'ここに本文が入ります。',
-        'ここに本文が入ります。',
-        'ここに本文が入ります。',
-      ].join('\n'),
-    })
-  }
+  await model.contactCategory.create({
+    order: 2,
+    title: '見学・相談の申し込み',
+    template: [
+      `下記の通り見学・相談を申し込みます。`,
+      ``,
+      `▼見学・相談`,
+      `見学：希望する／希望しない`,
+      `相談：希望する／希望しない`,
+      ``,
+      `▼日時`,
+      `第1希望：●月●日●時から●時まで`,
+      `第2希望：●月●日●時から●時まで`,
+      `第3希望：●月●日●時から●時まで`,
+      ``,
+      `▼場所（見学の場合）`,
+      `宮内本校：希望する／希望しない`,
+      `長岡駅前校：希望する／希望しない`,
+      `長岡駅東校：希望する／希望しない`,
+      `三条校：希望する／希望しない`,
+      ``,
+      `▼参加者`,
+      `氏名：●● ●●`,
+      `氏名：●● ●● `,
+      ``,
+      `▼備考`,
+      ``,
+    ].join('\n'),
+    isPublished: true,
+  })
+
+  await model.contactCategory.create({
+    order: 3,
+    title: 'その他',
+    template: [
+      '',
+    ].join('\n'),
+    isPublished: true,
+  })
 }
 
 async function insertRecordsEmail () {
-  for (let i = 1; i <= 3; i += 1) {
-    await model.emailTemplate.create({
-      code: 'email-template-' + i,
-      order: i,
-      title: 'ここにメールひな型のタイトルが入ります' + i,
-      fromName: '長岡英智高等学校',
-      fromEmail: 'eichi@example.com',
-      toName: '{{contactHistory.name}} 様',
-      toEmail: '{{contactHistory.email}} 様',
-      bccEmail: 'eichi@example.com,eichi@example.com',
-      subject: 'ここに件名が入ります',
-      content: [
-        'ここに本文が入ります。',
-        'ここに本文が入ります。',
-        'ここに本文が入ります。',
-      ].join('\n'),
-    })
-
-    await model.emailHistory.create({
-      sentAt: '2022-04-01',
-      fromName: '長岡英智高等学校',
-      fromEmail: 'eichi@example.com',
-      toName: '英智 太郎 様',
-      toEmail: 'eichi@example.com',
-      bccEmail: 'eichi@example.com,eichi@example.com',
-      subject: 'ここに件名が入ります',
-      content: [
-        'ここに本文が入ります。',
-        'ここに本文が入ります。',
-        'ここに本文が入ります。',
-      ].join('\n'),
-      isSent: true,
-      errorCount: 0,
-      errorMessage: 'ここにエラーメッセージが入ります。',
-      errorStack: [
-        'ここにスタックトレースが入ります。',
-        'ここにスタックトレースが入ります。',
-        'ここにスタックトレースが入ります。',
-      ].join('\n'),
-    })
-  }
+  await model.emailTemplate.create({
+    code: 'contact',
+    order: 1,
+    title: 'お問い合わせの受け付けメール',
+    fromName: '長岡英智高等学校',
+    fromEmail: 'eichi@loremipsum.co.jp',
+    toName: '<%= contactHistory.name %> 様',
+    toEmail: '<%= contactHistory.email %>',
+    bccEmail: 'susukida@rabbitpro.co.jp',
+    subject: 'お問い合わせを受け付けました｜長岡英智高等学校',
+    content: [
+      '<%= contactHistory.name %> 様',
+      '',
+      'この度は長岡英智高等学校のホームページより、',
+      'お問い合わせをいただきましてありがとうございます。',
+      '',
+      '下記の通りお問い合わせを受け付けましたのでお知らせいたします。',
+      'なお、電話番号と住所については大切な個人情報を保護するために記載を控えております。',
+      '',
+      'お名前：<%= contactHistory.name %> 様',
+      'メールアドレス：<%= contactHistory.email %>',
+      '郵便番号：<%= contactHistory.zip %>',
+      'お問い合わせの種類：<%= contactHistory.category %>',
+      '',
+      '<%= contactHistory.text %>',
+      '',
+      'お問い合わせ内容を確認の上、改めてご連絡いたします。',
+      '万が一、本校からのご連絡がない場合はお手数をおかけして誠に恐縮ですが、',
+      'お電話またはメールにてお問い合わせください。',
+      'その際、下記のお問い合わせ番号をお伝えください。',
+      '',
+      '電話番号',
+      '0258-31-6771',
+      '',
+      'メールアドレス',
+      'will@eichi.ed.jp',
+      '',
+      'お問い合わせ番号',
+      '<%= contactHistory.number %>',
+      '',
+      '＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊　　　　　　　　　　　　',
+      '〈校　訓〉立ち止まる・考える・行動する',
+      '',
+      '学校法人英智学院　長岡英智高等学校',
+      '',
+      '長岡市宮栄３－１６－１４',
+      'Tel:0258-31-6771　Fax:0258-31-6772',
+      'will@eichi.ed.jp',
+    ].join('\n'),
+  })
 }
 
 async function insertRecordsAdmin () {

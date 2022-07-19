@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>長岡英智高等学校｜通学できる通信制高校</title>
+    <title><%= frontmatter.title %></title>
     <meta name="description" content="長岡英智高等学校は、それぞれの個性に寄り添い、時代のニーズに応える単位性通信性の高等学校として、生徒一人ひとりに寄り添う教育を実践します。">
-    <meta property="og:title" content="長岡英智高等学校｜通学できる通信制高校">
-    <meta property="og:image" content="<%= env.STATIC_URL %>/img/main.jpg">
+    <meta property="og:title" content="<%= frontmatter.title %>">
+    <meta property="og:description" content="長岡英智高等学校は、それぞれの個性に寄り添い、時代のニーズに応える単位性通信性の高等学校として、生徒一人ひとりに寄り添う教育を実践します。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<%= env.STATIC_URL %>/ogp.jpg">
     <meta property="og:url" content="<%= url.toString() %>">
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="長岡英智高等学校｜通学できる通信制高校">
-    <meta property="twitter:image" content="<%= env.STATIC_URL %>/img/main.jpg">
+    <meta property="twitter:title" content="<%= frontmatter.title %>">
+    <meta property="twitter:image" content="<%= env.STATIC_URL %>/ogp.jpg">
     <link rel="stylesheet" href="/source/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="/source/bootstrap-grid.min.css">
     <link rel="stylesheet" href="/source/screen.css">

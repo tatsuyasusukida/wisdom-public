@@ -13,6 +13,7 @@ import model from './model/index.mjs'
 import * as c from './lib/convert.mjs'
 import * as f from './lib/form.mjs'
 import * as v from './lib/validate.mjs'
+import sgMail from '@sendgrid/mail'
 
 main()
 
@@ -21,6 +22,7 @@ async function main () {
     winston.loggers.add('error', makeLogger(process.env.LOG_LEVEL, 'json', 'error.log'))
     winston.loggers.add('warn', makeLogger(process.env.LOG_LEVEL, 'json', 'warn.log'))
     winston.loggers.add('info', makeLogger(process.env.LOG_LEVEL, 'json', 'info.log'))
+    winston.loggers.add('debug', makeLogger(process.env.LOG_LEVEL, 'json', 'debug.log'))
     winston.loggers.add('query', makeLogger(process.env.LOG_LEVEL, 'json', 'query.log'))
     winston.loggers.add('access', makeLogger(process.env.LOG_LEVEL, 'raw', 'access.log'))
 
@@ -48,6 +50,11 @@ async function main () {
     router.use('/', wrap(layout))
     router.use('/', wrap(renderFixedPage))
     router.get('/news/:newsId([0-9]+)/', wrap(news))
+    router.get('/photo/uniform/', (req, res) => res.render('photo-uniform'))
+    router.get('/photo/miyauchi/', (req, res) => res.render('photo-miyauchi'))
+    router.get('/photo/ekihigashi/', (req, res) => res.render('photo-ekihigashi'))
+    router.get('/photo/ekimae/', (req, res) => res.render('photo-ekimae'))
+    router.get('/photo/sanjo/', (req, res) => res.render('photo-sanjo'))
     router.get('/source/:sourceFilename([0-9a-z-_\\.]+)', wrap(source))
     router.use('/static/', express.static(new URL('static', import.meta.url).pathname))
     router.use('/api/v1/', express.json())
@@ -127,6 +134,7 @@ async function renderFixedPage (req, res, next, options) {
     }
   }
 
+  res.locals.frontmatter = frontmatter
   res.locals.setting = await findSetting(frontmatter.settings)
   res.locals.partial = res.locals.partial || {}
 
@@ -445,7 +453,7 @@ async function apiContactInitialize (_, res) {
   if (process.env.NODE_ENV === 'development') {
     form.name = '英智 太郎'
     form.phone = '09012345678'
-    form.email = 'eichi@example.com'
+    form.email = 'susukida@loremipsum.co.jp'
     form.zip = '1234567'
     form.address = '新潟県長岡市宮栄3-16-14'
     form.contactCategoryId = contactCategories[0].id + ''
@@ -492,7 +500,79 @@ async function apiContactSubmit (req, res) {
     }).toString()
 
     res.send({ok: true, redirect: '/contact/finish/' + search})
+
+    try {
+      sendEmailContact(contactHistory)
+    } catch (err) {
+      winston.loggers.get('warn').warn(err.message)
+      winston.loggers.get('debug').debug(err.stack)
+    }
   })
+}
+
+async function sendEmailContact (contactHistory) {
+  try {
+    const emailTemplate = await model.emailTemplate.findOne({
+      where: {
+        code: {[Op.eq]: 'contact'},
+      },
+    })
+
+    const locals = {contactHistory}
+    const emailHistory = await model.emailHistory.create({
+      sentAt: new Date(),
+      fromEmail: ejs.render(emailTemplate.fromEmail, locals),
+      fromName: ejs.render(emailTemplate.fromName, locals),
+      toEmail: ejs.render(emailTemplate.toEmail, locals),
+      toName: ejs.render(emailTemplate.toName, locals),
+      bccEmail: ejs.render(emailTemplate.bccEmail, locals),
+      subject: ejs.render(emailTemplate.subject, locals),
+      content: ejs.render(emailTemplate.content, locals),
+      isSent: false,
+      errorCount: 0,
+      errorMessage: '',
+      errorStack: '',
+    })
+
+    try {
+      const message = {
+        from: {
+          name: emailHistory.fromName,
+          email: emailHistory.fromEmail,
+        },
+        to: {
+          name: emailHistory.toName,
+          email: emailHistory.toEmail,
+        },
+        bcc: emailHistory.bccEmail,
+        subject: emailHistory.subject,
+        text: emailHistory.content,
+      }
+
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+      await sgMail.send(message)
+
+      emailHistory.isSent = true
+      await emailHistory.save()
+    } catch (err) {
+      winston.loggers.get('warn').warn(err.message)
+      winston.loggers.get('debug').debug(err.stack)
+
+      try {
+        emailHistory.errorCount += 1
+        emailHistory.errorMessage = err.message
+        emailHistory.errorStack = err.stack
+
+        await emailHistory.save()
+      } catch (err) {
+        winston.loggers.get('warn').warn(err.message)
+        winston.loggers.get('debug').debug(err.stack)
+      }
+    }
+  } catch (err) {
+    winston.loggers.get('warn').warn(err.message)
+    winston.loggers.get('debug').debug(err.stack)
+  }
 }
 
 async function generateContactHistoryNumber (transaction, retry) {
@@ -526,8 +606,4 @@ function onNotFound (req, res, next) {
 function onError (err, _, res, __) {
   res.status(err.status || 500).end()
   winston.loggers.get('error').error(err.message)
-
-  if (process.env.NODE_ENV !== 'production') {
-    console.error(err)
-  }
 }
