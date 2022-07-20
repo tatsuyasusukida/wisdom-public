@@ -731,7 +731,7 @@ async function insertRecordsPage (sites) {
       partials: ['admissionHeader', 'admissionFooter'],
       settings: [],
       locals: [
-        {name: 'news', function: 'findNews'},
+        {name: 'news', function: 'findNews', required: true},
         {name: 'newsLinks', function: 'findNewsLinks'},
         {name: 'newsImages', function: 'findNewsImages'},
       ],
@@ -1008,10 +1008,7 @@ async function insertRecordsContact () {
       `第3希望：●月●日●時から●時まで`,
       ``,
       `▼場所（見学の場合）`,
-      `宮内本校：希望する／希望しない`,
-      `長岡駅前校：希望する／希望しない`,
-      `長岡駅東校：希望する／希望しない`,
-      `三条校：希望する／希望しない`,
+      `見学希望：宮内本校／長岡駅前校／長岡駅東校／三条校`,
       ``,
       `▼参加者`,
       `氏名：●● ●●`,
@@ -1160,7 +1157,7 @@ async function insertRecordsSetting () {
     order: i += 1,
     title: '教職員募集中（募集中→1）',
     code: `recruitIsAccepting`,
-    value: JSON.stringify(1, null, 2),
+    value: JSON.stringify(0, null, 2),
   })
 
   await model.setting.create({

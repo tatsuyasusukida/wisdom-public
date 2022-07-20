@@ -63,9 +63,9 @@
                   <% if (faq.faqImages.length >= 1 ) { %>
                     <div class="faq-category-item-image">
                       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-                        <% faq.faqImages.forEach(({original, thumbnail, alt}) => { %>
-                          <a href="<%= original %>">
-                            <img src="<%= thumbnail %>" alt="<%= alt %>">
+                        <% faq.faqImages.forEach((faqImage) => { %>
+                          <a href="<%= faqImage.originalUrl %>">
+                            <img src="<%= faqImage.thumbnailUrl %>" alt="<%= faqImage.alt %>">
                           </a>
                         <% }) %>
                       </div>

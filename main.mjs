@@ -50,11 +50,15 @@ async function main () {
     router.use('/', wrap(layout))
     router.use('/', wrap(renderFixedPage))
     router.get('/news/:newsId([0-9]+)/', wrap(news))
-    router.get('/photo/uniform/', (req, res) => res.render('photo-uniform'))
-    router.get('/photo/miyauchi/', (req, res) => res.render('photo-miyauchi'))
-    router.get('/photo/ekihigashi/', (req, res) => res.render('photo-ekihigashi'))
-    router.get('/photo/ekimae/', (req, res) => res.render('photo-ekimae'))
-    router.get('/photo/sanjo/', (req, res) => res.render('photo-sanjo'))
+
+    if (process.env.PHOTO === '1') {
+      router.get('/photo/uniform/', (req, res) => res.render('photo-uniform'))
+      router.get('/photo/miyauchi/', (req, res) => res.render('photo-miyauchi'))
+      router.get('/photo/ekihigashi/', (req, res) => res.render('photo-ekihigashi'))
+      router.get('/photo/ekimae/', (req, res) => res.render('photo-ekimae'))
+      router.get('/photo/sanjo/', (req, res) => res.render('photo-sanjo'))
+    }
+
     router.get('/source/:sourceFilename([0-9a-z-_\\.]+)', wrap(source))
     router.use('/static/', express.static(new URL('static', import.meta.url).pathname))
     router.use('/api/v1/', express.json())
@@ -125,6 +129,8 @@ async function renderFixedPage (req, res, next, options) {
     if (functions[local.function]) {
       const resource = await functions[local.function](req)
 
+      console.log(resource)
+
       if (local.required && !resource) {
         onNotFound(req, res)
         return
@@ -175,12 +181,14 @@ async function findNewsLinks (req) {
 }
 
 async function findNewsImages (req) {
-  return await model.newsImage.findAll({
+  const newsImages = await model.newsImage.findAll({
     where: {
       newsId: {[Op.eq]: req.params.newsId},
     },
     order: [['order', 'asc'], ['id', 'asc']],
   })
+
+  return newsImages.map(newsImage => c.convertNewsImage(newsImage))
 }
 
 async function news (req, res, next) {
@@ -303,7 +311,9 @@ async function findFaqCategories (siteCode) {
       }
 
       if (faqImages[faq.id]) {
-        faq.faqImages = faqImages[faq.id]
+        faq.faqImages = faqImages[faq.id].map(faqImage => {
+          return c.convertFaqImage(faqImage)
+        })
       }
     }
   }
@@ -403,13 +413,15 @@ function isJson (text) {
 }
 
 async function findNewses () {
-  return await model.news.findAll({
+  const newses = await model.news.findAll({
     where: {
       isPublished: {[Op.eq]: true},
     },
     include: [{model: model.site, as: 'site'}],
     order: [['date', 'desc'], ['id', 'desc']],
   })
+
+  return newses.map(news => c.convertNews(news))
 }
 
 async function findSetting (codes) {
