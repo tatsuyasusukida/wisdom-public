@@ -27,15 +27,15 @@ async function main () {
       }),
     ]
 
-    await insertRecordsNewsProduction(sites)
+    await insertRecordsNews(sites)
     await insertRecordsDocument(sites)
-    await insertRecordsFaqProduction(sites)
+    await insertRecordsFaq(sites)
     await insertRecordsPage(sites)
     await insertRecordsContact()
     await insertRecordsEmail()
     await insertRecordsAdmin()
     await insertRecordsFile()
-    await insertRecordsSourceProduction()
+    await insertRecordsSource()
     await insertRecordsSetting()
   } catch (err) {
     console.error(err)
@@ -44,7 +44,7 @@ async function main () {
   }
 }
 
-async function insertRecordsNewsProduction (sites) {
+async function insertRecordsNews (sites) {
   const site = sites.find((site) => site.code === 'admission')
 
   const news = await model.news.create({
@@ -54,41 +54,6 @@ async function insertRecordsNewsProduction (sites) {
     isPublished: true,
     siteId: site.id,
   })
-}
-
-async function insertRecordsNewsDevelopment (sites) {
-  for (const site of sites) {
-    for (let i = 1; i <= 10; i += 1) {
-      const news = await model.news.create({
-        date: '2022-04-' + i.toString().padStart(2, '0'),
-        title: 'ここに新着情報のタイトルが入ります' + i,
-        text: new Array(5).fill('ここに本文が入ります。').join('\n'),
-        isPublished: i % 2 === 0,
-        siteId: site.id,
-      })
-
-      for (let j = 1; j <= 3; j += 1) {
-        await model.newsLink.create({
-          order: j,
-          title: 'ここに関連リンクのタイトルが入ります' + j,
-          url: 'https://example.com/',
-          newsId: news.id,
-        })
-      }
-
-      for (let j = 1; j <= 3; j += 1) {
-        await model.newsImage.create({
-          order: j,
-          title: 'ここに関連画像のタイトルが入ります' + j,
-          alt: new Array(3).fill('ここに代替テキストが入ります。').join('\n'),
-          filename: `image-${i}-${j}.jpg`,
-          original: IMAGE,
-          thumbnail: IMAGE,
-          newsId: news.id,
-        })
-      }
-    }
-  }
 }
 
 async function insertRecordsDocument (sites) {
@@ -352,12 +317,12 @@ async function insertRecordsDocumentStudent (sites) {
   }
 }
 
-async function insertRecordsFaqProduction (sites) {
-  await insertRecordsFaqProductionAdmission(sites)
-  await insertRecordsFaqProductionStudent(sites)
+async function insertRecordsFaq (sites) {
+  await insertRecordsFaqAdmission(sites)
+  await insertRecordsFaqStudent(sites)
 }
 
-async function insertRecordsFaqProductionAdmission (sites) {
+async function insertRecordsFaqAdmission (sites) {
   const siteAdmission = sites.find((site) => site.code === 'admission')
 
   {
@@ -617,7 +582,7 @@ async function insertRecordsFaqProductionAdmission (sites) {
   }
 }
 
-async function insertRecordsFaqProductionStudent (sites) {
+async function insertRecordsFaqStudent (sites) {
   const siteStudent = sites.find((site) => site.code === 'student')
 
   {
@@ -699,54 +664,6 @@ async function insertRecordsFaqProductionStudent (sites) {
         faqCategoryId: faqCategory.id,
         faqId: faq.id,
       })
-    }
-  }
-}
-
-async function insertRecordsFaqDevelopment (sites) {
-  for (const site of sites) {
-    for (let i = 1; i <= 3; i += 1) {
-      const faqCategory = await model.faqCategory.create({
-        order: i,
-        title: 'カテゴリ' + i,
-        siteId: site.id,
-      })
-
-      for (let j = 1; j <= 3; j += 1) {
-        const faq = await model.faq.create({
-          order: j,
-          question: 'ここに質問が入ります' + j,
-          answer: new Array(5).fill('ここに回答が入ります。').join('\n'),
-          isPublished: j <= 2,
-          siteId: site.id,
-        })
-
-        await model.faqCategoryFaq.create({
-          faqCategoryId: faqCategory.id,
-          faqId: faq.id,
-        })
-
-        for (let k = 1; k <= 3; k += 1) {
-          await model.faqLink.create({
-            order: k,
-            title: 'ここに関連リンクのタイトルが入ります' + k,
-            url: 'https://example.com/',
-            faqId: faq.id,
-          })
-        }
-
-        for (let k = 1; k <= 3; k += 1) {
-          await model.faqImage.create({
-            order: k,
-            title: 'ここに関連画像のタイトルが入ります' + k,
-            alt: new Array(3).fill('ここに代替テキストが入ります。').join('\n'),
-            filename: `image-${i}-${j}-${k}.jpg`,
-            original: IMAGE,
-            thumbnail: IMAGE,
-            faqId: faq.id,
-          })
-        }
-      }
     }
   }
 }
@@ -1190,7 +1107,7 @@ async function insertRecordsFile () {
   }
 }
 
-async function insertRecordsSourceProduction () {
+async function insertRecordsSource () {
   let i = 0
 
   await model.source.create({
@@ -1240,22 +1157,6 @@ async function insertRecordsSourceProduction () {
     text: await readFile('static/js/main.js'),
     isPublished: true,
   })
-}
-
-async function insertRecordsSourceDevelopment () {
-  for (let i = 1; i <= 3; i += 1) {
-    await model.source.create({
-      order: i,
-      title: 'ここにソースコードのタイトルが入ります' + i,
-      filename: `source-0${i}.css`,
-      text: [
-        'ここに内容が入ります。',
-        'ここに内容が入ります。',
-        'ここに内容が入ります。',
-      ].join('\n'),
-      isPublished: i <= 2,
-    })
-  }
 }
 
 async function insertRecordsSetting () {

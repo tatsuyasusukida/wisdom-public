@@ -1,0 +1,8 @@
+/log/
+/node_modules/
+/script/
+/static/
+/view/
+/.git/
+/.env
+.DS_Store

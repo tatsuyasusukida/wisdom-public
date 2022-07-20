@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node main.mjs",
     "dev": "nodemon -r dotenv/config main.mjs",
-    "fixture": "node -r dotenv/config script/fixture.mjs"
+    "fixture": "node -r dotenv/config script/fixture.mjs",
+    "deploy": "gcloud run deploy wisdom-public --source . --region asia-northeast1 --platform managed --allow-unauthenticated",
+    "rsync": "dotenv -- bash -c 'gsutil rsync -r -x '^img-original' static gs://${BUCKET_STATIC}'"
   },
   "keywords": [],
   "author": "",
