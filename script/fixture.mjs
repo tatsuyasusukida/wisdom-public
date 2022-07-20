@@ -34,7 +34,6 @@ async function main () {
     await insertRecordsContact()
     await insertRecordsEmail()
     await insertRecordsAdmin()
-    await insertRecordsFile()
     await insertRecordsSource()
     await insertRecordsSetting()
   } catch (err) {
@@ -1091,18 +1090,6 @@ async function insertRecordsAdmin () {
   if (process.env.FIXTURE_ADMIN === '1') {
     await model.admin.create({
       email: process.env.FIXTURE_ADMIN_EMAIL,
-    })
-  }
-}
-
-async function insertRecordsFile () {
-  for (let i = 1; i <= 3; i += 1) {
-    await model.file.create({
-      date: '2021-04-0' + i,
-      title: 'ここにファイルのタイトルが入ります' + i,
-      filename: `file-0${i}.jpg`,
-      location: IMAGE,
-      isPublished: i <= 2,
     })
   }
 }
