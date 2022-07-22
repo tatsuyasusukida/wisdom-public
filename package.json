@@ -8,7 +8,9 @@
     "dev": "nodemon -r dotenv/config main.mjs",
     "fixture": "node -r dotenv/config script/fixture.mjs",
     "deploy": "gcloud run deploy wisdom-public --source . --region asia-northeast1 --platform managed --allow-unauthenticated",
-    "rsync": "dotenv -- bash -c 'gsutil rsync -r -x '^img-original' static gs://${BUCKET_STATIC}'"
+    "rsync": "dotenv -- bash -c 'gsutil rsync -r -x '^img-original' static gs://${BUCKET_STATIC}'",
+    "test:unit": "mocha -r dotenv/config --file lib/*.test.mjs",
+    "test:api": "mocha -r dotenv/config --file test/api/*.test.mjs"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +33,7 @@
     "node": "^16.0.0"
   },
   "devDependencies": {
+    "mocha": "^10.0.0",
     "sharp": "^0.30.7"
   }
 }
