@@ -52,11 +52,11 @@ async function main () {
     router.get('/news/:newsId([0-9]+)/', wrap(news))
 
     if (process.env.PHOTO === '1') {
-      router.get('/photo/uniform/', (req, res) => res.render('photo-uniform'))
-      router.get('/photo/miyauchi/', (req, res) => res.render('photo-miyauchi'))
-      router.get('/photo/ekihigashi/', (req, res) => res.render('photo-ekihigashi'))
-      router.get('/photo/ekimae/', (req, res) => res.render('photo-ekimae'))
-      router.get('/photo/sanjo/', (req, res) => res.render('photo-sanjo'))
+      router.get('/photo/uniform/', (_, res) => res.render('photo-uniform'))
+      router.get('/photo/miyauchi/', (_, res) => res.render('photo-miyauchi'))
+      router.get('/photo/ekihigashi/', (_, res) => res.render('photo-ekihigashi'))
+      router.get('/photo/ekimae/', (_, res) => res.render('photo-ekimae'))
+      router.get('/photo/sanjo/', (_, res) => res.render('photo-sanjo'))
     }
 
     router.get('/source/:sourceFilename([0-9a-z-_\\.]+)', wrap(source))
