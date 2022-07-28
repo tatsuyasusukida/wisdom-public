@@ -406,7 +406,8 @@ async function insertRecordsFaqAdmission (sites) {
         order: i += 1,
         question: '何年で卒業できますか？',
         answer: [
-          'どのコースも３年間で卒業が可能です。',
+          '最短で3年間で卒業することが可能です（各コース共通）。',
+          '転学生は、前籍校と合わせて高校通算３年間で卒業することが可能です。',
         ].join('\n'),
         isPublished: true,
         siteId: siteAdmission.id,
@@ -426,7 +427,7 @@ async function insertRecordsFaqAdmission (sites) {
         order: i += 1,
         question: '年度途中で退学する生徒はいますか？',
         answer: [
-          '通学コース・通信教育コースの二つのコースより自分にあったコースを選び入学します。期間や時期はありますが、コース変更も可能ですので、退学を選択する生徒は少ないです。',
+          '通学コース・通信教育コースの２つのコースによって、自分にあったコースを選び入学することができます。コース変更などで居場所を変更したりしながら卒業を目指すことができるため、退学する生徒は少ないです。',
         ].join('\n'),
         isPublished: true,
         siteId: siteAdmission.id,
@@ -434,9 +435,9 @@ async function insertRecordsFaqAdmission (sites) {
 
       await model.faq.create({
         order: i += 1,
-        question: '不登校などの理由で、学力が低く勉強についていけるか心配です。',
+        question: '不登校などの理由で、勉強についていけるかが不安です',
         answer: [
-          '大丈夫です。どの授業も、生徒一人ひとりに寄り添ったきめ細かい授業を行っています。わからないところは遠慮なく質問してください。また、平成２８年度より「公文式学習」を導入し、基礎学力を身につけます。「やればできる！」が体感できるはずです。',
+          '通学コースでは、学校独自科目「ベーシックスキル」によって小中学校の学び直しの時間を設けています。振り返り学習を行うことで、基礎学力を定着させ、勉強に対する不安を取り除いていきます。また、通信教育コースではタブレットを使用しながら、自分のペースで学習を進めていきますので、個人にあった科目の履修を行います。勉強に対する不安は誰しもが持っていると思いますが、その悩みに当校に教職員が寄り添います。',
         ].join('\n'),
         isPublished: true,
         siteId: siteAdmission.id,
@@ -453,7 +454,7 @@ async function insertRecordsFaqAdmission (sites) {
 
   {
     const faqCategory = await model.faqCategory.create({
-      order: 4,
+      order: 3,
       title: '高校生活',
       siteId: siteAdmission.id,
     })
@@ -465,7 +466,7 @@ async function insertRecordsFaqAdmission (sites) {
         order: i += 1,
         question: 'キャリア教育の内容について教えてください。',
         answer: [
-          '「総合的な探究の時間」の時間や「特別活動」の中で、進路講話や進路ガイダンス、職場見学などを行っています。',
+          '各学年でテーマに合わせた進路指導を行います。進路ガイダンスや面接練習などそれぞれのステップに合わせてより実践的な指導を行っていきます。また令和４年度より専門学校と連携した体験授業もスタートしました。３年間を通した進路指導を実践していきます。',
         ].join('\n'),
         isPublished: true,
         siteId: siteAdmission.id,
@@ -475,7 +476,7 @@ async function insertRecordsFaqAdmission (sites) {
         order: i += 1,
         question: '生徒から人気のある学校行事は何ですか？',
         answer: [
-          '球技大会やスキー・スノーボード授業が人気です。特に修学旅行は大人気です。また、生徒生活体験発表大会や生徒会が中心となって体育祭や英好祭（文化祭）も開催しています。',
+          '通学コースでは体育祭や修学旅行が人気です。年間を通して様々な行事が実施されています。また、通信教育コースでは独自の内容で特別活動を実施しています。様々な内容から選択して自分の好きな活動に参加することができます。',
         ].join('\n'),
         isPublished: true,
         siteId: siteAdmission.id,
@@ -485,7 +486,7 @@ async function insertRecordsFaqAdmission (sites) {
         order: i += 1,
         question: '盛んな部活動は何ですか？部活動は必ず入部しなくてはいけませんか？',
         answer: [
-          '軟式野球部、ソフトテニス部、バドミントン部、卓球部、陸上競技部が全国大会への出場を果たしています。全日制高校のように毎日活動するわけではありませんが、どの部活も日程を調整して活動しています。入部は自由です。',
+          '現在、６つの運動部と１つの運動部があります。全日制高校のように毎日活動するわけではありませんが、大会前などに集まって活動を行っています。入部は自由で初心者でも大歓迎です。ぜひ長岡英智高校の部活を盛り上げてください。',
         ].join('\n'),
         isPublished: true,
         siteId: siteAdmission.id,
