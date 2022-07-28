@@ -589,7 +589,7 @@ address {
 .ol li:before {
   position: absolute;
   left: 0;
-  top: 0.25rem;
+  top: 0.35rem;
   content: "";
   background: rgb(56,123,69);
   width: 1.0rem;
@@ -608,7 +608,7 @@ address {
 .ol li:after {
   position: absolute;
   left: 0.3rem;
-  top: 0.125rem;
+  top: 0.175rem;
   content: counter(ol);
   color: #fff;
   font-size: 0.7rem;
@@ -1685,7 +1685,6 @@ a.button.is-student {
   border-top: 2px dotted rgb(56,123,69);
   padding-top: 1.5rem;
   margin-top: 1.5rem;
-  font-weight: 700;
 }
 
 @media (min-width: 768px) {
@@ -1695,7 +1694,6 @@ a.button.is-student {
     padding-top: 3rem;
     margin-top: 3rem;
     /*width: 80%;*/
-    font-weight: 700;
   }
 }
 
@@ -1720,6 +1718,7 @@ a.button.is-student {
 .vision-item p {
   font-size: 1.5rem;
   margin-top: 1rem;
+  font-weight: 700;
 }
 
 @media (min-width: 768px) {
@@ -1733,18 +1732,12 @@ a.button.is-student {
 
 .vision-item ol {
   flex-basis: calc(100% - 10rem);
-  font-size: 1.1rem;
-  list-style: none;
-  padding-left: 0;
   margin-top: 1rem;
 }
 
 @media (min-width: 768px) {
   .vision-item ol {
     flex-basis: calc(100% - 10rem);
-    font-size: 1.1rem;
-    list-style: none;
-    padding-left: 0;
     margin-top: 0;
   }
 }
