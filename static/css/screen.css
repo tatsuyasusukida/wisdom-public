@@ -2577,13 +2577,13 @@ a.button.is-student {
 }
 
 .curriculum {
-  margin-top: 2rem;
+  margin-top: 4rem;
   margin-bottom: 4rem;
 }
 
 @media (min-width: 768px) {
   .curriculum {
-    margin-top: 6rem;
+    margin-top: 8rem;
     margin-bottom: 8rem;
   }
 }
@@ -3096,11 +3096,13 @@ a.button.is-student {
 
 .openSchool {
   margin-top: 2.5rem;
+  margin-bottom: 5rem;
 }
 
 @media (min-width: 768px) {
   .openSchool {
     margin-top: 6rem;
+    margin-bottom: 10rem;
   }
 }
 
@@ -3193,74 +3195,23 @@ a.button.is-student {
   }
 }
 
-.fee-flex {
+.fee h2 {
+  flex-basis: 20rem;
+  margin-bottom: 0;
 }
 
-@media (min-width: 768px) {
-  .fee-flex {
-    display: flex;
-    align-items: end;
-  }
-}
-
-@media (min-width: 768px) {
-  .fee-flex h2 {
-    flex-basis: 5rem;
-    margin-bottom: 0;
-  }
-}
-
-.fee-flex p {
-  margin: 1rem 0 0;
-  padding-left: 1.2rem;
-  position: relative;
-}
-
-@media (min-width: 768px) {
-  .fee-flex p {
-    margin: 0;
-    flex-basis: calc(100% - 6rem);
-  }
-}
-
-.fee-flex p:before {
-  position: absolute;
-  left: 0;
-  content: "※";
-}
-
-.fee .fee-item {
-  margin-top: 3rem;
-}
-
-@media (min-width: 768px) {
-  .fee .fee-item {
-    margin-top: 5rem;
-  }
-}
-
-.fee .fee-item.is-first {
-  margin-top: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .fee .fee-item.is-first {
-    margin-top: 4rem;
-  }
-}
-
-.fee .fee-item table {
-  margin-top: 1.5rem;
+.fee table {
+  margin-top: 2rem;
   width: 100%;
 }
 
 @media (min-width: 768px) {
-  .fee .fee-item table {
-    margin-top: 2rem;
+  .fee table {
+    margin-top: 3rem;
   }
 }
 
-.fee .fee-item table thead th {
+.fee table thead th {
   padding: 1rem;
   background: rgb(241,244,242);
   text-align: center;
@@ -3269,49 +3220,49 @@ a.button.is-student {
 }
 
 @media (min-width: 768px) {
-  .fee .fee-item table thead th {
+  .fee table thead th {
     padding: 1.5rem;
   }
 }
 
-.fee .fee-item table thead th.is-amount {
+.fee table thead th.is-amount {
   width: 20%;
 }
 
-.fee .fee-item table thead th.is-season {
+.fee table thead th.is-season {
   width: 40%;
 }
 
-.fee .fee-item table tbody td {
+.fee table tbody td {
   padding: 1rem;
   border: 1px solid rgb(222,222,222);
 }
 
 @media (min-width: 768px) {
-  .fee .fee-item table tbody td {
+  .fee table tbody td {
     padding: 1.5rem;
   }
 }
 
-.fee .fee-item table thead td.is-category {
+.fee table thead td.is-category {
   width: 15%;
 }
 
-.fee .fee-item table tbody td.is-title {
+.fee table tbody td.is-title {
   width: 25%;
 }
 
-.fee .fee-item table tbody td.is-align-top {
+.fee table tbody td.is-align-top {
   vertical-align: top;
 }
 
 .subsidy {
-  margin: 3rem 0 5rem;
+  margin: 3rem 0 0rem;
 }
 
 @media (min-width: 768px) {
   .subsidy {
-    margin: 8rem 0 10rem;
+    margin: 8rem 0 0rem;
   }
 }
 
@@ -3321,7 +3272,7 @@ a.button.is-student {
 
 @media (min-width: 768px) {
   .subsidy-item {
-    margin-top: 6rem;
+    margin-top: 5rem;
   }
 }
 
@@ -3331,7 +3282,7 @@ a.button.is-student {
 
 @media (min-width: 768px) {
   .subsidy-item.is-first {
-    margin-top: 5rem;
+    margin-top: 4rem;
   }
 }
 
@@ -3347,15 +3298,6 @@ a.button.is-student {
 
 .subsidy-item p.is-memo {
   margin-top: 1rem;
-  color: rgb(102,102,102);
-  padding-left: 1.2rem;
-  position: relative;
-}
-
-.subsidy-item p.is-memo:before {
-  content: "※";
-  position: absolute;
-  left: 0;
   color: rgb(102,102,102);
 }
 
@@ -3394,6 +3336,95 @@ a.button.is-student {
     padding: 1.5rem;
   }
 }
+
+
+
+
+
+.simulation {
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .simulation {
+    margin-top: 8rem;
+  }
+}
+
+.simulation h2 {
+  flex-basis: 20rem;
+  margin-bottom: 0;
+}
+
+.simulation table {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .simulation table {
+    margin-top: 3rem;
+  }
+}
+
+.simulation table thead th {
+  padding: 1rem;
+  background: rgb(241,244,242);
+  text-align: center;
+  font-weight: 400;
+  border: 1px solid rgb(222,222,222);
+}
+
+@media (min-width: 768px) {
+  .simulation table thead th {
+    padding: 1.5rem;
+  }
+}
+
+.simulation table tbody td {
+  padding: 1rem;
+  border: 1px solid rgb(222,222,222);
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .simulation table tbody td {
+    padding: 1.5rem;
+  }
+}
+
+.simulation table tbody td.is-align-top {
+  vertical-align: top;
+}
+
+.simulation table tfoot td {
+  padding: 1rem;
+  background: rgb(241,244,242);
+  font-weight: 400;
+  border: 1px solid rgb(222,222,222);
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .simulation table tfoot td {
+    padding: 1.5rem;
+  }
+}
+
+.simulation table td.is-align-left {
+  text-align: left;
+}
+
+.simulation p {
+  margin-top: 1rem;
+  color: rgb(102,102,102);
+}
+
+
+
+
+
+
 
 .document {
   margin: 1rem 0 5rem;
