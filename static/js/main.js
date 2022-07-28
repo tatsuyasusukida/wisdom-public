@@ -140,8 +140,9 @@ function contact () {
               };
 
               this.page = 'review';
-              window.scrollTo(0, 0);
             }
+
+            window.scrollTo(0, 0);
           }.bind(this))
           .catch(function (err) {
             console.error(err);

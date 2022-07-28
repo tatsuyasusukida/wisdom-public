@@ -724,9 +724,9 @@ a.button.is-student {
 
 @media (min-width: 768px) {
   .hero-image.is-admission {
-    width: 80%;
+    width: 70%;
     margin-left: auto;
-    padding: 26.68% 0;
+    padding: 23.345% 0;
   }
 }
 
@@ -738,9 +738,9 @@ a.button.is-student {
 
 @media (min-width: 768px) {
   .hero-image.is-student {
-    width: 80%;
+    width: 70%;
     margin-left: auto;
-    padding: 24.78% 0;
+    padding: 21.6825% 0;
   }
 }
 
@@ -798,9 +798,13 @@ a.button.is-student {
 
 @media (min-width: 768px) {
   .hero-text p.is-student {
-    height: 20rem;
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-text p.is-student {
     font-size: 4rem;
-    color: rgb(65,125,206);
   }
 }
 
@@ -814,6 +818,13 @@ a.button.is-student {
 
 @media (min-width: 768px) {
   .hero-text p.is-admission span.is-main {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-text p.is-admission span.is-main {
     font-size: 4rem;
     margin-bottom: 1rem;
   }
@@ -826,6 +837,13 @@ a.button.is-student {
 }
 
 @media (min-width: 768px) {
+  .hero-text p.is-admission span.is-sub {
+    display: block;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
   .hero-text p.is-admission span.is-sub {
     display: block;
     font-size: 2rem;
@@ -1780,6 +1798,7 @@ a.button.is-student {
 
 .message-item-body {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 1rem;
 }
 
@@ -1792,18 +1811,19 @@ a.button.is-student {
 .message-item-body-image {
   flex-basis: 7rem;
   margin-right: 1rem;
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 576px) {
   .message-item-body-image {
-    flex-basis: 10rem;
+    flex-basis: 8rem;
     margin-right: 2rem;
   }
 }
 
 @media (min-width: 992px) {
   .message-item-body-image {
-    flex-basis: 17rem;
+    flex-basis: 10rem;
   }
 }
 
@@ -1818,13 +1838,13 @@ a.button.is-student {
 }
 
 .message-item-body p {
-  flex-basis: calc(100% - 7rem - 1rem);
+  flex-basis: 100%;
   margin-bottom: 0;
 }
 
 @media (min-width: 576px) {
   .message-item-body p {
-    flex-basis: calc(100% - 10rem - 2rem);
+    flex-basis: calc(100% - 8rem - 2rem);
     margin-bottom: 0;
   }
 }
@@ -3370,27 +3390,6 @@ a.button.is-student {
 
 .document-item.is-first {
   margin-top: 0;
-}
-
-.document-item .row.is-document-item {
-  --bs-gutter-y: 1rem;
-  margin-bottom: 1.25rem;
-}
-
-@media (min-width: 768px) {
-  .document-item .row.is-document-item {
-    margin-bottom: 1.5rem;
-  }
-}
-
-.document-item img {
-  border-radius: 0.25rem;
-}
-
-@media (min-width: 768px) {
-  .document-item img {
-    border-radius: 0.5rem;
-  }
 }
 
 .document-item table {
