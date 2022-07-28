@@ -316,45 +316,6 @@ async function insertRecordsFaqAdmission (sites) {
   {
     const faqCategory = await model.faqCategory.create({
       order: 1,
-      title: '本校について',
-      siteId: siteAdmission.id,
-    })
-
-    let i = 0
-
-    const faqs = [
-      await model.faq.create({
-        order: i += 1,
-        question: '長岡英智高等学校の特色は何ですか？',
-        answer: [
-          '長岡英智高等学校の特色は、中学校の新卒者に加え、高校中退者や転校希望者へも開かれた高校として３年間で卒業に導くことに主眼を置き、生徒一人ひとりの状況に応じた指導を行います。',
-        ].join('\n'),
-        isPublished: true,
-        siteId: siteAdmission.id,
-      }),
-
-      await model.faq.create({
-        order: i += 1,
-        question: '公立高校との違いは何ですか？',
-        answer: [
-          '長岡英智高等学校は私立高校です。私立高校は、独自の建学の精神に基づいた教育を行っています。',
-        ].join('\n'),
-        isPublished: true,
-        siteId: siteAdmission.id,
-      }),
-    ]
-
-    for (const faq of faqs) {
-      await model.faqCategoryFaq.create({
-        faqCategoryId: faqCategory.id,
-        faqId: faq.id,
-      })
-    }
-  }
-
-  {
-    const faqCategory = await model.faqCategory.create({
-      order: 2,
       title: '入試／入学',
       siteId: siteAdmission.id,
     })
@@ -364,7 +325,7 @@ async function insertRecordsFaqAdmission (sites) {
     const faqs = [
       await model.faq.create({
         order: i += 1,
-        question: '中学校からの新卒者枠はありますか？新卒者枠が埋まった場合、二次募集はなくなりますか？',
+        question: '中学校からの新卒者枠はありますか？　新卒者枠が埋まった場合、二次募集はありますか？',
         answer: [
           '募集定員１６０名のうち１４０名が中学校からの新卒者枠です。欠員がある場合のみ二次募集を行います。',
         ].join('\n'),
@@ -386,7 +347,7 @@ async function insertRecordsFaqAdmission (sites) {
         order: i += 1,
         question: '選考検査の面接で特別な支援を必要とする生徒への配慮はできますか？',
         answer: [
-          '状況を伺った上で可能な限り配慮させていただきます。心配な生徒は事前に入学相談にいらしてください。中学校の先生とも連携していきます。',
+          '心配な生徒は事前に中学校の先生を通してご相談ください。可能な範囲で対応いたします。',
         ].join('\n'),
         isPublished: true,
         siteId: siteAdmission.id,
@@ -394,9 +355,9 @@ async function insertRecordsFaqAdmission (sites) {
 
       await model.faq.create({
         order: i += 1,
-        question: '選考検査の作文は事前に書いていくのか、当日書くのかを教えて下さい。',
+        question: '選考検査の作文の提出方法について教えてください。',
         answer: [
-          '事前に書いて提出してもらいます。募集要項に指定の用紙があります。',
+          '募集要項に従って指定の原稿用紙にボールペンまたは鉛筆で事前に記入し、提出をしてください。詳しい提出方法に関しては、募集要項をご覧ください。',
         ].join('\n'),
         isPublished: true,
         siteId: siteAdmission.id,
@@ -413,7 +374,7 @@ async function insertRecordsFaqAdmission (sites) {
 
   {
     const faqCategory = await model.faqCategory.create({
-      order: 3,
+      order: 2,
       title: '教育内容',
       siteId: siteAdmission.id,
     })
@@ -423,19 +384,9 @@ async function insertRecordsFaqAdmission (sites) {
     const faqs = [
       await model.faq.create({
         order: i += 1,
-        question: '通学コースと通信教育コースとの違いは何ですか？',
-        answer: [
-          '通学コースは、日々の授業の中でレポートを完成させていきますが、通信教育コースは、タブレット上でレポートを作成し提出します。通信教育コース生の中には各校舎に通ってレポート作成を行っている生徒も多くいます。',
-        ].join('\n'),
-        isPublished: true,
-        siteId: siteAdmission.id,
-      }),
-
-      await model.faq.create({
-        order: i += 1,
         question: '在学中のコース変更はできますか？',
         answer: [
-          '通学コース・通信教育コースの２つのコース間でコース変更が可能です。自分に合ったコースで卒業が目指せます。',
+          '可能です。通学コースから通信教育コースは毎月１日に、通信教育コースから通学コースへは４月のみコース異動が可能です。',
         ].join('\n'),
         isPublished: true,
         siteId: siteAdmission.id,
@@ -443,9 +394,9 @@ async function insertRecordsFaqAdmission (sites) {
 
       await model.faq.create({
         order: i += 1,
-        question: '通学コースの今年度の生徒数は？その中で、特別支援学級や適応指導教室などに通っていた生徒はどのくらいいますか？',
+        question: '特別支援学級や適応指導教室などに通っていた生徒はいますか？',
         answer: [
-          '通学コースには約１７０名在籍しています。在籍生徒の多くは、小・中学校時代に、適応指導教室や特別支援学級等に通っていました。不登校を経験した多くの生徒が元気に学校生活を送っています。',
+          '在籍している生徒の中には、特別支援学級や適応指導教室などに通う経験を持つ生徒もいます。通信制高校の多様な学び方を通して、様々な経験を積んで進学や就職などそれぞれの道へ進んでいく生徒が大勢います。',
         ].join('\n'),
         isPublished: true,
         siteId: siteAdmission.id,
@@ -987,11 +938,7 @@ async function insertRecordsContact () {
     template: [
       `下記の通り見学・相談を申し込みます。`,
       ``,
-      `▼見学・相談`,
-      `見学：希望する／希望しない`,
-      `相談：希望する／希望しない`,
-      ``,
-      `▼日時`,
+      `▼日時（9：00～17：00 土日祝を除く）`,
       `第1希望：●月●日●時から●時まで`,
       `第2希望：●月●日●時から●時まで`,
       `第3希望：●月●日●時から●時まで`,
