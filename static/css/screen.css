@@ -2444,6 +2444,7 @@ a.button.is-student {
 
 .voice-flex {
   display: flex;
+  flex-wrap: wrap;
   background: #fff;
   padding: 1.5rem;
   border-radius: 0.25rem;
@@ -2458,7 +2459,13 @@ a.button.is-student {
 }
 
 .voice-flex-text {
-  flex-basis: calc(100% - 10rem - 1rem);
+  flex-basis: 100%;
+}
+
+@media (min-width: 576px) {
+  .voice-flex-text {
+    flex-basis: calc(100% - 10rem - 1rem);
+  }
 }
 
 @media (min-width: 768px) {
@@ -2481,12 +2488,24 @@ a.button.is-student {
 
 .voice-flex-text h2 {
   position: absolute;
-  top: -2rem;
+  top: -1.5rem;
   left: 0rem;
   transform: rotate(-5deg);
-  font-size: 3rem;
+  font-size: 2rem;
   font-family: "Petit Formal Script";
   color: rgb(56,123,69);
+}
+
+@media (min-width: 576px) {
+  .voice-flex-text h2 {
+    position: absolute;
+    top: -2rem;
+    left: 0rem;
+    transform: rotate(-5deg);
+    font-size: 3rem;
+    font-family: "Petit Formal Script";
+    color: rgb(56,123,69);
+  }
 }
 
 @media (min-width: 768px) {
@@ -2507,8 +2526,16 @@ a.button.is-student {
 }
 
 .voice-flex-image {
-  flex-basis: 10rem;
-  margin-left: 1rem;
+  flex-basis: 100%;
+  margin-top: 2rem;
+}
+
+@media (min-width: 576px) {
+  .voice-flex-image {
+    flex-basis: 10rem;
+    margin-left: 1rem;
+    margin-top: 0;
+  }
 }
 
 @media (min-width: 768px) {
@@ -2533,7 +2560,14 @@ a.button.is-student {
 }
 
 .voice-flex-image img {
-  border-radius: 0.25rem;
+  width: 70%;
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 576px) {
+  .voice-flex-image img {
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) {
