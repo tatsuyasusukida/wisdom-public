@@ -8,9 +8,10 @@
     "dev": "nodemon -r dotenv/config main.mjs",
     "fixture": "node -r dotenv/config script/fixture.mjs",
     "deploy": "gcloud run deploy wisdom-public --source . --region asia-northeast1 --platform managed --allow-unauthenticated",
-    "rsync": "dotenv -- bash -c 'gsutil rsync -r -x '^img-original' static gs://${BUCKET_STATIC}'",
+    "rsync": "dotenv -- bash -c 'gsutil rsync -r -d -x '^img-original' static gs://${BUCKET_STATIC}'",
     "test:unit": "mocha -r dotenv/config --file lib/*.test.mjs",
-    "test:api": "mocha -r dotenv/config --file test/api.test.mjs"
+    "test:api": "mocha -r dotenv/config --file test/api.test.mjs",
+    "dump": "mysqldump -u root wisdom_db > wisdom_db.sql"
   },
   "keywords": [],
   "author": "",

@@ -5,4 +5,5 @@
 /view/
 /.git/
 /.env
+/wisdom_db.sql
 .DS_Store

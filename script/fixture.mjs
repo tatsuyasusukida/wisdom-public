@@ -415,16 +415,6 @@ async function insertRecordsFaqAdmission (sites) {
 
       await model.faq.create({
         order: i += 1,
-        question: '３年間で卒業できる仕組みは？',
-        answer: [
-          '本校は通信制課程ですので、レポート課題へ取り組むことで、全日制より少ない授業時数で単位の認定を行うからです。',
-        ].join('\n'),
-        isPublished: true,
-        siteId: siteAdmission.id,
-      }),
-
-      await model.faq.create({
-        order: i += 1,
         question: '年度途中で退学する生徒はいますか？',
         answer: [
           '通学コース・通信教育コースの２つのコースによって、自分にあったコースを選び入学することができます。コース変更などで居場所を変更したりしながら卒業を目指すことができるため、退学する生徒は少ないです。',
