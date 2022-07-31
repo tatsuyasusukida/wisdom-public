@@ -129,8 +129,6 @@ async function renderFixedPage (req, res, next, options) {
     if (functions[local.function]) {
       const resource = await functions[local.function](req)
 
-      console.log(resource)
-
       if (local.required && !resource) {
         onNotFound(req, res)
         return
