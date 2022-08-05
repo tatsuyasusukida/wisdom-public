@@ -9,8 +9,9 @@
     "fixture": "node -r dotenv/config script/fixture.mjs",
     "deploy": "gcloud run deploy wisdom-public-staging --source . --region asia-northeast1 --platform managed --allow-unauthenticated",
     "rsync": "dotenv -- bash -c 'gsutil rsync -r -d -x '^img-original' static gs://${BUCKET_STATIC}'",
-    "test:unit": "mocha -r dotenv/config --file lib/*.test.mjs",
-    "test:api": "mocha -r dotenv/config --file test/api.test.mjs",
+    "test:unit": "mocha -r dotenv/config lib/*.test.mjs",
+    "test:api": "mocha -r dotenv/config test/api.test.mjs",
+    "test:ui": "mocha -r dotenv/config test/ui.test.mjs",
     "dump": "mysqldump -u root wisdom_db > wisdom_db.sql"
   },
   "keywords": [],
@@ -36,6 +37,7 @@
   "devDependencies": {
     "mocha": "^10.0.0",
     "node-fetch": "^3.2.9",
+    "puppeteer": "^16.0.0",
     "sharp": "^0.30.7"
   }
 }
